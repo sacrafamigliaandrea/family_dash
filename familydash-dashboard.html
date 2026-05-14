@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FamilyDash — Dashboard docente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;700&family=Patrick+Hand&family=Fraunces:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css">
+<style>
+:root{--carta:#F5ECD7;--carta-2:#FAF4E6;--carta-bordo:#E3D5B0;--inchiostro:#3D2B1F;--inchiostro-2:#5C4736;--grafite:#8A7560;--rosso:#B85C3A;--rosso-tenue:#E8C7B5;--blu:#5B7FA0;--blu-tenue:#C8D6E2;--verde:#6B7A3F;--verde-tenue:#D3D9B8;--ocra:#C9A968;--ocra-tenue:#EDDDB4;--terra:#A05A2C;--notte:#2A1E14;--oro:#D4A93C}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--carta);color:var(--inchiostro);line-height:1.5;font-size:14px;background-image:radial-gradient(ellipse at top left,rgba(160,90,44,.06),transparent 50%),radial-gradient(ellipse at bottom right,rgba(91,127,160,.05),transparent 50%)}
+h1{font-family:'Caveat';font-weight:700;font-size:2.4rem;line-height:1}
+h2{font-family:'Caveat';font-weight:700;font-size:1.6rem;line-height:1.1;color:var(--terra)}
+h3{font-family:'Caveat';font-weight:700;font-size:1.25rem;color:var(--inchiostro-2)}
+.handwriting{font-family:'Caveat'}
+.mono{font-family:'JetBrains Mono'}
+.serif-italic{font-family:'Fraunces';font-style:italic}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;background:var(--notte);color:var(--carta);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;z-index:50;box-shadow:0 2px 6px rgba(0,0,0,.25);flex-wrap:wrap;gap:12px}
+.topbar h1{color:var(--carta);font-size:1.7rem}
+.topbar .brand{font-family:'Patrick Hand';color:var(--ocra);font-size:.92rem;letter-spacing:1px;text-transform:uppercase;margin-right:6px}
+.topbar-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.topbar select,.topbar input{background:rgba(245,236,215,.1);border:1px solid rgba(245,236,215,.25);color:var(--carta);padding:6px 12px;border-radius:3px;font-family:inherit;font-size:.88rem}
+.topbar select option{background:var(--notte);color:var(--carta)}
+.topbar button{background:var(--ocra);color:var(--notte);border:none;padding:7px 16px;border-radius:3px;font-family:'Patrick Hand';font-weight:700;cursor:pointer;font-size:.95rem;display:inline-flex;align-items:center;gap:6px;letter-spacing:.4px}
+.topbar button:hover{background:var(--oro)}
+.topbar .stato{font-family:'JetBrains Mono';font-size:.72rem;color:var(--ocra-tenue);opacity:.7}
+
+.wrap{max-width:1280px;margin:0 auto;padding:22px}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:22px}
+.kpi{background:var(--carta-2);border:1px solid var(--carta-bordo);border-radius:4px;padding:16px 20px;box-shadow:0 2px 6px rgba(61,43,31,.06);position:relative;transition:transform .15s}
+.kpi:hover{transform:translateY(-1px)}
+.kpi-label{font-family:'Patrick Hand';color:var(--grafite);text-transform:uppercase;letter-spacing:1.2px;font-size:.74rem;margin-bottom:4px}
+.kpi-valore{font-family:'Caveat';font-weight:700;font-size:2.6rem;line-height:1;color:var(--inchiostro)}
+.kpi-valore.verde{color:var(--verde)}.kpi-valore.terra{color:var(--terra)}.kpi-valore.rosso{color:var(--rosso)}
+.kpi-dett{font-family:'JetBrains Mono';font-size:.72rem;color:var(--grafite);margin-top:2px}
+.kpi-icon{position:absolute;top:14px;right:14px;color:var(--ocra);font-size:1.2rem;opacity:.5}
+
+/* TABS */
+.tabs{display:flex;gap:4px;margin-bottom:14px;border-bottom:2px solid var(--carta-bordo);overflow-x:auto}
+.tab{padding:8px 18px;font-family:'Patrick Hand';font-size:1rem;color:var(--grafite);cursor:pointer;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;transition:all .15s}
+.tab:hover{color:var(--inchiostro)}
+.tab.attivo{color:var(--terra);border-bottom-color:var(--terra);font-weight:700}
+
+/* CARDS */
+.card{background:var(--carta-2);border:1px solid var(--carta-bordo);border-radius:4px;padding:18px 22px;margin-bottom:14px;box-shadow:0 1px 4px rgba(61,43,31,.06);background-image:repeating-linear-gradient(transparent 0,transparent 27px,rgba(91,127,160,.05) 28px)}
+.card-title{font-family:'Caveat';font-weight:700;font-size:1.4rem;color:var(--terra);line-height:1;margin-bottom:4px}
+.card-sub{font-family:'Patrick Hand';color:var(--grafite);font-size:.88rem;margin-bottom:12px}
+.card-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.card-grid-2{grid-template-columns:1fr}}
+
+/* TABELLA */
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{text-align:left;padding:6px 8px;background:var(--carta);font-family:'Patrick Hand';font-weight:700;color:var(--inchiostro-2);font-size:.82rem;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--carta-bordo)}
+td{padding:7px 8px;border-bottom:1px dashed var(--carta-bordo);font-family:'IBM Plex Sans'}
+tr{transition:background .1s}
+tr:hover{background:var(--ocra-tenue)}
+tr.clickable{cursor:pointer}
+.badge{display:inline-block;padding:2px 8px;border-radius:2px;font-family:'JetBrains Mono';font-size:.7rem;letter-spacing:.3px}
+.badge.verde{background:var(--verde-tenue);color:#3D4D1F}
+.badge.rosso{background:var(--rosso-tenue);color:#6D2F1A}
+.badge.blu{background:var(--blu-tenue);color:#2B4359}
+.badge.ocra{background:var(--ocra-tenue);color:#5C3E0F}
+.voto-cell{font-family:'Caveat';font-weight:700;font-size:1.15rem}
+.voto-cell.basso{color:var(--rosso)}.voto-cell.medio{color:var(--terra)}.voto-cell.alto{color:var(--verde)}
+
+/* GRAFICI */
+.chart-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:.88rem}
+.chart-label{font-family:'Patrick Hand';color:var(--inchiostro-2);min-width:140px;display:flex;align-items:center;gap:6px}
+.chart-bar-wrap{flex:1;background:var(--carta);height:18px;border-radius:2px;position:relative;overflow:hidden;border:1px solid var(--carta-bordo)}
+.chart-bar{height:100%;background:var(--terra);border-radius:1px;display:flex;align-items:center;padding-left:6px;color:var(--carta);font-family:'JetBrains Mono';font-size:.7rem;font-weight:700;transition:width .4s}
+.chart-bar.split{display:flex;height:100%}
+.chart-bar.seg-verde{background:var(--verde)}
+.chart-bar.seg-rosso{background:var(--rosso)}
+.chart-bar.seg-ocra{background:var(--ocra)}
+.chart-val{min-width:50px;text-align:right;font-family:'JetBrains Mono';font-weight:700;font-size:.8rem;color:var(--inchiostro)}
+
+/* STACKED */
+.stack-bar{display:flex;height:24px;border-radius:2px;overflow:hidden;border:1px solid var(--carta-bordo);background:var(--carta)}
+.stack-seg{display:flex;align-items:center;justify-content:center;color:var(--carta);font-family:'JetBrains Mono';font-size:.72rem;font-weight:700;transition:flex .3s;min-width:0}
+.stack-seg.fatto{background:var(--verde)}
+.stack-seg.saltato{background:var(--rosso)}
+
+/* HEATMAP voti per classe×materia */
+.heat-grid{display:grid;grid-template-columns:auto repeat(8,minmax(60px,1fr));gap:2px;font-family:'JetBrains Mono';font-size:.75rem;background:var(--carta-bordo);padding:1px;border-radius:3px}
+.heat-cell{background:var(--carta-2);padding:6px 4px;text-align:center;line-height:1.2}
+.heat-cell.head{background:var(--inchiostro);color:var(--carta);font-weight:700;font-size:.7rem}
+.heat-cell.row-label{background:var(--inchiostro-2);color:var(--carta);font-weight:700;text-align:left;padding-left:8px;font-family:'Caveat';font-size:1.05rem}
+.heat-cell.v-7{background:#D3D9B8;color:#3D4D1F}
+.heat-cell.v-6{background:#EDDDB4;color:#5C3E0F}
+.heat-cell.v-5{background:#E8C7B5;color:#6D2F1A}
+.heat-cell.v-empty{background:#F5ECD7;color:#8A7560;font-style:italic}
+.heat-legenda{display:flex;gap:12px;font-size:.78rem;margin-top:10px;font-family:'Patrick Hand';flex-wrap:wrap}
+.heat-leg-swatch{display:inline-block;width:14px;height:14px;border-radius:2px;margin-right:4px;vertical-align:middle;border:1px solid var(--carta-bordo)}
+
+/* DONUT (tratti) */
+.donut-wrap{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.donut{flex-shrink:0}
+.donut-lgnd{display:flex;flex-direction:column;gap:5px;font-size:.85rem}
+.donut-lgnd-row{display:flex;align-items:center;gap:6px;font-family:'Patrick Hand'}
+.donut-lgnd-swatch{width:12px;height:12px;border-radius:2px;flex-shrink:0}
+.donut-lgnd-num{font-family:'JetBrains Mono';font-weight:700;font-size:.78rem;color:var(--grafite)}
+
+/* TIMELINE drill-down */
+.timeline-svg{width:100%;height:220px}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(42,30,20,.85);z-index:200;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 20px}
+.modal-overlay.active{display:flex;animation:fade .3s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.modal{background:var(--carta-2);border-radius:4px;padding:24px 28px;max-width:920px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,.4);background-image:repeating-linear-gradient(transparent 0,transparent 28px,rgba(91,127,160,.06) 29px);position:relative}
+.modal-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--grafite);font-family:'JetBrains Mono'}
+.modal-close:hover{color:var(--inchiostro)}
+.modal h2{margin-bottom:4px}
+
+/* LOGIN */
+.login-overlay{position:fixed;inset:0;background:var(--notte);z-index:500;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center;background-image:radial-gradient(ellipse at center,rgba(201,169,104,.14),transparent 70%)}
+.login-box{background:var(--carta-2);border-radius:4px;padding:36px 42px;max-width:420px;width:100%;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+.login-box h1{color:var(--terra);font-size:2.2rem;margin-bottom:6px}
+.login-box .sottot{font-family:'Patrick Hand';color:var(--grafite);font-size:.95rem;margin-bottom:22px}
+.login-box input{width:100%;padding:12px 14px;border:1.5px solid var(--carta-bordo);border-radius:3px;font-family:'JetBrains Mono';font-size:1rem;text-align:center;margin-bottom:12px}
+.login-box input:focus{outline:none;border-color:var(--terra)}
+.login-box button{width:100%;padding:12px;background:var(--inchiostro);color:var(--carta);border:none;border-radius:3px;font-family:'Patrick Hand';font-size:1.05rem;cursor:pointer;letter-spacing:.5px}
+.login-box button:hover{background:var(--terra)}
+.login-err{color:var(--rosso);font-family:'Patrick Hand';font-size:.92rem;margin-top:8px;min-height:20px}
+.login-firma{margin-top:18px;font-family:'Patrick Hand';color:var(--ocra);font-size:.85rem}
+
+/* LOADER */
+.loader{display:inline-block;width:14px;height:14px;border:2px solid var(--carta-bordo);border-top-color:var(--terra);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.empty{font-family:'Patrick Hand';font-style:italic;color:var(--grafite);text-align:center;padding:30px;background:var(--carta);border-radius:3px}
+.errore{background:var(--rosso-tenue);color:#6D2F1A;padding:12px 16px;border-radius:3px;font-family:'Patrick Hand';margin:10px 0}
+
+.tab-content{display:none}
+.tab-content.attivo{display:block;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</head><body>
+
+<!-- LOGIN (sostituito da AES dopo encryption) -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <p class="handwriting" style="color:var(--ocra);font-size:1.1rem;margin-bottom:4px;letter-spacing:1px">FamilyDash</p>
+    <h1>Dashboard docente</h1>
+    <p class="sottot">Solo per il personale autorizzato della Scuola Sacra Famiglia.</p>
+    <input type="password" id="loginPin" placeholder="Password">
+    <button onclick="tentaLogin()">Entra</button>
+    <div class="login-err" id="loginErr"></div>
+    <p class="login-firma">Andrea Cerioli — Animatore Digitale</p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" style="display:none">
+
+<div class="topbar">
+  <div style="display:flex;align-items:baseline;gap:10px">
+    <span class="brand">FamilyDash</span>
+    <h1>Dashboard docente</h1>
+  </div>
+  <div class="topbar-controls">
+    <select id="filtroClasse" onchange="caricaTutto()">
+      <option value="">Tutte le classi</option>
+    </select>
+    <button onclick="caricaTutto()"><i class="iconoir-refresh"></i> Aggiorna</button>
+    <span class="stato" id="statoCaricamento"></span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- KPI -->
+<div class="kpi-grid" id="kpiGrid"></div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab attivo" data-tab="panoramica"><i class="iconoir-page"></i> Panoramica</button>
+  <button class="tab" data-tab="voti"><i class="iconoir-graduation-cap"></i> Voti</button>
+  <button class="tab" data-tab="compiti"><i class="iconoir-book"></i> Compiti</button>
+  <button class="tab" data-tab="eventi"><i class="iconoir-twin-tower"></i> Eventi</button>
+</div>
+
+<!-- TAB: PANORAMICA -->
+<div class="tab-content attivo" id="tab-panoramica">
+  <div class="card">
+    <div class="card-title">Ultime 20 sessioni</div>
+    <div class="card-sub">Clicca una riga per il dettaglio giornaliero.</div>
+    <div id="sessioniTable"></div>
+  </div>
+  <div class="card-grid-2">
+    <div class="card">
+      <div class="card-title">Tratti emersi a fine partita</div>
+      <div class="card-sub">Distribuzione dei tratti dominanti.</div>
+      <div id="trattiDonut"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Mesi e famiglie più giocati</div>
+      <div class="card-sub">Quanto la sorte ha distribuito i casi.</div>
+      <div id="mesiBars"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: VOTI -->
+<div class="tab-content" id="tab-voti">
+  <div class="card">
+    <div class="card-title">Voti medi per materia</div>
+    <div class="card-sub">Aggregato su tutte le sessioni filtrate (rosso < 6, ocra 6-7, verde &gt; 7).</div>
+    <div id="votiPerMateria"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Voti per classe × materia</div>
+    <div class="card-sub">Media per ogni intersezione. Vuoto = nessun voto registrato.</div>
+    <div id="votiHeatmap"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Voti per mood materia</div>
+    <div class="card-sub">Effetto del profilo sorteggiato (luminosa / neutra / in ombra) sulla media voti.</div>
+    <div id="votiPerMood"></div>
+  </div>
+</div>
+
+<!-- TAB: COMPITI -->
+<div class="tab-content" id="tab-compiti">
+  <div class="card">
+    <div class="card-title">Compiti fatti vs saltati, per materia</div>
+    <div class="card-sub">Indicatore di priorità reale di studio nelle scelte pomeridiane.</div>
+    <div id="compitiStacked"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Studio extra come slot libero pomeridiano</div>
+    <div class="card-sub">Quanto spesso gli studenti scelgono lo "studio extra" rispetto alle alternative.</div>
+    <div class="empty">Dato non ancora aggregato — slot libero registrato negli indicatori giorno-per-giorno.</div>
+  </div>
+</div>
+
+<!-- TAB: EVENTI -->
+<div class="tab-content" id="tab-eventi">
+  <div class="card">
+    <div class="card-title">Bivi — distribuzione delle scelte</div>
+    <div class="card-sub">Decisioni narrative ai bivi: A, B, C, D per ogni bivio incontrato.</div>
+    <div id="biviChart"></div>
+  </div>
+  <div class="card-grid-2">
+    <div class="card">
+      <div class="card-title">Truffe — caduto vs riconosciuta</div>
+      <div class="card-sub">Per tipo (studente vs familiare).</div>
+      <div id="truffeChart"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Richieste economiche — stile</div>
+      <div class="card-sub">Come gli studenti chiedono soldi ai genitori.</div>
+      <div id="richiesteChart"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<!-- MODAL drill-down -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)chiudiModal()">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   FAMILYDASH — Dashboard docente
+   Carica dati via JSONP dal Code.gs (action=read)
+   ════════════════════════════════════════════════════════════ */
+
+const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwRWrMZ80zUtbko-8acWM_zikgaUieBIKvT3Tc3vWY7Z0dWZolaK8KOXJY0Nv7uy_QDcg/exec';
+
+// In versione PLAIN niente password: si entra subito.
+// Quando Andrea cripta col cripto-password.html, questo file viene rimpiazzato dallo shell criptato.
+const LOGIN_DISABILITATO = true;
+
+const MATERIE_NOMI={ITA:'Italiano',MAT:'Matematica',ING:'Inglese',SCI:'Scienze',STO:'Storia/Geo',TEC:'Tecnologia',MOT:'Motoria',ARTE:'Arte/Musica'};
+const MATERIE_IDS=['ITA','MAT','ING','SCI','STO','TEC','MOT','ARTE'];
+const TRATTI_COLORI={Disciplina:'#5B7FA0','Slancio':'#D4A93C','Coraggio civile':'#A05A2C','Cura':'#6B7A3F','Autonomia':'#B85C3A'};
+
+const DATA={sessioni:[],slot:[],giorni:[],materie:[],voti:[],compiti:[],bivi:[],richieste:[],truffe:[],imprevisti:[],mesi:[]};
+
+/* ═══ JSONP ═══ */
+function jsonp(sheet, params){
+  return new Promise((resolve,reject)=>{
+    const cbName='cb_'+Math.random().toString(36).slice(2,10);
+    const timeout=setTimeout(()=>{cleanup();reject(new Error('timeout '+sheet))},20000);
+    window[cbName]=function(data){clearTimeout(timeout);cleanup();resolve(data)};
+    const cleanup=()=>{delete window[cbName];if(s.parentNode)s.parentNode.removeChild(s)};
+    const qs=['action=read','sheet='+encodeURIComponent(sheet),'callback='+cbName];
+    if(params && params.classe) qs.push('classe='+encodeURIComponent(params.classe));
+    if(params && params.limit) qs.push('limit='+params.limit);
+    const s=document.createElement('script');
+    s.src=ENDPOINT+'?'+qs.join('&');
+    s.onerror=()=>{cleanup();reject(new Error('network '+sheet))};
+    document.head.appendChild(s);
+  });
+}
+
+/* ═══ CARICAMENTO ═══ */
+async function caricaTutto(){
+  const filtroClasse=document.getElementById('filtroClasse').value;
+  setStato('Carico dati…');
+  try{
+    const sheets=['Sessioni','Slot','Giorni','Materie','Voti','Compiti','Bivi','Richieste','Truffe','Imprevisti','Mesi'];
+    const promesse=sheets.map(s=>jsonp(s,{classe:filtroClasse,limit:5000}).catch(e=>{console.warn('fail '+s,e);return{ok:false,rows:[]}}));
+    const risultati=await Promise.all(promesse);
+    sheets.forEach((s,i)=>{
+      const key=s.toLowerCase();
+      DATA[key]=risultati[i].ok?(risultati[i].rows||[]):[];
+    });
+    popolaFiltroClasse();
+    renderKPI();
+    renderPanoramica();
+    renderVoti();
+    renderCompiti();
+    renderEventi();
+    setStato('Aggiornato '+new Date().toLocaleTimeString('it-IT'));
+  } catch(err){
+    setStato('Errore: '+err.message);
+    console.error(err);
+  }
+}
+
+function setStato(txt){document.getElementById('statoCaricamento').textContent=txt}
+
+function popolaFiltroClasse(){
+  const sel=document.getElementById('filtroClasse');
+  const valoreSel=sel.value;
+  const classi=new Set();
+  DATA.sessioni.forEach(r=>{if(r.classe)classi.add(r.classe)});
+  const ordinate=Array.from(classi).sort();
+  sel.innerHTML='<option value="">Tutte le classi</option>'+ordinate.map(c=>`<option value="${c}" ${c===valoreSel?'selected':''}>${c}</option>`).join('');
+}
+
+/* ═══ KPI ═══ */
+function renderKPI(){
+  const endRows=DATA.sessioni.filter(r=>r.event==='end');
+  const startRows=DATA.sessioni.filter(r=>r.event==='start');
+  const tot=startRows.length;
+  const compl=endRows.filter(r=>Number(r.completata)===1).length;
+  const durate=endRows.map(r=>Number(r.durata_secondi)||0).filter(d=>d>0);
+  const durMedia=durate.length?Math.round(durate.reduce((a,b)=>a+b,0)/durate.length/60):0;
+  const oggi=new Date().toISOString().slice(0,10);
+  const oggiCount=DATA.sessioni.filter(r=>(r.ts_iso||'').startsWith(oggi)&&r.event==='start').length;
+  document.getElementById('kpiGrid').innerHTML=`
+    <div class="kpi"><i class="iconoir-page-flip kpi-icon"></i><div class="kpi-label">Sessioni totali</div><div class="kpi-valore">${tot}</div><div class="kpi-dett">${oggiCount} oggi</div></div>
+    <div class="kpi"><i class="iconoir-check-circle kpi-icon"></i><div class="kpi-label">Completate</div><div class="kpi-valore verde">${compl}</div><div class="kpi-dett">${tot?Math.round(compl*100/tot):0}% del totale</div></div>
+    <div class="kpi"><i class="iconoir-clock kpi-icon"></i><div class="kpi-label">Durata media</div><div class="kpi-valore terra">${durMedia}<span style="font-size:1.2rem"> min</span></div><div class="kpi-dett">su ${durate.length} partite finite</div></div>
+    <div class="kpi"><i class="iconoir-graduation-cap kpi-icon"></i><div class="kpi-label">Voti registrati</div><div class="kpi-valore">${DATA.voti.length}</div><div class="kpi-dett">${DATA.compiti.length} compiti tracciati</div></div>
+  `;
+}
+
+/* ═══ PANORAMICA ═══ */
+function renderPanoramica(){
+  // Tabella ultime 20 sessioni (end o start senza end)
+  const endRows=DATA.sessioni.filter(r=>r.event==='end').sort((a,b)=>(b.ts_iso||'').localeCompare(a.ts_iso||''));
+  const startRows=DATA.sessioni.filter(r=>r.event==='start');
+  const sidEnd=new Set(endRows.map(r=>r.session_id));
+  const startSoli=startRows.filter(r=>!sidEnd.has(r.session_id)).slice(-10);
+  const tutte=[...endRows.slice(0,15),...startSoli.map(s=>Object.assign({},s,{_abbandonata:true}))].slice(0,20);
+
+  if(tutte.length===0){
+    document.getElementById('sessioniTable').innerHTML='<div class="empty">Ancora nessuna sessione registrata.</div>';
+  } else {
+    let html='<table><thead><tr><th>Classe</th><th>Famiglia</th><th>Mese</th><th>Durata</th><th>Voti</th><th>Mat. top</th><th>Tratto</th><th>Stato</th></tr></thead><tbody>';
+    tutte.forEach(r=>{
+      const stato=r._abbandonata?'<span class="badge rosso">in corso</span>':(Number(r.completata)===1?'<span class="badge verde">finita</span>':'<span class="badge ocra">interrotta</span>');
+      const mese=r.mese?nomeMese(r.mese):'—';
+      const dur=Number(r.durata_secondi)||0;
+      const matTop=r.materia_migliore?r.materia_migliore+' ('+(r.media_migliore||'?')+')':'—';
+      html+=`<tr class="clickable" onclick="apriDettaglio('${r.session_id}')"><td><strong>${r.classe||'?'}</strong></td><td>${r.famiglia||'?'}</td><td>${mese}</td><td class="mono">${dur?Math.round(dur/60)+' min':'—'}</td><td class="mono">${r.voti_totali||0}</td><td>${matTop}</td><td>${r.tratto_dominante||'—'}</td><td>${stato}</td></tr>`;
+    });
+    html+='</tbody></table>';
+    document.getElementById('sessioniTable').innerHTML=html;
+  }
+
+  // Tratti donut
+  const trattiCount={};
+  endRows.forEach(r=>{const t=r.tratto_dominante;if(t)trattiCount[t]=(trattiCount[t]||0)+1});
+  document.getElementById('trattiDonut').innerHTML=disegnaDonut(trattiCount);
+
+  // Mesi più giocati
+  const mesiCount={};
+  endRows.forEach(r=>{const m=r.mese;if(m){const n=nomeMese(m);mesiCount[n]=(mesiCount[n]||0)+1}});
+  // Famiglie
+  const famCount={};
+  endRows.forEach(r=>{const f=r.famiglia;if(f)famCount[f]=(famCount[f]||0)+1});
+  let html='<h3 style="margin-top:2px">Mesi</h3>';
+  html+=barre(mesiCount,'mese');
+  html+='<h3 style="margin-top:14px">Famiglie</h3>';
+  html+=barre(famCount,'famiglia');
+  document.getElementById('mesiBars').innerHTML=html||'<div class="empty">Nessun dato</div>';
+}
+
+function barre(obj,etichetta){
+  const entries=Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  if(entries.length===0)return '<div class="empty">Nessun dato per '+etichetta+'</div>';
+  const max=Math.max(...entries.map(e=>e[1]));
+  return entries.map(([k,v])=>`<div class="chart-row"><div class="chart-label">${k}</div><div class="chart-bar-wrap"><div class="chart-bar" style="width:${Math.round(v*100/max)}%"></div></div><div class="chart-val">${v}</div></div>`).join('');
+}
+
+/* ═══ DONUT ═══ */
+function disegnaDonut(counts){
+  const entries=Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  if(entries.length===0)return '<div class="empty">Nessun tratto registrato</div>';
+  const tot=entries.reduce((s,[,v])=>s+v,0);
+  const R=70,r=42,cx=80,cy=80;
+  let angle=-Math.PI/2;
+  let segments='';
+  entries.forEach(([k,v])=>{
+    const a2=angle+v/tot*Math.PI*2;
+    const x1=cx+R*Math.cos(angle),y1=cy+R*Math.sin(angle);
+    const x2=cx+R*Math.cos(a2),y2=cy+R*Math.sin(a2);
+    const xi1=cx+r*Math.cos(a2),yi1=cy+r*Math.sin(a2);
+    const xi2=cx+r*Math.cos(angle),yi2=cy+r*Math.sin(angle);
+    const large=(a2-angle)>Math.PI?1:0;
+    const col=TRATTI_COLORI[k]||'#8A7560';
+    segments+=`<path d="M${x1} ${y1} A${R} ${R} 0 ${large} 1 ${x2} ${y2} L${xi1} ${yi1} A${r} ${r} 0 ${large} 0 ${xi2} ${yi2} Z" fill="${col}" stroke="#FAF4E6" stroke-width="1.5"/>`;
+    angle=a2;
+  });
+  const lgnd=entries.map(([k,v])=>`<div class="donut-lgnd-row"><span class="donut-lgnd-swatch" style="background:${TRATTI_COLORI[k]||'#8A7560'}"></span>${k} <span class="donut-lgnd-num">${v} (${Math.round(v*100/tot)}%)</span></div>`).join('');
+  return `<div class="donut-wrap"><svg class="donut" viewBox="0 0 160 160" width="160" height="160">${segments}<text x="80" y="78" text-anchor="middle" font-family="Caveat" font-size="32" font-weight="700" fill="#3D2B1F">${tot}</text><text x="80" y="98" text-anchor="middle" font-family="Patrick Hand" font-size="13" fill="#8A7560">partite</text></svg><div class="donut-lgnd">${lgnd}</div></div>`;
+}
+
+/* ═══ VOTI ═══ */
+function renderVoti(){
+  // Voti medi per materia
+  const persMat={};
+  MATERIE_IDS.forEach(m=>persMat[m]={tot:0,n:0});
+  DATA.voti.forEach(r=>{const m=r.materia;const v=Number(r.voto);if(persMat[m]&&v){persMat[m].tot+=v;persMat[m].n++}});
+  let html='';
+  MATERIE_IDS.forEach(m=>{
+    const o=persMat[m];const media=o.n?o.tot/o.n:0;
+    const cls=media<6?'rosso':(media<7?'ocra':'verde');
+    const segCls=media<6?'seg-rosso':(media<7?'seg-ocra':'seg-verde');
+    html+=`<div class="chart-row"><div class="chart-label">${MATERIE_NOMI[m]}</div><div class="chart-bar-wrap"><div class="chart-bar ${segCls}" style="width:${Math.min(100,media*10)}%">${o.n?media.toFixed(1):''}</div></div><div class="chart-val">${o.n} voti</div></div>`;
+  });
+  document.getElementById('votiPerMateria').innerHTML=html||'<div class="empty">Nessun voto registrato</div>';
+
+  // Heatmap classe × materia
+  const classi=Array.from(new Set(DATA.voti.map(r=>r.classe).filter(Boolean))).sort();
+  if(classi.length===0){
+    document.getElementById('votiHeatmap').innerHTML='<div class="empty">Nessun voto registrato</div>';
+  } else {
+    let h='<div class="heat-grid"><div class="heat-cell head">Classe</div>';
+    MATERIE_IDS.forEach(m=>h+=`<div class="heat-cell head">${m}</div>`);
+    classi.forEach(cl=>{
+      h+=`<div class="heat-cell row-label">${cl}</div>`;
+      MATERIE_IDS.forEach(m=>{
+        const voti=DATA.voti.filter(r=>r.classe===cl && r.materia===m).map(r=>Number(r.voto)).filter(Boolean);
+        if(voti.length===0){h+='<div class="heat-cell v-empty">—</div>'}
+        else {
+          const media=voti.reduce((a,b)=>a+b,0)/voti.length;
+          const cls=media>=7?'v-7':(media>=6?'v-6':'v-5');
+          h+=`<div class="heat-cell ${cls}"><strong>${media.toFixed(1)}</strong><br><span style="font-size:.65rem;opacity:.7">n=${voti.length}</span></div>`;
+        }
+      });
+    });
+    h+='</div><div class="heat-legenda"><span><span class="heat-leg-swatch" style="background:#E8C7B5"></span>media &lt; 6</span><span><span class="heat-leg-swatch" style="background:#EDDDB4"></span>6-7</span><span><span class="heat-leg-swatch" style="background:#D3D9B8"></span>&gt; 7</span></div>';
+    document.getElementById('votiHeatmap').innerHTML=h;
+  }
+
+  // Voti per mood
+  const moods={luminosa:{tot:0,n:0},neutra:{tot:0,n:0},ombra:{tot:0,n:0}};
+  DATA.voti.forEach(r=>{const m=r.mood;const v=Number(r.voto);if(moods[m]&&v){moods[m].tot+=v;moods[m].n++}});
+  let h='';
+  ['luminosa','neutra','ombra'].forEach(m=>{
+    const o=moods[m];const media=o.n?o.tot/o.n:0;
+    const segCls=m==='luminosa'?'seg-verde':(m==='ombra'?'seg-rosso':'seg-ocra');
+    const lbl=m==='luminosa'?'Materia luminosa':(m==='ombra'?'Materia in ombra':'Materia neutra');
+    h+=`<div class="chart-row"><div class="chart-label">${lbl}</div><div class="chart-bar-wrap"><div class="chart-bar ${segCls}" style="width:${Math.min(100,media*10)}%">${o.n?media.toFixed(1):''}</div></div><div class="chart-val">${o.n} voti</div></div>`;
+  });
+  document.getElementById('votiPerMood').innerHTML=h||'<div class="empty">Nessun voto registrato</div>';
+}
+
+/* ═══ COMPITI ═══ */
+function renderCompiti(){
+  const compMat={};
+  MATERIE_IDS.forEach(m=>compMat[m]={fatto:0,saltato:0});
+  DATA.compiti.forEach(r=>{
+    const m=r.materia;if(!compMat[m])return;
+    if(r.esito==='fatto')compMat[m].fatto++;
+    else if(r.esito==='saltato')compMat[m].saltato++;
+  });
+  let html='';
+  MATERIE_IDS.forEach(m=>{
+    const o=compMat[m];const tot=o.fatto+o.saltato;
+    if(tot===0){html+=`<div class="chart-row"><div class="chart-label">${MATERIE_NOMI[m]}</div><div class="chart-bar-wrap"><div class="stack-bar" style="width:100%"></div></div><div class="chart-val">—</div></div>`;return}
+    const pFatto=o.fatto/tot*100;const pSalt=o.saltato/tot*100;
+    html+=`<div class="chart-row"><div class="chart-label">${MATERIE_NOMI[m]}</div><div class="chart-bar-wrap"><div class="stack-bar" style="display:flex;width:100%"><div class="stack-seg fatto" style="flex:${o.fatto}">${o.fatto>0?o.fatto:''}</div><div class="stack-seg saltato" style="flex:${o.saltato}">${o.saltato>0?o.saltato:''}</div></div></div><div class="chart-val">${Math.round(pFatto)}%</div></div>`;
+  });
+  html+='<div class="heat-legenda" style="margin-top:14px"><span><span class="heat-leg-swatch" style="background:#6B7A3F"></span>fatto</span><span><span class="heat-leg-swatch" style="background:#B85C3A"></span>saltato</span></div>';
+  document.getElementById('compitiStacked').innerHTML=html;
+}
+
+/* ═══ EVENTI: BIVI / TRUFFE / RICHIESTE ═══ */
+function renderEventi(){
+  // Bivi
+  const biviGroup={};
+  DATA.bivi.forEach(r=>{
+    const k=r.bivio_titolo||r.bivio_id||'?';
+    if(!biviGroup[k])biviGroup[k]={};
+    const ramo=r.ramo||'?';
+    biviGroup[k][ramo]=(biviGroup[k][ramo]||0)+1;
+  });
+  const colRamo={A:'var(--verde)',B:'var(--ocra)',C:'var(--rosso)',D:'var(--blu)','?':'var(--grafite)'};
+  let h='';
+  Object.entries(biviGroup).forEach(([titolo,rami])=>{
+    const tot=Object.values(rami).reduce((a,b)=>a+b,0);
+    h+=`<div style="margin-bottom:10px"><div style="font-family:'Caveat';font-weight:700;font-size:1.05rem;margin-bottom:3px">${titolo} <span class="mono" style="font-size:.7rem;color:var(--grafite)">n=${tot}</span></div><div class="stack-bar">`;
+    Object.entries(rami).sort().forEach(([r,n])=>{
+      h+=`<div class="stack-seg" style="flex:${n};background:${colRamo[r]||'var(--grafite)'}">${r}: ${n}</div>`;
+    });
+    h+='</div></div>';
+  });
+  document.getElementById('biviChart').innerHTML=h||'<div class="empty">Nessun bivio ancora affrontato</div>';
+
+  // Truffe
+  const truffeGroup={studente:{caduto:0,salvato:0},familiare:{caduto:0,salvato:0}};
+  DATA.truffe.forEach(r=>{
+    const t=r.tipo||'familiare';
+    if(!truffeGroup[t])truffeGroup[t]={caduto:0,salvato:0};
+    if(r.esito==='caduto')truffeGroup[t].caduto++;
+    else truffeGroup[t].salvato++;
+  });
+  let h2='';
+  Object.entries(truffeGroup).forEach(([tipo,o])=>{
+    const tot=o.caduto+o.salvato;
+    h2+=`<div style="margin-bottom:8px"><div style="font-family:'Patrick Hand';margin-bottom:3px">Truffa a ${tipo} <span class="mono" style="font-size:.7rem;color:var(--grafite)">n=${tot}</span></div><div class="stack-bar">`;
+    if(tot===0)h2+='<div class="stack-seg" style="flex:1;background:var(--carta-bordo);color:var(--grafite)">nessun caso</div>';
+    else {
+      if(o.salvato)h2+=`<div class="stack-seg fatto" style="flex:${o.salvato}">salvato ${o.salvato}</div>`;
+      if(o.caduto)h2+=`<div class="stack-seg saltato" style="flex:${o.caduto}">caduto ${o.caduto}</div>`;
+    }
+    h2+='</div></div>';
+  });
+  document.getElementById('truffeChart').innerHTML=h2;
+
+  // Richieste
+  const richGroup={};
+  DATA.richieste.forEach(r=>{
+    const st=r.stile||'?';
+    if(!richGroup[st])richGroup[st]={si:0,no:0,compromesso:0};
+    const es=r.esito||'';
+    if(es==='si')richGroup[st].si++;
+    else if(es==='no')richGroup[st].no++;
+    else if(es==='compromesso')richGroup[st].compromesso++;
+  });
+  const STILI={subito:'Lo chiedo subito',aspetto:'Aspetto il momento giusto',arrangio:'Mi arrangio, non chiedo'};
+  let h3='';
+  Object.entries(STILI).forEach(([k,lbl])=>{
+    const o=richGroup[k]||{si:0,no:0,compromesso:0};
+    const tot=o.si+o.no+o.compromesso;
+    h3+=`<div style="margin-bottom:8px"><div style="font-family:'Patrick Hand';margin-bottom:3px">${lbl} <span class="mono" style="font-size:.7rem;color:var(--grafite)">n=${tot}</span></div><div class="stack-bar">`;
+    if(tot===0)h3+='<div class="stack-seg" style="flex:1;background:var(--carta-bordo);color:var(--grafite)">nessun caso</div>';
+    else {
+      if(o.si)h3+=`<div class="stack-seg fatto" style="flex:${o.si}">sì ${o.si}</div>`;
+      if(o.compromesso)h3+=`<div class="stack-seg" style="flex:${o.compromesso};background:var(--ocra);color:var(--notte)">compr. ${o.compromesso}</div>`;
+      if(o.no)h3+=`<div class="stack-seg saltato" style="flex:${o.no}">no ${o.no}</div>`;
+    }
+    h3+='</div></div>';
+  });
+  document.getElementById('richiesteChart').innerHTML=h3;
+}
+
+/* ═══ DRILL-DOWN SESSIONE ═══ */
+function apriDettaglio(sid){
+  if(!sid)return;
+  const start=DATA.sessioni.find(r=>r.session_id===sid && r.event==='start');
+  const end=DATA.sessioni.find(r=>r.session_id===sid && r.event==='end');
+  const giorni=DATA.giorni.filter(r=>r.session_id===sid).sort((a,b)=>Number(a.giorno)-Number(b.giorno));
+  const voti=DATA.voti.filter(r=>r.session_id===sid);
+  const compiti=DATA.compiti.filter(r=>r.session_id===sid);
+  const bivi=DATA.bivi.filter(r=>r.session_id===sid);
+
+  const meta=end||start||{};
+  let html=`<button class="modal-close" onclick="chiudiModal()">✕</button>
+    <p class="handwriting" style="color:var(--ocra);font-size:.95rem;letter-spacing:1px">Sessione ${sid.slice(-8)}</p>
+    <h2>Classe ${meta.classe||'?'} — Famiglia ${meta.famiglia||'?'}</h2>
+    <p style="font-family:'Patrick Hand';color:var(--grafite);margin-bottom:14px">${end?'Mese '+nomeMese(end.mese)+' — partita ':'Partita '}<strong>${end?(Number(end.completata)===1?'completata':'interrotta'):'in corso'}</strong>${end?' — durata '+Math.round(Number(end.durata_secondi)/60)+' min':''}</p>`;
+
+  // Timeline indicatori
+  if(giorni.length>0){
+    html+='<h3 style="margin-bottom:6px">Timeline indicatori (28 giorni)</h3>';
+    html+='<svg class="timeline-svg" viewBox="0 0 700 220">';
+    const W=680,H=200,Px=15,Py=15;
+    const maxG=28;
+    // Asse
+    html+=`<line x1="${Px}" y1="${Py+H-10}" x2="${Px+W-10}" y2="${Py+H-10}" stroke="#E3D5B0" stroke-width="1"/>`;
+    // Settimane verticali
+    for(let s=1;s<4;s++){const x=Px+(s*7)/maxG*(W-20);html+=`<line x1="${x}" y1="${Py}" x2="${x}" y2="${Py+H-10}" stroke="#E3D5B0" stroke-dasharray="2,2"/>`}
+    // Indicatori da plottare
+    const ind=[{key:'bilancio',col:'#A05A2C',scala:'val'},{key:'studio',col:'#5B7FA0',scala:100},{key:'legami',col:'#6B7A3F',scala:100},{key:'energia',col:'#D4A93C',scala:100}];
+    const maxBil=Math.max(...giorni.map(g=>Number(g.bilancio)||0),1000);
+    ind.forEach(i=>{
+      const pts=giorni.map(g=>{
+        const x=Px+(Number(g.giorno)-1)/(maxG-1)*(W-20);
+        const v=Number(g[i.key])||0;
+        const norm=i.scala==='val'?v/maxBil:v/i.scala;
+        const y=Py+(H-20)-norm*(H-20);
+        return x+','+y;
+      });
+      if(pts.length>1)html+=`<polyline points="${pts.join(' ')}" fill="none" stroke="${i.col}" stroke-width="2" opacity=".85"/>`;
+      pts.forEach(p=>{const[x,y]=p.split(',');html+=`<circle cx="${x}" cy="${y}" r="2.5" fill="${i.col}"/>`});
+    });
+    html+='</svg>';
+    html+='<div style="display:flex;gap:14px;font-size:.82rem;font-family:\'Patrick Hand\';flex-wrap:wrap;margin-bottom:14px"><span><span style="display:inline-block;width:14px;height:3px;background:#A05A2C;vertical-align:middle"></span> bilancio</span><span><span style="display:inline-block;width:14px;height:3px;background:#5B7FA0;vertical-align:middle"></span> studio</span><span><span style="display:inline-block;width:14px;height:3px;background:#6B7A3F;vertical-align:middle"></span> legami</span><span><span style="display:inline-block;width:14px;height:3px;background:#D4A93C;vertical-align:middle"></span> energia</span></div>';
+  }
+
+  // Voti per materia
+  if(voti.length>0){
+    html+='<h3 style="margin:14px 0 6px">Voti presi</h3>';
+    html+='<table><thead><tr><th>Materia</th><th>Voti</th><th>Media</th></tr></thead><tbody>';
+    MATERIE_IDS.forEach(m=>{
+      const v=voti.filter(r=>r.materia===m).map(r=>Number(r.voto));
+      if(v.length===0)return;
+      const media=v.reduce((a,b)=>a+b,0)/v.length;
+      const votiHtml=v.map(x=>`<span class="voto-cell ${x<=4?'basso':(x<=6?'medio':'alto')}">${x}</span>`).join(' ');
+      html+=`<tr><td><strong>${MATERIE_NOMI[m]}</strong></td><td>${votiHtml}</td><td class="mono">${media.toFixed(2)}</td></tr>`;
+    });
+    html+='</tbody></table>';
+  }
+
+  // Compiti riassunto
+  if(compiti.length>0){
+    const fatti=compiti.filter(c=>c.esito==='fatto').length;
+    const saltati=compiti.filter(c=>c.esito==='saltato').length;
+    html+=`<p style="margin:12px 0;font-family:'Patrick Hand'"><strong>Compiti:</strong> ${fatti} fatti / ${saltati} saltati (${Math.round(fatti*100/(fatti+saltati))}% completati)</p>`;
+  }
+
+  // Bivi affrontati
+  if(bivi.length>0){
+    html+='<h3 style="margin:14px 0 6px">Bivi affrontati</h3><ul style="padding-left:20px;font-family:\'Patrick Hand\'">';
+    bivi.forEach(b=>{html+=`<li>${b.bivio_titolo} → ramo <strong>${b.ramo}</strong> (${b.tempo_decisione_sec}s)</li>`});
+    html+='</ul>';
+  }
+
+  // Tratti finali
+  if(end){
+    html+='<h3 style="margin:14px 0 6px">Tratti finali</h3>';
+    html+='<table style="max-width:400px"><tbody>';
+    ['disciplina','slancio','coraggio_civile','cura','autonomia'].forEach(t=>{
+      const v=Number(end[t])||0;
+      html+=`<tr><td>${t.replace('_',' ')}</td><td class="mono"><strong>${v}</strong></td></tr>`;
+    });
+    html+='</tbody></table>';
+  }
+
+  document.getElementById('modalContent').innerHTML=html;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function chiudiModal(){document.getElementById('modalOverlay').classList.remove('active')}
+
+/* ═══ TABS ═══ */
+function setupTabs(){
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.onclick=()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('attivo'));
+      document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('attivo'));
+      t.classList.add('attivo');
+      document.getElementById('tab-'+t.dataset.tab).classList.add('attivo');
+    };
+  });
+}
+
+function nomeMese(n){const mm=['','Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];return mm[Number(n)]||n}
+
+/* ═══ LOGIN PLAIN (in versione cifrata viene rimpiazzato dallo shell) ═══ */
+function tentaLogin(){
+  if(LOGIN_DISABILITATO){entra();return}
+  // Placeholder: in versione AES, il decifratore vive nello shell esterno
+  document.getElementById('loginErr').textContent='Versione PLAIN: nessuna password. Premi Entra.';
+}
+function entra(){
+  document.getElementById('loginOverlay').style.display='none';
+  document.getElementById('dashboard').style.display='block';
+  setupTabs();
+  caricaTutto();
+}
+document.getElementById('loginPin').addEventListener('keypress',e=>{if(e.key==='Enter')tentaLogin()});
+
+window.addEventListener('DOMContentLoaded',()=>{
+  // In versione plain: niente login, entra subito
+  if(LOGIN_DISABILITATO){
+    document.getElementById('loginOverlay').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    setupTabs();
+    caricaTutto();
+  }
+});
+</script>
+</body></html>
