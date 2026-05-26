@@ -481,7 +481,19 @@ const FAMIGLIE={
   rizzo:{nome:'Rizzo',tag:'Famiglia con figlio con disabilità',disp:false},
   lombardi:{nome:'Lombardi',tag:'Famiglia giovane, fratellino piccolo',disp:false},
   valentini:{nome:'Valentini & Barbieri',tag:'Famiglia ricomposta',disp:false},
-  fontana:{nome:'Fontana',tag:'Famiglia rurale, agricola',disp:false}
+  fontana:{nome:'Fontana',tag:'Famiglia rurale, agricola',disp:false},
+  marchetti:{nome:'Marchetti',tag:'Famiglia benestante, genitori molto impegnati',disp:true,
+    membri:[
+      {nome:'Stefano Marchetti',eta:'48',ruolo:'papà, chirurgo'},
+      {nome:'Federica Marchetti',eta:'45',ruolo:'mamma, avvocata'},
+      {nome:'Tommaso',eta:'14',ruolo:'primo liceo'},
+      {nome:'Caterina',eta:'11',ruolo:'prima media'}
+    ],
+    scheda:"In casa Marchetti non manca niente. Villetta con giardino, due auto in garage, ogni stanza il suo schermo, vacanze dove vuoi. Stefano è un chirurgo bravissimo e sempre di corsa; Federica un'avvocata che lavora anche la sera. Si vogliono bene, ma il tempo è l'unica cosa che in questa casa scarseggia. E così, senza che nessuno l'abbia deciso, ognuno ha finito per vivere nella propria stanza, davanti al proprio dispositivo. Sono una famiglia ricca di tutto, tranne che di ore passate davvero insieme.",
+    figli:[
+      {id:'tommaso',nome:'Tommaso',eta:14,disp:true,desc:'Quattordici anni, ha tutto ciò che desidera e una stanza che è il suo regno digitale. Sta scoprendo che la cosa che gli manca di più — la presenza dei suoi — non si compra e non si scarica.', avatar:'rag'}
+    ]
+  }
 };
 const FAM_IDS=Object.keys(FAMIGLIE);
 
@@ -821,7 +833,9 @@ const SVG={
   supermercato:`<svg viewBox="0 0 600 130"><line x1="0" y1="118" x2="600" y2="118" stroke="#3D2B1F" stroke-width="1.5"/><rect x="40" y="30" width="180" height="84" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><line x1="40" y1="64" x2="220" y2="64" stroke="#3D2B1F"/><line x1="40" y1="92" x2="220" y2="92" stroke="#3D2B1F"/><rect x="50" y="38" width="20" height="20" fill="#B85C3A"/><rect x="74" y="38" width="20" height="20" fill="#C9A968"/><rect x="98" y="38" width="20" height="20" fill="#6B7A3F"/><rect x="122" y="38" width="20" height="20" fill="#5B7FA0"/><rect x="146" y="38" width="20" height="20" fill="#A05A2C"/><rect x="170" y="38" width="20" height="20" fill="#B85C3A"/><rect x="50" y="70" width="20" height="18" fill="#D4A93C"/><rect x="74" y="70" width="20" height="18" fill="#5B7FA0"/><rect x="98" y="70" width="20" height="18" fill="#6B7A3F"/><rect x="122" y="70" width="20" height="18" fill="#C9A968"/><rect x="146" y="70" width="20" height="18" fill="#A05A2C"/><rect x="170" y="70" width="20" height="18" fill="#B85C3A"/><rect x="320" y="96" width="160" height="18" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.5"/><rect x="320" y="88" width="160" height="10" fill="#3D2B1F"/><circle cx="360" cy="74" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 346 96 Q 360 82 374 96 L 378 116 L 342 116 Z" fill="#B85C3A" stroke="#3D2B1F" stroke-width="1.5"/><text x="360" y="60" text-anchor="middle" font-family="Caveat" font-size="9" fill="#3D2B1F">ROBERTA</text><circle cx="540" cy="80" r="9" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 526 100 Q 540 88 554 100 L 556 116 L 524 116 Z" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 527 78 Q 532 66 540 66 Q 548 66 553 78" fill="#8A7560" stroke="#3D2B1F"/></svg>`,
   cucinaSera:`<svg viewBox="0 0 600 130"><rect width="600" height="130" fill="#2A1E14" opacity=".12"/><line x1="0" y1="118" x2="600" y2="118" stroke="#3D2B1F" stroke-width="1.5"/><circle cx="300" cy="22" r="5" fill="#D4A93C"/><line x1="300" y1="0" x2="300" y2="18" stroke="#3D2B1F"/><path d="M 274 22 L 326 22 L 320 40 L 280 40 Z" fill="#D4A93C" stroke="#3D2B1F" stroke-width="1.3"/><rect x="170" y="86" width="260" height="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><rect x="170" y="97" width="260" height="3" fill="#EDDDB4"/><rect x="200" y="74" width="28" height="12" fill="#FAF4E6" stroke="#3D2B1F" rx="2"/><circle cx="214" cy="80" r="5" fill="#A05A2C" opacity=".6"/><rect x="245" y="74" width="28" height="12" fill="#FAF4E6" stroke="#3D2B1F" rx="2"/><circle cx="259" cy="80" r="5" fill="#A05A2C" opacity=".6"/><rect x="290" y="74" width="28" height="12" fill="#FAF4E6" stroke="#3D2B1F" rx="2"/><circle cx="304" cy="80" r="5" fill="#A05A2C" opacity=".6"/><rect x="335" y="74" width="28" height="12" fill="#FAF4E6" stroke="#3D2B1F" rx="2"/><circle cx="349" cy="80" r="5" fill="#A05A2C" opacity=".6"/><circle cx="180" cy="60" r="8" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 172 76 Q 180 66 188 76 L 190 92 L 170 92 Z" fill="#5B7FA0" stroke="#3D2B1F" stroke-width="1.3"/><circle cx="420" cy="60" r="8" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 412 76 Q 420 66 428 76 L 430 92 L 410 92 Z" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.3"/></svg>`,
   cortile:`<svg viewBox="0 0 600 130"><rect width="600" height="130" fill="#FAF4E6"/><rect x="0" y="100" width="600" height="30" fill="#A05A2C" opacity=".25"/><line x1="0" y1="100" x2="600" y2="100" stroke="#3D2B1F" stroke-width="1.5"/><rect x="40" y="36" width="150" height="64" fill="#A05A2C" opacity=".8" stroke="#3D2B1F" stroke-width="1.5"/><rect x="54" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="86" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="118" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="150" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="280" y="80" width="120" height="20" fill="#8A7560" stroke="#3D2B1F" stroke-width="1.3"/><circle cx="320" cy="62" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 306 80 Q 320 66 334 80 L 336 100 L 304 100 Z" fill="#5B7FA0" stroke="#3D2B1F" stroke-width="1.3"/><circle cx="380" cy="62" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 366 80 Q 380 66 394 80 L 396 100 L 364 100 Z" fill="#B85C3A" stroke="#3D2B1F" stroke-width="1.3"/><rect x="376" y="74" width="12" height="8" fill="#6B7A3F" stroke="#3D2B1F" stroke-width=".7"/><text x="382" y="80" text-anchor="middle" font-family="IBM Plex Sans" font-size="5" fill="#FAF4E6">20€</text><circle cx="540" cy="40" r="11" fill="#D4A93C" opacity=".8"/></svg>`,
-  duecase:`<svg viewBox="0 0 600 130"><line x1="0" y1="118" x2="600" y2="118" stroke="#3D2B1F" stroke-width="1.5"/><rect x="0" y="118" width="600" height="3" fill="#A05A2C" opacity=".5"/><!-- casa mamma --><rect x="60" y="55" width="150" height="63" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 50 55 L 135 22 L 220 55 Z" fill="#B85C3A" opacity=".8" stroke="#3D2B1F" stroke-width="1.5"/><rect x="85" y="72" width="28" height="28" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1"/><rect x="155" y="78" width="30" height="40" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1"/><text x="135" y="113" text-anchor="middle" font-family="Patrick Hand" font-size="10" fill="#3D2B1F">mamma</text><!-- casa papà --><rect x="390" y="55" width="150" height="63" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 380 55 L 465 22 L 550 55 Z" fill="#5B7FA0" opacity=".8" stroke="#3D2B1F" stroke-width="1.5"/><rect x="415" y="72" width="28" height="28" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1"/><rect x="485" y="78" width="30" height="40" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1"/><text x="465" y="113" text-anchor="middle" font-family="Patrick Hand" font-size="10" fill="#3D2B1F">papà</text><!-- Bianca con valigia nel mezzo --><circle cx="300" cy="78" r="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 286 100 Q 300 84 314 100 L 316 118 L 284 118 Z" fill="#C9A968" stroke="#3D2B1F" stroke-width="1.5"/><rect x="316" y="96" width="20" height="16" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="1.2" rx="2"/><line x1="320" y1="96" x2="320" y2="91" stroke="#3D2B1F" stroke-width="1.2"/><line x1="332" y1="96" x2="332" y2="91" stroke="#3D2B1F" stroke-width="1.2"/><!-- frecce avanti-indietro --><path d="M 230 40 L 250 40 M 245 36 L 250 40 L 245 44" fill="none" stroke="#8A7560" stroke-width="1.3"/><path d="M 370 40 L 350 40 M 355 36 L 350 40 L 355 44" fill="none" stroke="#8A7560" stroke-width="1.3"/></svg>`
+  duecase:`<svg viewBox="0 0 600 130"><line x1="0" y1="118" x2="600" y2="118" stroke="#3D2B1F" stroke-width="1.5"/><rect x="0" y="118" width="600" height="3" fill="#A05A2C" opacity=".5"/><!-- casa mamma --><rect x="60" y="55" width="150" height="63" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 50 55 L 135 22 L 220 55 Z" fill="#B85C3A" opacity=".8" stroke="#3D2B1F" stroke-width="1.5"/><rect x="85" y="72" width="28" height="28" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1"/><rect x="155" y="78" width="30" height="40" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1"/><text x="135" y="113" text-anchor="middle" font-family="Patrick Hand" font-size="10" fill="#3D2B1F">mamma</text><!-- casa papà --><rect x="390" y="55" width="150" height="63" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 380 55 L 465 22 L 550 55 Z" fill="#5B7FA0" opacity=".8" stroke="#3D2B1F" stroke-width="1.5"/><rect x="415" y="72" width="28" height="28" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1"/><rect x="485" y="78" width="30" height="40" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1"/><text x="465" y="113" text-anchor="middle" font-family="Patrick Hand" font-size="10" fill="#3D2B1F">papà</text><!-- Bianca con valigia nel mezzo --><circle cx="300" cy="78" r="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 286 100 Q 300 84 314 100 L 316 118 L 284 118 Z" fill="#C9A968" stroke="#3D2B1F" stroke-width="1.5"/><rect x="316" y="96" width="20" height="16" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="1.2" rx="2"/><line x1="320" y1="96" x2="320" y2="91" stroke="#3D2B1F" stroke-width="1.2"/><line x1="332" y1="96" x2="332" y2="91" stroke="#3D2B1F" stroke-width="1.2"/><!-- frecce avanti-indietro --><path d="M 230 40 L 250 40 M 245 36 L 250 40 L 245 44" fill="none" stroke="#8A7560" stroke-width="1.3"/><path d="M 370 40 L 350 40 M 355 36 L 350 40 L 355 44" fill="none" stroke="#8A7560" stroke-width="1.3"/></svg>`,
+  cenaSchermi:`<svg viewBox="0 0 600 130"><line x1="0" y1="116" x2="600" y2="116" stroke="#3D2B1F" stroke-width="1.5"/><rect x="80" y="86" width="440" height="16" rx="3" fill="#A05A2C" opacity=".75" stroke="#3D2B1F" stroke-width="1.5"/><line x1="120" y1="102" x2="120" y2="116" stroke="#3D2B1F" stroke-width="1.5"/><line x1="480" y1="102" x2="480" y2="116" stroke="#3D2B1F" stroke-width="1.5"/><g><circle cx="160" cy="54" r="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.4"/><path d="M 148 84 Q 160 60 172 84 Z" fill="#5B7FA0" stroke="#3D2B1F" stroke-width="1.4"/><rect x="153" y="72" width="14" height="9" rx="1.5" fill="#2A1E14" stroke="#D4A93C" stroke-width="1"/><circle cx="160" cy="76" r="6" fill="#D4A93C" opacity=".35"/></g><g><circle cx="270" cy="54" r="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.4"/><path d="M 258 84 Q 270 60 282 84 Z" fill="#B85C3A" stroke="#3D2B1F" stroke-width="1.4"/><rect x="263" y="72" width="14" height="9" rx="1.5" fill="#2A1E14" stroke="#D4A93C" stroke-width="1"/><circle cx="270" cy="76" r="6" fill="#D4A93C" opacity=".35"/></g><g><circle cx="335" cy="54" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.4"/><path d="M 324 82 Q 335 60 346 82 Z" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="1.4"/><rect x="329" y="71" width="12" height="8" rx="1.5" fill="#2A1E14" stroke="#D4A93C" stroke-width="1"/><circle cx="335" cy="75" r="5" fill="#D4A93C" opacity=".35"/></g><g><circle cx="440" cy="54" r="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.4"/><path d="M 428 84 Q 440 60 452 84 Z" fill="#C9A968" stroke="#3D2B1F" stroke-width="1.4"/><rect x="433" y="72" width="14" height="9" rx="1.5" fill="#2A1E14" stroke="#D4A93C" stroke-width="1"/><circle cx="440" cy="76" r="6" fill="#D4A93C" opacity=".35"/></g><ellipse cx="215" cy="90" rx="13" ry="4" fill="#FAF4E6" stroke="#3D2B1F" stroke-width=".8"/><ellipse cx="385" cy="90" rx="13" ry="4" fill="#FAF4E6" stroke="#3D2B1F" stroke-width=".8"/></svg>`,
+  salotto:`<svg viewBox="0 0 600 130"><line x1="0" y1="112" x2="600" y2="112" stroke="#3D2B1F" stroke-width="1.5"/><rect x="220" y="26" width="160" height="58" rx="3" fill="#2A1E14" stroke="#3D2B1F" stroke-width="1.5"/><rect x="228" y="33" width="144" height="44" fill="#5B7FA0" opacity=".25"/><rect x="285" y="84" width="30" height="20" fill="#8A7560" stroke="#3D2B1F" stroke-width="1.2"/><rect x="60" y="78" width="120" height="34" rx="5" fill="#A05A2C" opacity=".7" stroke="#3D2B1F" stroke-width="1.4"/><rect x="56" y="64" width="22" height="48" rx="4" fill="#A05A2C" opacity=".7" stroke="#3D2B1F" stroke-width="1.4"/><circle cx="500" cy="70" r="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.4"/><path d="M 487 100 Q 500 76 513 100 Z" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="1.4"/><rect x="493" y="88" width="13" height="9" rx="1.5" fill="#2A1E14" stroke="#D4A93C" stroke-width="1"/><circle cx="499" cy="92" r="6" fill="#D4A93C" opacity=".35"/></svg>`
 };
 
 /* ════════ GLOSSARIO ════════ */
@@ -1804,6 +1818,120 @@ const EPISODI={
    titolo:"Domenica — di nuovo la valigia",
    corpo:"Un'altra settimana è passata, tra le due case. Bianca ha imparato — di nuovo, un po' di più — la cosa più difficile della sua vita doppia: che può voler bene a tutti e due i suoi genitori senza diventare il filo del telefono tra loro, senza essere il premio di una gara, senza fare da campo di battaglia.",
    cliff:"Mentre richiude la valigia per tornare dalla mamma, Bianca pensa una cosa che non ha mai detto a nessuno: che la casa, per lei, non è né quella del papà né quella della mamma. La sua casa è dove riesce a essere semplicemente una ragazza di dodici anni. E quei momenti, piano piano, sta imparando a costruirseli da sola."
+  }
+ }}}},
+
+ /* ════════════════ MARCHETTI — Tommaso, ricco di tutto tranne che di tempo ════════════════ */
+ marchetti:{ 1:{ tommaso:{ 1:{
+  titolo:"La casa silenziosa",
+  sub:"Una settimana in una famiglia dove non manca niente, tranne il tempo insieme",
+  insegna:"che la presenza, l'attenzione e il tempo non si comprano — e che gli schermi vanno governati, non subiti",
+  protaNome:"Tommaso", protaEta:14,
+  giorni:[
+   { nome:"Lunedì — la cena muta",
+     beats:[
+      {col:'fam',tipo:'illust',svg:'cenaSchermi'},
+      {col:'fam',tipo:'narr',tag:'A tavola, 20:30',testo:"In casa Marchetti la cena è apparecchiata bene: piatti veri, una buona cucina. Sono tutti e quattro seduti. Eppure non parla nessuno. Ognuno ha davanti il proprio schermo."},
+      {col:'fam',tipo:'box',titolo:'Il bilancio del tempo, in una settimana',
+        righe:[
+         {k:'Lavoro di papà',v:'60 ore'},
+         {k:'Lavoro di mamma',v:'50 ore'},
+         {k:'Schermi, a testa',v:'~28 ore'},
+         {k:'Tutti insieme, davvero',v:'2 ore'}
+        ],nota:"Una settimana ha 168 ore. In casa Marchetti se ne possono comprare tante cose — ma il tempo passato <strong>davvero</strong> insieme, parlandosi e guardandosi, è la voce più piccola di tutte. È il loro bilancio in rosso: non di soldi, di presenza."},
+      {col:'fam',tipo:'narr',testo:"Non è successo per cattiveria. È successo poco a poco: un telefono a tavola «solo un attimo», una cena saltata per il lavoro, una stanza dove rifugiarsi. Finché il silenzio è diventato l'abitudine, e nessuno se n'è accorto."},
+
+      {col:'rag',tipo:'narr',tag:'Tommaso, a capotavola',testo:"Tommaso ha quattordici anni e una vita che, vista da fuori, è invidiabile: l'ultima console, il telefono nuovo, una stanza tutta sua grande come un monolocale."},
+      {col:'rag',tipo:'narr',testo:"Stasera, però, guarda i suoi: papà che risponde a messaggi di lavoro, mamma china su un fascicolo digitale, Caterina che ride da sola a un video con gli auricolari. E lui, col pollice già pronto a sbloccare lo schermo."},
+      {col:'rag',tipo:'narr',testo:"Per un attimo gli viene in mente una cosa che non sa spiegare: che sono in quattro, nella stessa stanza, e non c'è mai stato così tanto silenzio. Potrebbe tirare fuori anche lui il telefono, e sparire come gli altri. Oppure no."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'t_cena',
+        intro:"Nessuno gli chiede niente. Sarebbe facilissimo prendere il telefono e lasciar correre. Ma c'è quel silenzio, che pesa.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Provare a rompere il silenzio.",sub:"Fare una domanda vera a qualcuno.",eff:{coraggio_civile:5,legami:5,cura:3},conseguenza:"Tommaso posa la forchetta e chiede: <span class=\"dialogo\">«Papà, com'è andata oggi quell'operazione difficile di cui parlavi?»</span> Il padre alza gli occhi, sorpreso. Mette giù il telefono. Comincia a raccontare, e per qualche minuto la tavola è viva. Caterina si toglie un auricolare. Non risolve tutto — ma è la prova che basta che uno cominci. La presenza è contagiosa quanto la distrazione."},
+         {label:"Proporre una regola: niente telefoni a cena.",eff:{coraggio_civile:6,autonomia:4,legami:4},conseguenza:"<span class=\"dialogo\">«E se a cena mettessimo i telefoni in un cesto? Almeno mezz'ora.»</span> Lo dice quasi ridendo, per non sembrare strano. La mamma lo guarda a lungo. <span class=\"dialogo\">«Lo dice un quattordicenne ai genitori. Dovremmo vergognarci.»</span> Non parte subito, l'abitudine nuova. Ma qualcosa, stasera, si è incrinato nel modo giusto."},
+         {label:"Prendere il telefono come gli altri.",eff:{legami:-2,autonomia:-2},conseguenza:"Tommaso sblocca lo schermo e si tuffa nel suo mondo, come tutti. La cena finisce così, in silenzio, ognuno altrove pur essendo lì. Non è successo niente di grave. È proprio questo il punto: il tempo insieme non si perde con un litigio, si perde così — un po' alla volta, senza che nessuno lo decida."},
+         {label:"Andarsene a mangiare in camera.",eff:{legami:-4,autonomia:-1,energia:-1},conseguenza:"Tommaso prende il piatto e si chiude in camera, davanti alla console. Almeno lì il silenzio non pesa, perché se l'è scelto. Ma chiudere la porta, quando la solitudine ti dà fastidio, è come grattarsi una puntura: dà sollievo un attimo, e peggiora tutto dopo."}
+        ]}}
+     ]},
+   { nome:"Mercoledì — il regalo al posto del padre",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'L\'economia dell\'attenzione',
+        righe:[
+         {k:'Cosa vuoi tu',v:'tempo, ascolto'},
+         {k:'Cosa è facile dare',v:'soldi, oggetti'},
+         {k:'Cosa costa di più',v:'esserci'}
+        ],nota:"Per un genitore molto impegnato, comprare qualcosa è veloce; esserci richiede tempo, che è l'unica cosa che non ha. Così, senza accorgersene, molti sostituiscono la presenza con i regali. Ma un oggetto, anche bellissimo, non riempie il posto vuoto lasciato da chi non c'è."},
+      {col:'fam',tipo:'narr',testo:"È una trappola gentile, fatta in buona fede. Il genitore crede di dimostrare amore («ti ho preso la cosa che volevi»), il figlio riceve il messaggio sbagliato: che vale di più la cosa del tempo. E impara, a sua volta, a chiedere oggetti invece di presenza."},
+
+      {col:'rag',tipo:'illust',svg:'cameraMatteo'},
+      {col:'rag',tipo:'narr',tag:'Tommaso, mercoledì',testo:"Oggi c'era la sua prima partita della stagione. Il papà aveva promesso di esserci. Alle 17 arriva il messaggio: «Scusa campione, sono entrato in sala operatoria d'urgenza. Ti ho fatto accreditare 80 euro, comprati quel gioco che volevi. Fiero di te ❤»."},
+      {col:'rag',tipo:'narr',testo:"Ottanta euro. Il gioco che desiderava da settimane, comprato con un tocco. Tommaso lo fissa. Una parte di lui esulta. Un'altra parte, più in fondo, avrebbe voluto solo vederlo sugli spalti, anche solo per dieci minuti."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'t_regalo',
+        intro:"Il papà non è cattivo: sta salvando una vita in sala operatoria. Ma quegli 80 euro al posto della sua presenza sono diventati un'abitudine, e Tommaso lo sente.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Dirgli, con onestà, cosa voleva davvero.",sub:"«Papà, preferivo te sugli spalti.»",eff:{coraggio_civile:6,onesta_pubblica:4,legami:4},conseguenza:"Tommaso scrive: <span class=\"dialogo\">«Grazie papà, ma non mi serviva il gioco. Mi bastavi tu, anche solo dieci minuti. La prossima ci provi?»</span> Il padre legge quel messaggio tra un intervento e l'altro, e per la prima volta da mesi si ferma davvero. Risponde: <span class=\"dialogo\">«Hai ragione. Domenica vengo. Te lo prometto e stavolta lo scrivo in agenda.»</span> Tommaso ha insegnato a suo padre la differenza tra esserci e pagare."},
+         {label:"Accettare il gioco e ringraziare, basta.",eff:{legami:-1},conseguenza:"Tommaso ringrazia, scarica il gioco, ci gioca tutta la sera. È bellissimo, davvero. Ma quella piccola voce in fondo — «volevo te, non questo» — non sparisce: si zittisce soltanto. E ogni volta che si zittisce, diventa più difficile, la volta dopo, dire cosa si vuole davvero."},
+         {label:"Arrabbiarsi e rispondere male.",sub:"«Tanto non ci sei mai.»",eff:{slancio:2,legami:-3,relazioni:-2},conseguenza:"Tommaso scrive: <span class=\"dialogo\">«Lascia perdere, tanto non ci sei mai.»</span> Il padre, in corsia, legge e ci resta malissimo, ma non ha tempo di rispondere. Resta solo amaro, da entrambe le parti. La rabbia dice una verità vera — «mi manchi» — nel modo che la rende più facile da ignorare."},
+         {label:"Non rispondere e basta.",eff:{legami:-2,energia:-1},conseguenza:"Tommaso non risponde. Lascia il messaggio a «visualizzato» e si chiude nel gioco nuovo. Il padre, dall'altra parte, vede quel silenzio e non sa leggerlo. Tra loro si aggiunge un altro piccolo non-detto. E i non-detti, tra padri e figli, hanno la brutta abitudine di diventare muri."}
+        ]}}
+     ]},
+   { nome:"Venerdì — lo specchio",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Gli schermi non sono il nemico',
+        righe:[
+         {k:'Uno strumento',v:'né buono né cattivo'},
+         {k:'Il problema',v:'quando ti usa lui, non tu'},
+         {k:'La domanda giusta',v:'«lo sto scegliendo io?»'}
+        ],nota:"La console, i social, i videogiochi non sono il male: sono strumenti, e possono essere bellissimi. Il punto non è eliminarli, ma <strong>governarli</strong>: accorgersi quando sei tu a decidere di usarli, e quando invece sono loro a tenerti incollato. La libertà digitale è tutta in quella differenza."},
+      {col:'fam',tipo:'narr',testo:"Ed è facile puntare il dito sui genitori assenti. Ma in questa casa, anche i figli sono finiti nello stesso vortice. La distanza non l'hanno creata solo i grandi: la creano in quattro, ogni sera, ognuno nel proprio schermo."},
+
+      {col:'rag',tipo:'illust',svg:'salotto'},
+      {col:'rag',tipo:'narr',tag:'Tommaso, le 2 di notte',testo:"Venerdì. Tommaso è davanti alla console dalle 18. Sono le due di notte. «Ancora una partita» l'ha detto undici volte. Gli occhi bruciano, domani aveva detto a un amico di uscire, ma adesso è troppo stanco anche per quello."},
+      {col:'rag',tipo:'narr',testo:"Per un attimo si vede da fuori: solo, al buio, la faccia illuminata di blu, in una casa enorme e silenziosa. Esattamente come i suoi genitori che critica. Lo schermo non lo sta più divertendo da un pezzo. Lo sta solo tenendo."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'t_specchio',
+        intro:"Nessuno gli ha messo un orario, nessuno lo controlla. Stanotte l'unica persona che può decidere quando smettere è lui.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Spegnere, e darsi una regola sua.",eff:{autonomia:6,disciplina:5,coraggio_civile:3},conseguenza:"Tommaso spegne. Non perché glielo dice qualcuno: perché l'ha deciso lui. Si mette in testa una regola: console solo dopo le cose che contano, e mai oltre mezzanotte. Darsi dei limiti da soli, quando nessuno ti guarda, è la forma più alta di libertà — e quasi nessuno, a quattordici anni, ci arriva."},
+         {label:"Mettere una sveglia per fermarsi domani.",eff:{autonomia:4,disciplina:3},conseguenza:"Tommaso spegne e imposta una sveglia: domani esce con l'amico, come aveva detto. Un piccolo accordo con sé stesso. Non è una rivoluzione, ma è un primo confine messo nel posto giusto: tra ciò che lo diverte e ciò che lo divora."},
+         {label:"«Solo un'altra», fino all'alba.",eff:{energia:-4,autonomia:-3,disciplina:-2},conseguenza:"Tommaso continua. «Solo un'altra» diventano le quattro del mattino. Salta l'uscita con l'amico, dorme fino alle due, si sveglia svuotato. Lo schermo ha vinto, ancora. E la cosa peggiore è che non si è nemmeno divertito: era solo più facile che spegnere."},
+         {label:"Incolpare i genitori e continuare.",sub:"«Tanto a loro non importa.»",eff:{legami:-2,autonomia:-3},conseguenza:"Tommaso si dice che, se i suoi non gli mettono regole, è colpa loro. È comodo, come pensiero. Ma è anche una bugia gentile che si racconta per non spegnere: perché in fondo lo sa che, a quattordici anni, certe regole è ora di iniziare a darsele da soli."}
+        ]}}
+     ]},
+   { nome:"Domenica — un'ora senza schermi",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Quello che non si compra',
+        righe:[
+         {k:'Una console',v:'si compra'},
+         {k:'Una vacanza',v:'si compra'},
+         {k:'Un\'ora vera insieme',v:'si costruisce'}
+        ],nota:"In una casa benestante quasi tutto è a portata di carta di credito. Ma le cose che lasciano il segno — una risata a tavola, un gioco fatto insieme, una domanda ascoltata fino in fondo — quelle non si comprano: si costruiscono, con la sola moneta che vale davvero, il tempo. E il bello è che è gratis, e ne abbiamo tutti."},
+      {col:'fam',tipo:'narr',testo:"Ricostruire un momento insieme, in una famiglia che ha disimparato a stare insieme, è più difficile che comprare qualsiasi cosa. Serve che qualcuno lo proponga, regga l'imbarazzo dei primi minuti, e non molli al primo telefono che squilla."},
+
+      {col:'rag',tipo:'illust',svg:'salotto'},
+      {col:'rag',tipo:'narr',tag:'Tommaso, domenica pomeriggio',testo:"Tommaso ha trovato in un armadio una vecchia scatola: un gioco da tavolo di quando era piccolo, di quando ancora giocavano insieme. C'è un velo di polvere sopra. Lo guarda, e gli viene un'idea che lo fa quasi sentire ridicolo."},
+      {col:'rag',tipo:'narr',testo:"Potrebbe proporlo a tutti. Ma sa già le obiezioni: papà ha «due mail da mandare», Caterina «sta finendo un video», la mamma è stanca. Riunire questa famiglia attorno a un tavolo, di domenica, sembra più difficile che vincere una partita online contro i campioni del mondo."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'t_riunire',
+        intro:"È l'ultima scena della settimana, e forse la più coraggiosa. Provare a riunire chi si è abituato a stare lontano, rischiando un «no».",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Proporlo a tutti, e insistere con dolcezza.",sub:"Una partita, telefoni in un'altra stanza.",eff:{coraggio_civile:6,legami:6,cura:4},conseguenza:"Tommaso mette la scatola sul tavolo: <span class=\"dialogo\">«Una partita. Una sola. Telefoni di là.»</span> Mugugni, resistenze, papà che dice «cinque minuti e arrivo». Ma Tommaso non molla, e li tira dentro uno a uno. Dopo dieci minuti imbarazzati, succede: la mamma ride, papà bara platealmente, Caterina urla. Per un'ora, sono di nuovo una famiglia. Non è cambiato il mondo. È cambiata una domenica. E si comincia sempre da una."},
+         {label:"Proporlo solo a Caterina, per iniziare.",eff:{legami:4,cura:3,coraggio_civile:3},conseguenza:"Tommaso bussa alla porta della sorella: <span class=\"dialogo\">«Caterina, giochiamo a una cosa?»</span> Lei lo guarda strano, poi accetta. In due si diverte. Più tardi, sentendoli ridere, anche la mamma si avvicina. A volte non serve riunire tutti in una volta: basta cominciare da chi ti dice sì, e lasciare che il resto segua il rumore della risata."},
+         {label:"Rimettere la scatola nell'armadio.",eff:{legami:-2,energia:-1},conseguenza:"Tommaso guarda la scatola, immagina i «no», e la rimette dov'era. Troppo rischio di sentirsi dire che hanno di meglio da fare. Torna in camera, alla console. Ha scelto la cosa sicura. Ma le cose che contano, spesso, stanno dall'altra parte: oltre il rischio di un «no»."},
+         {label:"Tenere il gioco per sé, in solitaria.",eff:{autonomia:-1,legami:-2},conseguenza:"Tommaso prova a giocarci da solo, ma un gioco da tavolo in una persona sola non ha senso: è fatto apposta per stare in tanti. Lo richiude dopo poco. Certe cose, da soli, non funzionano proprio — e forse è questo che il gioco, in fondo, stava cercando di dirgli."}
+        ]}}
+     ]}
+  ],
+  fine:{
+   titolo:"Domenica sera",
+   corpo:"Tommaso ha quattordici anni, una stanza piena di tutto e una settimana in cui ha capito una cosa che molti adulti ricchi non capiscono mai: che la presenza non si compra, che gli schermi sono bellissimi finché sei tu a usarli e non il contrario, e che riunire le persone che ami attorno a un tavolo, senza telefoni, vale più di qualsiasi cosa si possa ordinare con un tocco.",
+   cliff:"Sul frigorifero, adesso, c'è un foglietto attaccato con una calamita. L'ha scritto Tommaso: «Domenica sera = un'ora, tutti, niente schermi». Sotto, con una grafia diversa, qualcuno ha aggiunto: «Confermo. Papà». È poco, è fragile, può saltare alla prima emergenza. Ma è un inizio. E gli inizi, in famiglia, contano più di quanto sembri."
   }
  }}}}
 };
