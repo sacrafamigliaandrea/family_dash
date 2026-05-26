@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="it"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FamilyDash — Un mese, giorno per giorno</title>
+<title>FamilyDash V4 — Cronaca di famiglia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;700&family=Patrick+Hand&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Patrick+Hand&family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-:root{--carta:#F5ECD7;--carta-2:#FAF4E6;--carta-bordo:#E3D5B0;--inchiostro:#3D2B1F;--inchiostro-2:#5C4736;--grafite:#8A7560;--rosso:#B85C3A;--rosso-tenue:#E8C7B5;--blu:#5B7FA0;--blu-tenue:#C8D6E2;--verde:#6B7A3F;--verde-tenue:#D3D9B8;--ocra:#C9A968;--ocra-tenue:#EDDDB4;--terra:#A05A2C;--notte:#2A1E14;--oro:#D4A93C}
+:root{--carta:#F5ECD7;--carta-2:#FAF4E6;--carta-bordo:#E3D5B0;--inchiostro:#3D2B1F;--inchiostro-2:#5C4736;--grafite:#8A7560;--terra:#A05A2C;--ocra:#C9A968;--ocra-tenue:#EDDDB4;--blu:#5B7FA0;--blu-tenue:#C8D6E2;--verde:#6B7A3F;--verde-tenue:#D3D9B8;--rosso:#B85C3A;--rosso-tenue:#E8C7B5;--notte:#2A1E14;--oro:#D4A93C}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{font-family:'IBM Plex Sans',sans-serif;background:var(--carta);color:var(--inchiostro);line-height:1.5;font-size:16px;overflow-x:hidden;background-image:radial-gradient(ellipse at top left,rgba(160,90,44,.06) 0%,transparent 50%),radial-gradient(ellipse at bottom right,rgba(91,127,160,.05) 0%,transparent 50%)}
-h1{font-family:'Caveat';font-weight:700;color:var(--inchiostro);font-size:2.6rem;line-height:1;margin-bottom:4px}
-h2{font-family:'Caveat';font-weight:700;font-size:1.8rem;margin-bottom:8px;line-height:1.1}
-p{margin-bottom:12px}
-.serif-italic{font-family:'Fraunces';font-style:italic}
-.eyebrow{color:var(--grafite);text-transform:uppercase;letter-spacing:2px;font-size:.72rem;font-weight:600;margin-bottom:4px}
-.sottotitolo{color:var(--inchiostro-2);font-size:1rem;margin-bottom:18px}
+html,body{height:100%;background:var(--carta);color:var(--inchiostro);font-family:'IBM Plex Sans',sans-serif;line-height:1.6}
+body{background-image:radial-gradient(ellipse at top left,rgba(160,90,44,.05),transparent 50%),radial-gradient(ellipse at bottom right,rgba(91,127,160,.04),transparent 50%);overflow-x:hidden}
+
+/* TOPBAR */
 .topbar{position:fixed;top:0;left:0;right:0;height:42px;background:var(--notte);color:var(--carta);display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:100;font-size:.82rem}
 .topbar-brand{font-family:'Caveat';font-weight:700;font-size:1.4rem}
 .topbar-sid{font-family:'JetBrains Mono';font-size:.72rem;opacity:.65}
 .topbar-actions{display:flex;gap:10px;align-items:center}
-.topbar-btn{background:rgba(245,236,215,.12);border:1px solid rgba(245,236,215,.2);color:var(--carta);padding:4px 12px;border-radius:3px;font-size:.78rem;cursor:pointer;text-decoration:none;font-family:inherit}
+.topbar-btn{background:rgba(245,236,215,.12);border:1px solid rgba(245,236,215,.2);color:var(--carta);padding:4px 12px;border-radius:3px;font-size:.78rem;text-decoration:none;font-family:inherit;cursor:pointer}
+
 .app{padding-top:42px;min-height:100vh}
-.screen{display:none;padding:26px 22px 60px;max-width:980px;margin:0 auto}
-.screen.active{display:block;animation:fadeIn .3s ease}
+.screen{display:none;padding:28px 22px 60px;max-width:760px;margin:0 auto}
+.screen.active{display:block;animation:fadeIn .35s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.quaderno{background:var(--carta-2);border:1px solid var(--carta-bordo);border-radius:4px;padding:26px 32px;box-shadow:0 2px 8px rgba(61,43,31,.08);margin-bottom:18px;background-image:repeating-linear-gradient(transparent 0,transparent 31px,rgba(91,127,160,.08) 32px)}
-.quaderno-cover{background:var(--carta-2);border:1px solid var(--carta-bordo);border-radius:4px;padding:30px 36px;box-shadow:0 2px 8px rgba(61,43,31,.08);margin-bottom:18px}
-.btn{background:var(--inchiostro);color:var(--carta);border:none;padding:12px 24px;border-radius:3px;font-family:'Patrick Hand';font-size:1.05rem;cursor:pointer;letter-spacing:.5px;transition:opacity .15s;display:inline-flex;align-items:center;gap:8px}
+
+h1{font-family:'Caveat';font-weight:700;color:var(--inchiostro);font-size:2.6rem;line-height:1}
+h2{font-family:'Caveat';font-weight:700;font-size:1.8rem;color:var(--inchiostro);line-height:1.1}
+.eyebrow{color:var(--grafite);text-transform:uppercase;letter-spacing:2px;font-size:.72rem;font-weight:600;margin-bottom:4px}
+.sottotitolo{color:var(--inchiostro-2);font-size:1rem;margin-bottom:18px}
+.serif-italic{font-family:'Fraunces';font-style:italic}
+
+.quaderno-cover{background:var(--carta-2);border:1px solid var(--carta-bordo);border-radius:4px;padding:30px 36px;box-shadow:0 2px 8px rgba(61,43,31,.08);margin-bottom:16px}
+
+.btn{background:var(--inchiostro);color:var(--carta);border:none;padding:12px 24px;border-radius:3px;font-family:'Patrick Hand';font-size:1.05rem;cursor:pointer;letter-spacing:.5px;display:inline-flex;align-items:center;gap:8px;transition:all .15s}
 .btn:hover{opacity:.88}
 .btn.lg{padding:15px 32px;font-size:1.2rem}
-.btn.sec{background:transparent;color:var(--inchiostro);border:1.5px solid var(--inchiostro-2)}
 .btn.verde{background:var(--verde)}.btn.ocra{background:var(--terra)}
+.btn.sec{background:transparent;color:var(--inchiostro);border:1.5px solid var(--inchiostro-2)}
 .btn[disabled]{background:var(--carta-bordo);color:var(--grafite);cursor:not-allowed}
-.slot-stage{background:var(--notte);border-radius:8px;padding:36px 24px;margin:20px auto;max-width:720px;text-align:center;box-shadow:inset 0 0 40px rgba(0,0,0,.4),0 6px 20px rgba(61,43,31,.3)}
+
+/* SLOT MACHINE (riusato da V3) */
+.slot-stage{background:var(--notte);border-radius:8px;padding:36px 24px;margin:20px auto;max-width:720px;text-align:center;box-shadow:inset 0 0 40px rgba(0,0,0,.4)}
 .slot-machine{display:flex;justify-content:center;gap:6px;margin:18px 0;perspective:600px;flex-wrap:wrap}
 .slot-rotella{width:130px;height:90px;background:var(--carta-2);border-radius:4px;overflow:hidden;position:relative;border:2px solid #3D2B1F;box-shadow:inset 0 2px 8px rgba(0,0,0,.3)}
 .slot-rotella::before,.slot-rotella::after{content:'';position:absolute;left:0;right:0;height:30px;z-index:2;pointer-events:none}
@@ -47,174 +52,107 @@ p{margin-bottom:12px}
 .slot-istr{color:var(--ocra-tenue);font-family:'Patrick Hand';font-size:1.05rem;opacity:.85}
 .slot-result{margin-top:22px;color:var(--carta);font-family:'Caveat';font-size:1.3rem;min-height:30px;opacity:0;transition:opacity .5s}
 .slot-result.show{opacity:1}
+.slot-result-pilot{color:var(--ocra-tenue);font-family:'Patrick Hand';font-size:.85rem;margin-top:8px;font-style:italic}
 .slot-btn-area{margin-top:18px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* CLASSI */
 .classi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;max-width:380px}
 .classe-btn{background:var(--carta-2);border:1.5px solid var(--carta-bordo);color:var(--inchiostro);padding:14px 0;border-radius:4px;font-family:'Caveat';font-weight:700;font-size:1.5rem;cursor:pointer}
 .classe-btn.attiva{background:var(--terra);color:var(--carta);border-color:var(--terra)}
+
+/* INTRO */
 .intro-wrap{display:flex;flex-direction:column;justify-content:center;min-height:calc(100vh - 100px);text-align:center;padding:30px 0}
 .intro-titolo-grande{font-family:'Caveat';font-weight:700;font-size:5.5rem;line-height:.9;margin-bottom:4px;transform:rotate(-1deg)}
 .intro-titolo-grande span{color:var(--terra)}
-.intro-sottotit-grande{font-family:'Patrick Hand';font-size:1.3rem;color:var(--grafite);margin-bottom:32px}
+.intro-sottotit-grande{font-family:'Patrick Hand';font-size:1.3rem;color:var(--grafite);margin-bottom:14px}
+.intro-pilot{font-family:'Patrick Hand';font-size:.95rem;color:var(--terra);margin-bottom:32px;background:var(--ocra-tenue);display:inline-block;padding:4px 14px;border-radius:3px;align-self:center}
 .intro-firma{font-family:'Patrick Hand';font-size:.9rem;color:var(--grafite);margin-top:28px}
-.indicators{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:var(--carta-2);padding:10px;border-radius:4px;border:1px solid var(--carta-bordo);margin-bottom:12px}
-.indicator{cursor:pointer;padding:6px 4px;border-radius:4px;position:relative;text-align:center}
-.indicator:hover{background:var(--ocra-tenue)}
-.indicator-icon{font-size:1.1rem;color:var(--terra)}
-.indicator-label{color:var(--grafite);font-size:.6rem;text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
-.indicator-quale{font-family:'Caveat';font-weight:700;font-size:1.15rem;line-height:1}
-.indicator-num{font-family:'JetBrains Mono';font-size:.66rem;color:var(--grafite)}
-.indicator.warn .indicator-quale{color:var(--rosso)}
-.indicator.good .indicator-quale{color:var(--verde)}
-.indicator.fam .indicator-icon{color:var(--blu)}
-.indicator-arrow{position:absolute;top:4px;right:6px;font-family:'JetBrains Mono';font-size:.8rem;font-weight:700;opacity:0}
-.indicator-arrow.up{color:var(--verde);opacity:1}
-.indicator-arrow.down{color:var(--rosso);opacity:1}
-.materie-profilo{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
-.materia-card{background:var(--carta-2);border:1.5px solid var(--carta-bordo);border-radius:4px;padding:10px 6px;text-align:center}
-.materia-card.luminosa{background:var(--ocra-tenue);border-color:var(--oro);box-shadow:0 0 0 1px rgba(212,169,60,.3)}
-.materia-card.ombra{background:#E8E0D0;border-color:#9F8B6E;opacity:.88}
-.materia-card .materia-icon{font-size:1.5rem;color:var(--terra);margin-bottom:3px;display:block}
-.materia-card.luminosa .materia-icon{color:var(--oro)}
-.materia-card.ombra .materia-icon{color:var(--grafite)}
-.materia-card .materia-nome{font-family:'Patrick Hand';font-size:.95rem;font-weight:600;line-height:1.1}
-.materia-card .materia-mood{font-family:'Caveat';font-size:.95rem;color:var(--terra);margin-top:2px}
-.materia-card.luminosa .materia-mood{color:var(--oro)}
-.materia-card.ombra .materia-mood{color:var(--grafite)}
-.progress-settimane{display:flex;gap:3px;margin-bottom:10px}
-.progress-settimana{flex:1;display:flex;gap:2px}
-.progress-giorno{flex:1;height:6px;background:var(--carta-bordo);border-radius:1px}
-.progress-giorno.done{background:var(--terra)}
-.progress-giorno.now{background:var(--ocra);box-shadow:0 0 0 2px var(--ocra-tenue)}
-.progress-sep{width:6px}
-.giorno-header{display:flex;justify-content:space-between;margin-bottom:12px}
-.giorno-eyebrow{color:var(--grafite);text-transform:uppercase;letter-spacing:2px;font-size:.7rem;font-weight:600}
-.giorno-titolo-box{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.giorno-titolo{font-family:'Caveat';font-weight:700;font-size:2rem;line-height:1;transform:rotate(-.3deg)}
-.giorno-data{font-family:'Patrick Hand';color:var(--grafite);font-size:1rem}
-.fasi-bar{display:flex;gap:6px;margin-bottom:18px;background:var(--carta);padding:4px;border-radius:6px;border:1px solid var(--carta-bordo)}
-.fase-tab{flex:1;padding:8px 10px;border-radius:4px;font-family:'Patrick Hand';font-size:.95rem;color:var(--grafite);text-align:center;border:none;background:transparent;display:flex;align-items:center;justify-content:center;gap:6px}
-.fase-tab.attiva{background:var(--inchiostro);color:var(--carta)}
-.fase-tab.fatto{color:var(--terra);opacity:.75}
-.fase-tab.fatto::after{content:'✓';margin-left:4px}
-.lezione{background:var(--carta-2);border:1px solid var(--carta-bordo);border-radius:3px;padding:14px 18px;margin-bottom:10px;display:flex;gap:14px;box-shadow:1px 1px 6px rgba(61,43,31,.08);transition:opacity .3s}
-.lezione.fatta{opacity:.5}
-.lezione.luminosa{background:linear-gradient(135deg,var(--carta-2),#FCF2D4);border-color:var(--oro)}
-.lezione.ombra{background:linear-gradient(135deg,var(--carta-2),#E8E0D0);border-color:#9F8B6E}
-.lezione-ora{font-family:'JetBrains Mono';font-size:.78rem;color:var(--grafite);background:var(--carta);padding:6px 8px;border-radius:3px;border:1px solid var(--carta-bordo);min-width:60px;text-align:center;line-height:1.1}
-.lezione-corpo{flex:1}
-.lezione-tit{font-family:'Caveat';font-weight:700;font-size:1.4rem;line-height:1;margin-bottom:2px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-.lezione-prof{font-family:'Patrick Hand';color:var(--grafite);font-size:.92rem;margin-bottom:8px}
-.lezione-arg{font-family:'Fraunces';font-style:italic;font-size:.98rem;margin-bottom:8px}
-.lezione-mood-badge{font-family:'Patrick Hand';font-size:.75rem;padding:1px 8px;border-radius:2px;text-transform:uppercase;letter-spacing:1px}
-.lezione-mood-badge.luminosa{background:var(--oro);color:var(--notte)}
-.lezione-mood-badge.ombra{background:var(--grafite);color:var(--carta)}
-.lezione-mood-badge.neutra{display:none}
-.lezione-rami{display:flex;flex-direction:column;gap:5px}
-.lezione-ramo{background:var(--carta-2);border:1px solid var(--carta-bordo);color:var(--inchiostro);padding:8px 12px;border-radius:3px;cursor:pointer;font-family:'Patrick Hand';font-size:.97rem;text-align:left}
-.lezione-ramo:hover{background:var(--inchiostro);color:var(--carta)}
-.lezione-fb{background:var(--ocra-tenue);border-left:3px solid var(--terra);padding:8px 12px;border-radius:2px;margin-top:8px;font-family:'Patrick Hand';font-size:.94rem}
-.voto-bubble{display:inline-block;background:var(--inchiostro);color:var(--carta);font-family:'Caveat';font-weight:700;font-size:1.1rem;width:32px;height:32px;line-height:32px;text-align:center;border-radius:50%;margin-left:6px}
-.voto-bubble.basso{background:var(--rosso)}.voto-bubble.medio{background:var(--terra)}.voto-bubble.alto{background:var(--verde)}
-.pom-intro{font-family:'Fraunces';font-style:italic;font-size:1rem;line-height:1.6;background:var(--carta-2);border:1px solid var(--carta-bordo);padding:14px 18px;border-radius:3px;margin-bottom:14px}
-.pom-tempo{display:flex;justify-content:space-between;align-items:center;background:var(--ocra-tenue);border:1px solid var(--ocra);padding:8px 14px;border-radius:3px;margin-bottom:14px;font-family:'Patrick Hand';font-size:1rem}
-.pom-tempo-num{font-family:'Caveat';font-weight:700;font-size:1.4rem;color:var(--terra)}
-.compito{background:var(--carta-2);border:1px solid var(--carta-bordo);border-radius:3px;padding:12px 16px;margin-bottom:8px;cursor:pointer;display:flex;gap:12px}
-.compito:hover{border-color:var(--terra);background:var(--ocra-tenue)}
-.compito.scelto{background:var(--ocra-tenue);border-color:var(--terra);border-left:4px solid var(--terra)}
-.compito.troppo-lungo{opacity:.4;cursor:not-allowed}
-.compito-check{width:24px;height:24px;border:2px solid var(--carta-bordo);border-radius:3px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono';font-weight:700;color:transparent}
-.compito.scelto .compito-check{background:var(--terra);border-color:var(--terra);color:var(--carta)}
-.compito.scelto .compito-check::after{content:'✓'}
-.compito-mat{font-family:'Patrick Hand';font-weight:600;color:var(--terra);font-size:.85rem;text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:6px;margin-bottom:2px}
-.compito-desc{font-family:'Fraunces';font-style:italic;font-size:.98rem;line-height:1.35}
-.compito-tempo{display:inline-block;background:var(--inchiostro);color:var(--carta);font-family:'JetBrains Mono';font-size:.72rem;padding:1px 6px;border-radius:2px;margin-left:6px}
-.pom-libero{margin-top:16px}
-.pom-libero-tit{font-family:'Caveat';font-weight:700;font-size:1.3rem;color:var(--terra);line-height:1}
-.pom-libero-istr{font-family:'Patrick Hand';color:var(--grafite);font-size:.92rem;margin-bottom:10px}
-.slot-libero-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
-.slot-libero{background:var(--carta-2);border:1.5px solid var(--carta-bordo);padding:10px 14px;border-radius:4px;cursor:pointer;font-family:'Patrick Hand';text-align:center}
-.slot-libero:hover{border-color:var(--terra);background:var(--ocra-tenue)}
-.slot-libero.scelto{background:var(--terra);color:var(--carta);border-color:var(--terra)}
-.slot-libero-icon{display:block;font-size:1.4rem;margin-bottom:2px}
-.slot-libero-dett{font-size:.76rem;color:var(--grafite);margin-top:2px}
-.slot-libero.scelto .slot-libero-dett{color:var(--carta);opacity:.8}
-.foglietto{background:var(--carta-2);border:1px solid var(--carta-bordo);padding:16px 18px;border-radius:3px;margin-bottom:12px;box-shadow:1px 1px 6px rgba(61,43,31,.1);transition:opacity .3s}
-.foglietto.fatto{opacity:.5;pointer-events:none}
-.foglietto-cucina{background:var(--ocra-tenue);border-color:var(--ocra);transform:rotate(-.3deg)}
-.foglietto-bivio{background:var(--rosso-tenue);border-color:var(--rosso);transform:rotate(.4deg)}
-.foglietto-richiesta{background:#F0E5C2;border-color:var(--ocra)}
-.foglietto-truffa{background:var(--rosso-tenue);border-color:var(--rosso)}
-.foglietto-imprevisto{background:var(--verde-tenue);border-color:var(--verde);transform:rotate(-.3deg)}
-.foglietto-quotidiano{background:var(--carta-2);border-color:var(--carta-bordo)}
-.foglietto-tag{display:inline-flex;align-items:center;gap:4px;background:var(--inchiostro);color:var(--carta);padding:2px 8px;border-radius:2px;font-family:'Patrick Hand';font-size:.8rem;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
-.foglietto-titolo{font-family:'Caveat';font-weight:700;font-size:1.4rem;line-height:1.1;margin-bottom:8px}
-.foglietto-corpo{font-family:'Fraunces';font-style:italic;font-size:1rem;line-height:1.6}
-.foglietto-corpo p{margin-bottom:8px}.foglietto-corpo p:last-child{margin-bottom:0}
-.foglietto-rami{display:flex;flex-direction:column;gap:6px;margin-top:12px}
-.foglietto-ramo{background:var(--carta-2);border:1px solid var(--carta-bordo);color:var(--inchiostro);padding:9px 14px;border-radius:3px;cursor:pointer;font-family:'Patrick Hand';font-size:1.02rem;text-align:left}
-.foglietto-ramo:hover{background:var(--inchiostro);color:var(--carta)}
-.foglietto-ramo-let{display:inline-block;width:22px;height:22px;line-height:22px;text-align:center;background:var(--inchiostro);color:var(--carta);border-radius:50%;font-family:'JetBrains Mono';font-size:.8rem;margin-right:8px}
-.foglietto-ramo:hover .foglietto-ramo-let{background:var(--carta);color:var(--inchiostro)}
-.costo{display:inline-block;background:var(--inchiostro);color:var(--carta);padding:2px 7px;border-radius:2px;font-family:'JetBrains Mono';font-size:.78rem;font-weight:700;margin-left:4px}
-.bivio-overlay{position:fixed;inset:0;background:var(--notte);z-index:200;display:none;flex-direction:column;padding:40px 22px;overflow-y:auto;background-image:radial-gradient(ellipse at center top,rgba(201,169,104,.18),transparent 60%)}
-.bivio-overlay.active{display:flex}
-.bivio-content{max-width:720px;margin:0 auto;width:100%;background:var(--carta-2);border-radius:4px;padding:32px 36px;box-shadow:0 8px 40px rgba(0,0,0,.4);background-image:repeating-linear-gradient(transparent 0,transparent 28px,rgba(91,127,160,.08) 29px)}
-.bivio-eyebrow{color:var(--terra);letter-spacing:2px;font-size:.72rem;font-weight:700;text-transform:uppercase;margin-bottom:8px}
-.bivio-titolo{font-family:'Caveat';font-size:2rem;font-weight:700;margin-bottom:18px;line-height:1}
-.bivio-scena{font-family:'Fraunces';font-style:italic;font-size:1.12rem;line-height:1.7;margin-bottom:22px}
-.bivio-scena p{margin-bottom:12px}
-.bivio-rami{display:flex;flex-direction:column;gap:10px}
-.bivio-ramo{background:transparent;border:1.5px solid var(--inchiostro-2);color:var(--inchiostro);padding:14px 18px;border-radius:4px;cursor:pointer;text-align:left;font-family:'Patrick Hand';font-size:1.05rem}
-.bivio-ramo:hover{background:var(--inchiostro);color:var(--carta)}
-.bivio-ramo-let{display:inline-block;width:26px;height:26px;line-height:26px;text-align:center;background:var(--terra);color:var(--carta);border-radius:50%;font-family:'JetBrains Mono';font-weight:700;margin-right:10px;font-size:.85rem}
-.pagella{background:var(--carta-2);border:2px solid var(--terra);border-radius:4px;padding:20px 24px;margin-bottom:14px;background-image:repeating-linear-gradient(transparent 0,transparent 26px,rgba(91,127,160,.06) 27px)}
-.pagella-titolo{font-family:'Caveat';font-weight:700;font-size:1.7rem;color:var(--terra);margin-bottom:4px;line-height:1}
-.pagella-sottotit{font-family:'Patrick Hand';color:var(--grafite);font-size:.95rem;margin-bottom:12px}
-.pagella-riga{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px dashed var(--carta-bordo)}
-.pagella-riga:last-child{border-bottom:none}
-.pagella-mat{font-family:'Patrick Hand';font-size:1rem;display:flex;align-items:center;gap:8px}
-.pagella-voti{display:flex;gap:4px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-.pagella-voto{font-family:'Caveat';font-weight:700;font-size:1.05rem;background:var(--inchiostro);color:var(--carta);width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%}
-.pagella-voto.basso{background:var(--rosso)}.pagella-voto.medio{background:var(--terra)}.pagella-voto.alto{background:var(--verde)}
-.pagella-media{font-family:'JetBrains Mono';font-size:.78rem;color:var(--grafite);margin-left:8px}
-.pagella-nota{font-family:'Fraunces';font-style:italic;font-size:.95rem;margin-top:14px;padding:10px 14px;background:var(--ocra-tenue);border-left:3px solid var(--terra);border-radius:2px}
-.quadro{background:var(--carta-2);border:2px solid var(--terra);border-radius:4px;padding:16px 20px;margin-bottom:14px;background-image:repeating-linear-gradient(transparent 0,transparent 26px,rgba(91,127,160,.06) 27px)}
-.quadro-titolo{font-family:'Caveat';font-weight:700;font-size:1.3rem;color:var(--terra);line-height:1}
-.quadro-sottotit{font-family:'Patrick Hand';color:var(--grafite);font-size:.88rem;margin-bottom:8px}
-.quadro-riga{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--carta-bordo)}
-.quadro-riga:last-child{border-bottom:none}
-.quadro-riga-label{font-family:'Patrick Hand';font-size:.95rem;display:flex;align-items:center;gap:8px}
-.quadro-riga-val{font-family:'Caveat';font-weight:700;font-size:1.2rem}
-.busta-paga{background:var(--carta-2);border:1px solid var(--carta-bordo);border-left:4px solid var(--verde);padding:14px 18px;margin-bottom:12px;border-radius:3px}
-.busta-paga h4{font-family:'Caveat';font-weight:700;font-size:1.3rem;color:var(--verde);line-height:1;margin-bottom:6px}
-.busta-paga-riga{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed var(--carta-bordo);font-family:'Patrick Hand';font-size:.95rem}
-.busta-paga-riga:last-child{border-bottom:none}
-.busta-paga-riga.tot{border-top:1.5px solid var(--inchiostro);margin-top:4px;padding-top:6px;border-bottom:none;font-weight:700}
-.busta-paga-num{font-family:'JetBrains Mono';font-size:.82rem}
-.gloss{border-bottom:1.5px dotted var(--terra);cursor:help;color:var(--terra);font-weight:500}
-.gloss-popup{position:fixed;background:var(--notte);color:var(--carta);padding:14px 18px;border-radius:4px;max-width:300px;font-family:'IBM Plex Sans';font-size:.88rem;line-height:1.5;z-index:300;display:none;box-shadow:0 6px 20px rgba(0,0,0,.4)}
-.gloss-popup-titolo{color:var(--ocra);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.gloss-popup-esempio{color:rgba(245,236,215,.6);font-size:.8rem;margin-top:8px;font-style:italic}
-.finale-card{background:var(--carta-2);border:1px solid var(--carta-bordo);border-radius:4px;padding:30px 36px;margin-bottom:18px;background-image:repeating-linear-gradient(transparent 0,transparent 28px,rgba(91,127,160,.07) 29px)}
-.finale-card-titolo{font-family:'Caveat';font-weight:700;color:var(--terra);font-size:1.8rem;margin-bottom:14px;line-height:1}
-.finale-card p{font-family:'Fraunces';font-style:italic;font-size:1.08rem;line-height:1.7;margin-bottom:12px}
-.tratto-emerso{display:inline-block;background:var(--terra);color:var(--carta);padding:6px 14px;border-radius:3px;font-family:'Patrick Hand';font-size:1.02rem;text-transform:uppercase;letter-spacing:1px;margin:4px 4px 4px 0}
+
+/* BRIEFING */
 .scheda-famiglia{background:var(--carta-2);border:1px solid var(--carta-bordo);border-radius:4px;padding:22px 26px;margin-bottom:14px}
 .scheda-famiglia .nome{font-family:'Caveat';font-weight:700;font-size:2rem;color:var(--terra);line-height:1;transform:rotate(-.3deg)}
 .scheda-famiglia .tag{display:inline-block;font-family:'Patrick Hand';background:var(--ocra-tenue);padding:2px 10px;border-radius:2px;font-size:.9rem;margin:4px 0 10px}
 .scheda-famiglia .scheda-corpo{font-family:'Fraunces';font-style:italic;font-size:1.05rem;line-height:1.7}
-.sala-overlay{position:fixed;inset:0;background:rgba(42,30,20,.96);color:var(--carta);z-index:400;display:none;flex-direction:column;justify-content:center;align-items:center;padding:24px;text-align:center}
-.sala-overlay.active{display:flex}
-.sala-overlay h2{color:var(--ocra);margin-bottom:14px}
-.sala-overlay p{font-family:'Patrick Hand';font-size:1.1rem;max-width:480px;margin-bottom:14px}
-.sala-overlay input{padding:10px 14px;border-radius:3px;border:none;font-family:'JetBrains Mono';font-size:1rem;margin:8px 0;width:240px;text-align:center}
-.tasti-bottom{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
-.feedback{background:var(--ocra-tenue);border-left:4px solid var(--terra);padding:10px 14px;border-radius:2px;font-family:'Patrick Hand';font-size:1rem;margin:10px 0}
-.deltetto{font-family:'JetBrains Mono';font-size:.8rem;font-weight:700}
-.delta-pos{color:var(--verde)}.delta-neg{color:var(--rosso)}
-@media(max-width:760px){.materie-profilo{grid-template-columns:repeat(2,1fr)}.lezione{flex-direction:column;gap:8px}.lezione-ora{min-width:0}}
+.famiglia-membri{margin-top:18px;padding-top:14px;border-top:1px dashed var(--carta-bordo)}
+.famiglia-membri h3{font-family:'Caveat';font-size:1.3rem;color:var(--inchiostro-2);margin-bottom:8px;line-height:1}
+.membro{display:flex;align-items:baseline;gap:10px;margin-bottom:3px;font-family:'Patrick Hand';font-size:.98rem}
+.membro-nome{font-family:'Caveat';font-weight:700;font-size:1.2rem;color:var(--inchiostro);min-width:90px}
+.membro-eta{font-family:'JetBrains Mono';font-size:.78rem;color:var(--grafite);min-width:36px}
+.membro-ruolo{color:var(--inchiostro-2)}
+.protagonista{color:var(--terra);font-weight:700}
+
+/* EPISODIO */
+.ep-header{margin-bottom:24px;text-align:center;padding-bottom:18px;border-bottom:1px solid var(--carta-bordo)}
+.ep-header .eyebrow{color:var(--terra);letter-spacing:3px}
+.ep-header h1{font-size:2.4rem;margin-bottom:2px}
+.ep-header .ep-sub{font-family:'Fraunces';font-style:italic;color:var(--inchiostro-2);font-size:1rem;margin-top:4px}
+
+/* PROGRESS scene */
+.scene-progress{display:flex;gap:4px;justify-content:center;margin-bottom:20px}
+.scene-progress-dot{width:8px;height:8px;border-radius:50%;background:var(--carta-bordo)}
+.scene-progress-dot.done{background:var(--terra)}
+.scene-progress-dot.now{background:var(--ocra);box-shadow:0 0 0 3px var(--ocra-tenue)}
+
+/* SCENA */
+.scene{background:var(--carta-2);border:1px solid var(--carta-bordo);border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(61,43,31,.06);margin-bottom:18px}
+.scene.entered{animation:sceneIn .5s ease}
+@keyframes sceneIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.scene-illust{background:linear-gradient(180deg,var(--carta),var(--carta-2));border-bottom:1px solid var(--carta-bordo);padding:8px 0;display:flex;justify-content:center}
+.scene-illust svg{display:block;width:100%;max-width:700px;height:auto}
+.scene-meta{padding:14px 28px 4px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px dashed var(--carta-bordo);margin-bottom:16px}
+.scene-focal{font-family:'IBM Plex Sans';font-weight:600;letter-spacing:3px;text-transform:uppercase;font-size:.82rem;color:var(--terra)}
+.scene-place{font-family:'Patrick Hand';color:var(--grafite);font-size:.95rem}
+.scene-body{padding:0 28px 22px;font-family:'Fraunces';font-style:italic;font-size:1.08rem;line-height:1.75;color:var(--inchiostro)}
+.scene-body p{margin-bottom:13px}
+.scene-body p:last-child{margin-bottom:0}
+.dialogo{font-style:normal;font-family:'Fraunces';font-weight:400}
+
+/* BIVIO */
+.bivio{margin:18px 28px 26px;padding:20px 22px;background:var(--ocra-tenue);border:1px solid var(--ocra);border-left:4px solid var(--terra);border-radius:3px;animation:bivioIn .4s ease}
+@keyframes bivioIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.bivio-intro{font-family:'Fraunces';font-style:italic;font-size:1.02rem;color:var(--inchiostro);margin-bottom:14px;line-height:1.55}
+.bivio-domanda{font-family:'Caveat';font-weight:700;font-size:1.45rem;color:var(--terra);margin-bottom:12px;line-height:1.1}
+.bivio-opts{display:flex;flex-direction:column;gap:6px}
+.bivio-opt{background:var(--carta-2);border:1px solid var(--carta-bordo);color:var(--inchiostro);padding:11px 16px 11px 14px;border-radius:3px;cursor:pointer;font-family:'IBM Plex Sans';font-size:.97rem;text-align:left;line-height:1.4;transition:all .15s;display:flex;align-items:flex-start;gap:10px}
+.bivio-opt:hover{background:var(--inchiostro);color:var(--carta);transform:translateX(2px);border-color:var(--inchiostro)}
+.bivio-opt-num{display:inline-block;width:24px;height:24px;line-height:24px;text-align:center;background:var(--terra);color:var(--carta);border-radius:50%;font-weight:700;font-size:.8rem;flex-shrink:0;margin-top:1px}
+.bivio-opt:hover .bivio-opt-num{background:var(--ocra);color:var(--notte)}
+.bivio-opt em{font-family:'Fraunces';font-style:italic;color:var(--inchiostro-2);font-size:.88rem;display:block;margin-top:2px}
+.bivio-opt:hover em{color:rgba(245,236,215,.85)}
+.bivio-opt[disabled]{opacity:.6;cursor:not-allowed}
+
+/* CONSEGUENZA */
+.conseguenza{margin:0 28px 22px;padding:16px 20px;background:var(--carta);border:1px solid var(--carta-bordo);border-left:3px solid var(--ocra);border-radius:3px;font-family:'Fraunces';font-style:italic;font-size:1rem;line-height:1.7;animation:bivioIn .5s ease}
+.conseguenza::before{content:'·';font-family:'Caveat';font-weight:700;font-size:2rem;color:var(--terra);margin-right:8px;line-height:0;vertical-align:middle}
+
+/* CONTROLLI */
+.scene-controls{display:flex;justify-content:flex-end;gap:10px;margin:8px 0 24px;padding:0 28px}
+.scene-controls .btn{padding:10px 22px}
+
+/* FINE EPISODIO */
+.ep-fine{background:var(--carta-2);border:1px solid var(--carta-bordo);border-radius:4px;padding:28px 32px;margin-bottom:18px;text-align:center}
+.ep-fine h2{color:var(--terra);margin-bottom:8px}
+.ep-fine-corpo{font-family:'Fraunces';font-style:italic;font-size:1.05rem;line-height:1.7;max-width:520px;margin:0 auto 18px}
+.ep-fine-cliff{margin:18px 0;padding:14px 18px;background:var(--ocra-tenue);border:1px solid var(--ocra);border-radius:3px;font-family:'Fraunces';font-style:italic;font-size:1rem;line-height:1.65;text-align:left}
+
+/* WIP / placeholder */
+.wip-card{background:var(--carta-2);border:1px dashed var(--carta-bordo);border-radius:4px;padding:24px 28px;text-align:center;margin-bottom:18px}
+.wip-card h2{color:var(--grafite);margin-bottom:8px}
+.wip-card p{font-family:'Patrick Hand';color:var(--grafite);font-size:1rem}
+
+.tasti-bottom{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+
+@media(max-width:600px){
+  .screen{padding:20px 12px 50px}
+  .scene-meta{padding-left:18px;padding-right:18px}
+  .scene-body{padding-left:18px;padding-right:18px;font-size:1.02rem}
+  .bivio{margin-left:14px;margin-right:14px;padding:16px 18px}
+  .conseguenza{margin-left:14px;margin-right:14px}
+  .scene-controls{padding:0 18px}
+}
 </style>
 </head><body>
+
 <div class="topbar">
   <span class="topbar-brand">FamilyDash</span>
   <div class="topbar-actions">
@@ -222,16 +160,22 @@ p{margin-bottom:12px}
     <a class="topbar-btn" href="familydash-dashboard.html" target="_blank" rel="noopener">Dashboard docente</a>
   </div>
 </div>
+
 <div class="app">
+
+<!-- INTRO -->
 <div class="screen active" id="screen-intro">
   <div class="intro-wrap">
-    <p class="eyebrow">Un mese, giorno per giorno</p>
+    <p class="eyebrow">Cronaca di famiglia</p>
     <div class="intro-titolo-grande">Family<br><span>Dash</span></div>
     <p class="intro-sottotit-grande">Quattro settimane. Una famiglia. Una vita che non hai scelto.</p>
+    <p class="intro-pilot">Pilot — Famiglia Ricci × Gennaio · Episodio 1 disponibile</p>
     <div><button class="btn lg" onclick="vai('screen-classe')">Apri il diario</button></div>
     <p class="intro-firma">Scuola Sacra Famiglia — Orzinuovi (BS)<br>Animatore Digitale: Andrea Cerioli</p>
   </div>
 </div>
+
+<!-- CLASSE -->
 <div class="screen" id="screen-classe">
   <div class="quaderno-cover">
     <p class="eyebrow">Prima di cominciare</p><h1>Qual è la tua classe?</h1>
@@ -240,6 +184,8 @@ p{margin-bottom:12px}
     <div class="tasti-bottom"><button class="btn" id="btnAvantiClasse" onclick="vai('screen-slot-famiglia')" disabled>Avanti</button></div>
   </div>
 </div>
+
+<!-- SLOT FAMIGLIA -->
 <div class="screen" id="screen-slot-famiglia">
   <div class="quaderno-cover">
     <p class="eyebrow">Capitolo 1 — La sorte decide</p>
@@ -247,7 +193,7 @@ p{margin-bottom:12px}
     <p class="sottotitolo">Non scegli tu. La sorte non si negozia, come nella vita.</p>
     <div class="slot-stage">
       <p class="slot-titolo">Le dieci famiglie</p>
-      <p class="slot-istr">Tira la leva. Le tessere girano.</p>
+      <p class="slot-istr">Tira la leva.</p>
       <div class="slot-machine">
         <div class="slot-rotella"><div class="slot-strip" id="slotFamA"></div></div>
         <div class="slot-rotella"><div class="slot-strip" id="slotFamB"></div></div>
@@ -256,15 +202,16 @@ p{margin-bottom:12px}
       <div class="slot-result" id="slotFamRisultato"></div>
       <div class="slot-btn-area">
         <button class="btn ocra" id="btnSlotFam" onclick="tiraSlotFamiglia()">Tira la leva</button>
-        <button class="btn sec" id="btnCambioFam" onclick="cambiaFamiglia()" style="display:none;color:var(--carta);border-color:var(--carta)">Cambia (una volta sola)</button>
-        <button class="btn verde" id="btnAccettaFam" onclick="vai('screen-slot-mese')" style="display:none">Accetto →</button>
+        <button class="btn verde" id="btnAccettaFam" onclick="vai('screen-slot-mese')" style="display:none">Continua →</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- SLOT MESE -->
 <div class="screen" id="screen-slot-mese">
   <div class="quaderno-cover">
-    <p class="eyebrow">Capitolo 2 — Quando comincia</p>
+    <p class="eyebrow">Capitolo 2 — Quando</p>
     <h1>Quale mese ti tocca vivere?</h1>
     <p class="sottotitolo">Un mese soltanto. Quattro settimane. Ogni mese ha la sua musica.</p>
     <div class="slot-stage">
@@ -276,90 +223,652 @@ p{margin-bottom:12px}
       <div class="slot-result" id="slotMeseRisultato"></div>
       <div class="slot-btn-area">
         <button class="btn ocra" id="btnSlotMese" onclick="tiraSlotMese()">Tira la leva</button>
-        <button class="btn verde" id="btnAccettaMese" onclick="vai('screen-slot-materie')" style="display:none">Accetto →</button>
+        <button class="btn verde" id="btnAccettaMese" onclick="vai('screen-slot-materie')" style="display:none">Continua →</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- SLOT MATERIE -->
 <div class="screen" id="screen-slot-materie">
   <div class="quaderno-cover">
     <p class="eyebrow">Capitolo 3 — A scuola</p>
-    <h1>Per cosa sei portato? Per cosa fai fatica?</h1>
-    <p class="sottotitolo">Otto materie. Due ti illuminano, due ti pesano, quattro stanno nel mezzo. Non scegli tu — come nella vita non scegliamo per cosa siamo portati.</p>
+    <h1>Per cosa è portato? Per cosa fa fatica?</h1>
+    <p class="sottotitolo">Otto materie. Due lo illuminano, due gli pesano, quattro stanno nel mezzo.</p>
     <div class="slot-stage">
-      <p class="slot-titolo">Il tuo profilo a scuola</p>
-      <p class="slot-istr">Tira la leva: otto tessere girano.</p>
+      <p class="slot-titolo">Il profilo a scuola</p>
       <div id="slotMaterieAnim" style="display:flex;justify-content:center;gap:6px;margin:18px 0;flex-wrap:wrap;perspective:600px"></div>
       <div class="slot-result" id="slotMaterieRisultato"></div>
       <div class="slot-btn-area">
         <button class="btn ocra" id="btnSlotMaterie" onclick="tiraSlotMaterie()">Tira la leva</button>
-        <button class="btn verde" id="btnAccettaMaterie" onclick="vai('screen-briefing')" style="display:none">Accetto →</button>
+        <button class="btn verde" id="btnAccettaMaterie" onclick="apriBriefing()" style="display:none">Continua →</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- BRIEFING -->
 <div class="screen" id="screen-briefing">
   <div class="quaderno-cover">
     <p class="eyebrow">Tutto quello che sai</p>
     <div class="scheda-famiglia" id="briefScheda"></div>
-    <div class="quaderno" style="margin-top:14px"><h2>Il tuo profilo a scuola</h2><div class="materie-profilo" id="briefMaterieProf"></div></div>
-    <div class="quaderno" style="margin-top:14px"><h2>Come funziona</h2>
-      <p class="serif-italic" style="font-size:1.05rem;line-height:1.7">Vivrai <strong>quattro settimane</strong> di questo mese, un giorno alla volta. Ogni giorno ha tre fasi.</p>
-      <p class="serif-italic" style="font-size:1.05rem;line-height:1.7"><strong>Mattino — a scuola.</strong> Sei ore di lezione, materie in orario. Nelle ore luminose vai più sereno, nelle ore in ombra fai fatica. Capita di tutto: interrogazioni, lavori di gruppo, brutti voti, complimenti.</p>
-      <p class="serif-italic" style="font-size:1.05rem;line-height:1.7"><strong>Pomeriggio — decidi tu.</strong> A casa, i compiti del giorno. Tempo finito: non li fai tutti. Scegli cosa fare. Quello che salti, si paga.</p>
-      <p class="serif-italic" style="font-size:1.05rem;line-height:1.7"><strong>Sera — le cose grandi.</strong> A cena con i tuoi capita di tutto: bollette, telefonate, decisioni, truffe da riconoscere. La <strong>domenica sera</strong> arriva la pagella della settimana. A fine mese, la busta paga.</p>
-    </div>
-    <div class="tasti-bottom"><button class="btn lg verde" onclick="iniziaPartita()">Comincia lunedì mattina →</button></div>
+    <div class="tasti-bottom"><button class="btn lg verde" onclick="iniziaPartita()">Comincia l'episodio 1 →</button></div>
   </div>
 </div>
-<div class="screen" id="screen-giorno">
-  <div class="quaderno">
-    <div class="progress-settimane" id="progressGiorni"></div>
-    <div class="giorno-header"><div>
-      <p class="giorno-eyebrow" id="giornoEyebrow"></p>
-      <div class="giorno-titolo-box"><span class="giorno-titolo" id="giornoTitolo"></span><span class="giorno-data" id="giornoData"></span></div>
-    </div></div>
-    <div class="indicators" id="indicators"></div>
-    <div id="quadroBox"></div>
-    <div class="fasi-bar">
-      <button class="fase-tab" id="faseTabMat"><i class="iconoir-sun-light"></i> Mattino</button>
-      <button class="fase-tab" id="faseTabPom"><i class="iconoir-half-moon"></i> Pomeriggio</button>
-      <button class="fase-tab" id="faseTabSer"><i class="iconoir-moon-sat"></i> Sera</button>
-    </div>
-    <div id="faseBox"></div>
-    <div class="tasti-bottom"><button class="btn verde" id="btnFaseAvanti" onclick="avantiFase()" disabled>Avanti →</button></div>
+
+<!-- EPISODIO RUNNER -->
+<div class="screen" id="screen-episodio">
+  <div class="ep-header">
+    <p class="eyebrow" id="epEyebrow"></p>
+    <h1 id="epTitolo"></h1>
+    <p class="ep-sub" id="epSub"></p>
+  </div>
+  <div class="scene-progress" id="sceneProgress"></div>
+  <div id="sceneContainer"></div>
+</div>
+
+<!-- FINE EPISODIO -->
+<div class="screen" id="screen-fine-ep">
+  <div class="ep-fine" id="finEpContent"></div>
+  <div class="tasti-bottom" id="finEpControls"></div>
+</div>
+
+<!-- WIP placeholder -->
+<div class="screen" id="screen-wip">
+  <div class="wip-card">
+    <h2 id="wipTitolo"></h2>
+    <p id="wipMsg"></p>
+    <div class="tasti-bottom"><button class="btn" onclick="location.reload()">Torna all'inizio</button></div>
   </div>
 </div>
-<div class="screen" id="screen-finale">
-  <div class="quaderno-cover">
-    <p class="eyebrow">Ultima pagina</p><h1>È finito il mese</h1>
-    <div id="finaleContent"></div>
-    <div class="tasti-bottom"><button class="btn" onclick="location.reload()">Ricomincia con un altro mese</button></div>
-  </div>
+
 </div>
-</div>
-<div class="bivio-overlay" id="bivioOverlay">
-  <div class="bivio-content">
-    <p class="bivio-eyebrow">Una scelta importante</p>
-    <div class="bivio-titolo" id="bivioTitolo"></div>
-    <div class="bivio-scena" id="bivioScena"></div>
-    <div class="bivio-rami" id="bivioRami"></div>
-  </div>
-</div>
-<div class="gloss-popup" id="glossPopup">
-  <div class="gloss-popup-titolo" id="glossTitle"></div>
-  <div id="glossDef"></div>
-  <div class="gloss-popup-esempio" id="glossEx"></div>
-</div>
-<div class="sala-overlay" id="salaOverlay">
-  <h2>SalaStudio — Pausa</h2>
-  <p id="salaMsg">L'attività è in pausa. Solo l'insegnante può riprenderla.</p>
-  <input type="password" id="salaPin" placeholder="PIN insegnante">
-  <button class="btn" onclick="salaSblocca()">Sblocca</button>
-</div>
+
 <script>
-window.TELE={start:function(){return'fd_local_'+Date.now().toString(36)},slot:function(){},bivio:function(){},richiesta:function(){},truffa:function(){},imprevisto:function(){},mese:function(){},end:function(){},giorno:function(){},materia:function(){},compito:function(){},voto:function(){},getSessionId:function(){return null},getStats:function(){return{}},setDebug:function(){}};
+window.TELE={start:function(){return'fd4_local_'+Date.now().toString(36)},slot:function(){},scena:function(){},bivio:function(){},fineEp:function(){},end:function(){},getSessionId:function(){return null},setDebug:function(){}};
 </script>
 <script src="telemetria.js"></script>
-<script src="game.js"></script>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   FAMILYDASH V4 — Visual novel engine
+   Pilot: Famiglia Ricci × Gennaio · Episodio 1
+   ════════════════════════════════════════════════════════════ */
+
+const CLASSI=['1A','2A','3A','1B','2B','3B','1C','2C','3C'];
+const MESI=['','Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+
+const FAMIGLIE={
+  romano:{nome:'Romano',tag:'Ceto medio impiegatizio',disp:false},
+  colombo:{nome:'Colombo',tag:'Mamma sola, un figlio',disp:false},
+  ricci:{nome:'Ricci',tag:'Famiglia numerosa, popolare',disp:true,
+    membri:[
+      {nome:'Antonio',eta:'42 anni',ruolo:'papà, magazziniere'},
+      {nome:'Roberta',eta:'39 anni',ruolo:'mamma, cassiera al supermercato part-time'},
+      {nome:'Anna',eta:'16 anni',ruolo:'sorella maggiore — fa il liceo scientifico'},
+      {nome:'Matteo',eta:'13 anni',ruolo:'è il ragazzo che osserveremo',proto:true},
+      {nome:'Davide',eta:'9 anni',ruolo:'fratello — quarta elementare'},
+      {nome:'Sofia',eta:'5 anni',ruolo:'sorella piccola — materna'}
+    ],
+    scheda:'Appartamento popolare al piano terra, con un piccolo cortile sul retro. Il tavolo della cucina è il centro della casa: si pranza, si cena, si fanno i compiti, si pagano le bollette. Antonio è in magazzino da quindici anni, turni che cambiano. Roberta è al supermercato part-time, le mattine. I conti si fanno alla fine di ogni mese, due volte: una da Antonio, una da Roberta, per essere sicuri. D\'estate, una settimana in campeggio al lago. È quanto.'},
+  bruno:{nome:'Bruno',tag:'Artigiano con nonno convivente',disp:false},
+  mancinideluca:{nome:'Mancini & De Luca',tag:'Genitori separati',disp:false},
+  greco:{nome:'Greco',tag:'Origini miste italo-albanesi',disp:false},
+  rizzo:{nome:'Rizzo',tag:'Famiglia con figlio con disabilità',disp:false},
+  lombardi:{nome:'Lombardi',tag:'Famiglia giovane, fratellino piccolo',disp:false},
+  valentini:{nome:'Valentini & Barbieri',tag:'Famiglia ricomposta',disp:false},
+  fontana:{nome:'Fontana',tag:'Famiglia rurale, agricola',disp:false}
+};
+const FAM_IDS=Object.keys(FAMIGLIE);
+
+const MATERIE={
+  ITA:{nome:'Italiano',icon:'iconoir-book'},MAT:{nome:'Matematica',icon:'iconoir-calculator'},
+  ING:{nome:'Inglese',icon:'iconoir-globe'},SCI:{nome:'Scienze',icon:'iconoir-flask'},
+  STO:{nome:'Storia/Geo',icon:'iconoir-scroll'},TEC:{nome:'Tecnologia',icon:'iconoir-cpu'},
+  MOT:{nome:'Motoria',icon:'iconoir-running'},ARTE:{nome:'Arte/Musica',icon:'iconoir-music-double-note'}
+};
+const MATERIE_IDS=Object.keys(MATERIE);
+
+const STATE={
+  classe:null,famigliaId:null,mese:null,profiloMaterie:{},
+  episodioCorr:0,sceneIdx:0,
+  ind:{studio:50,forma:50,energia:70,relazioni:60,bilancio:0,legami:50},
+  tratti:{disciplina:0,slancio:0,coraggio_civile:0,cura:0,autonomia:0},
+  // metriche relazionali per Ricci
+  rel:{fiducia_anna:50,fiducia_padre:50,fiducia_madre:50,fiducia_prof:50,onesta_pubblica:0},
+  biviScelti:[],
+  // stato derivato dalle scelte (per encadenare conseguenze)
+  flags:{}
+};
+
+/* ─── UTILITY ─── */
+function $(s){return document.querySelector(s)}
+function $$(s){return Array.from(document.querySelectorAll(s))}
+function vai(id){$$('.screen').forEach(s=>s.classList.remove('active'));$('#'+id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function rand(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+function applicaEffetti(eff){
+  if(!eff)return;
+  for(const k in eff){
+    const v=eff[k];
+    if(k in STATE.ind)STATE.ind[k]=clamp(STATE.ind[k]+v,0,100);
+    else if(k in STATE.tratti)STATE.tratti[k]=Math.max(0,STATE.tratti[k]+v);
+    else if(k in STATE.rel)STATE.rel[k]=clamp(STATE.rel[k]+v,0,100);
+    else if(k.startsWith('flag_'))STATE.flags[k]=v;
+  }
+}
+
+/* ─── CLASSE ─── */
+function buildClassi(){$('#classiGrid').innerHTML=CLASSI.map(cl=>`<button class="classe-btn" data-cl="${cl}" onclick="selClasse('${cl}')">${cl}</button>`).join('')}
+function selClasse(cl){STATE.classe=cl;$$('.classe-btn').forEach(b=>b.classList.toggle('attiva',b.dataset.cl===cl));$('#btnAvantiClasse').disabled=false}
+
+/* ─── SLOT FAMIGLIA ─── */
+function popolaSlotFamiglia(){['slotFamA','slotFamB','slotFamC'].forEach(id=>{
+  const strip=$('#'+id);const lista=[];for(let i=0;i<24;i++)lista.push(rand(FAM_IDS));
+  strip.innerHTML=lista.map(fid=>`<div class="slot-tessera">${FAMIGLIE[fid].nome}</div>`).join('');
+  strip.style.transform='translateY(0)';
+})}
+function tiraSlotFamiglia(){
+  $('#btnSlotFam').disabled=true;$('#slotFamRisultato').classList.remove('show');
+  // PILOT: forzo Ricci
+  const idEstratto='ricci';STATE.famigliaId=idEstratto;
+  ['slotFamA','slotFamB','slotFamC'].forEach((id,idx)=>{
+    const strip=$('#'+id);const items=[];
+    for(let i=0;i<20+idx*3;i++)items.push(rand(FAM_IDS));
+    items.push(idEstratto);
+    strip.innerHTML=items.map(fid=>`<div class="slot-tessera">${FAMIGLIE[fid].nome}</div>`).join('');
+    strip.style.transition='none';strip.style.transform='translateY(0)';
+    void strip.offsetWidth;
+    strip.style.transition=`transform ${1.5+idx*0.4}s cubic-bezier(.16,.7,.2,1)`;
+    strip.style.transform=`translateY(${-(items.length-1)*90}px)`;
+  });
+  setTimeout(()=>{
+    const f=FAMIGLIE[idEstratto];
+    $('#slotFamRisultato').innerHTML=`Ti tocca la <strong>famiglia ${f.nome}</strong>.<br><span style="opacity:.75;font-size:1.1rem;">${f.tag}</span><div class="slot-result-pilot">Pilot: in questa versione conosci i Ricci. Le altre nove famiglie sono in arrivo.</div>`;
+    $('#slotFamRisultato').classList.add('show');
+    $('#btnAccettaFam').style.display='inline-flex';
+    TELE.slot({tipo:'famiglia',valore:f.nome});
+  },2400);
+}
+
+/* ─── SLOT MESE ─── */
+function tiraSlotMese(){
+  $('#btnSlotMese').disabled=true;$('#slotMeseRisultato').classList.remove('show');
+  // PILOT: forzo Gennaio
+  const meseEstratto=1;STATE.mese=meseEstratto;
+  const strip=$('#slotMese');const items=[];
+  for(let i=0;i<25;i++)items.push(1+Math.floor(Math.random()*12));
+  items.push(meseEstratto);
+  strip.innerHTML=items.map(m=>`<div class="slot-tessera mese">${MESI[m]}</div>`).join('');
+  strip.style.transition='none';strip.style.transform='translateY(0)';
+  void strip.offsetWidth;
+  strip.style.transition='transform 2s cubic-bezier(.16,.7,.2,1)';
+  strip.style.transform=`translateY(${-(items.length-1)*90}px)`;
+  setTimeout(()=>{
+    $('#slotMeseRisultato').innerHTML=`Vivrai un mese di <strong>${MESI[meseEstratto]}</strong>.<br><span style="opacity:.75;font-size:1.1rem;">Il mese più costoso dell'anno.</span><div class="slot-result-pilot">Pilot: solo Gennaio è scritto. Gli altri 11 mesi sono in arrivo.</div>`;
+    $('#slotMeseRisultato').classList.add('show');
+    $('#btnAccettaMese').style.display='inline-flex';
+    TELE.slot({tipo:'mese',valore:MESI[meseEstratto]});
+  },2200);
+}
+
+/* ─── SLOT MATERIE ─── */
+function popolaSlotMaterie(){
+  const root=$('#slotMaterieAnim');let html='';
+  MATERIE_IDS.forEach(mid=>{html+=`<div class="slot-rotella" style="width:88px;height:80px"><div class="slot-strip" id="slotMat_${mid}"></div></div>`});
+  root.innerHTML=html;
+  MATERIE_IDS.forEach(mid=>{
+    const strip=$('#slotMat_'+mid);
+    const items=[];const moods=['luminosa','neutra','neutra','ombra'];
+    for(let i=0;i<20;i++)items.push(rand(moods));
+    strip.innerHTML=items.map(()=>`<div class="slot-tessera materia"><div>${MATERIE[mid].nome.split(' ')[0]}</div></div>`).join('');
+    strip.style.transform='translateY(0)';
+  });
+}
+function tiraSlotMaterie(){
+  $('#btnSlotMaterie').disabled=true;$('#slotMaterieRisultato').classList.remove('show');
+  const shuffled=[...MATERIE_IDS].sort(()=>Math.random()-0.5);
+  STATE.profiloMaterie={};
+  shuffled.slice(0,2).forEach(mid=>STATE.profiloMaterie[mid]='luminosa');
+  shuffled.slice(2,6).forEach(mid=>STATE.profiloMaterie[mid]='neutra');
+  shuffled.slice(6,8).forEach(mid=>STATE.profiloMaterie[mid]='ombra');
+  MATERIE_IDS.forEach((mid,idx)=>{
+    const strip=$('#slotMat_'+mid);
+    const mood=STATE.profiloMaterie[mid];
+    const items=[];const moodOpts=['luminosa','neutra','neutra','ombra'];
+    for(let i=0;i<15+idx;i++)items.push(rand(moodOpts));
+    items.push(mood);
+    strip.innerHTML=items.map(mo=>{
+      const col=mo==='luminosa'?'color:var(--oro)':(mo==='ombra'?'color:var(--grafite)':'color:var(--terra)');
+      return `<div class="slot-tessera materia"><div style="${col}">${MATERIE[mid].nome.split(' ')[0]}</div></div>`;
+    }).join('');
+    strip.style.transition='none';strip.style.transform='translateY(0)';
+    void strip.offsetWidth;
+    strip.style.transition=`transform ${1.2+idx*0.15}s cubic-bezier(.16,.7,.2,1)`;
+    strip.style.transform=`translateY(${-(items.length-1)*80}px)`;
+  });
+  setTimeout(()=>{
+    const lumini=Object.keys(STATE.profiloMaterie).filter(m=>STATE.profiloMaterie[m]==='luminosa').map(m=>MATERIE[m].nome);
+    const ombre=Object.keys(STATE.profiloMaterie).filter(m=>STATE.profiloMaterie[m]==='ombra').map(m=>MATERIE[m].nome);
+    $('#slotMaterieRisultato').innerHTML=`Matteo va bene in: <strong>${lumini.join(' e ')}</strong>.<br>Fa fatica in: <strong>${ombre.join(' e ')}</strong>.`;
+    $('#slotMaterieRisultato').classList.add('show');
+    $('#btnAccettaMaterie').style.display='inline-flex';
+    TELE.slot({tipo:'materie',valore:JSON.stringify(STATE.profiloMaterie)});
+  },2500);
+}
+
+/* ─── BRIEFING ─── */
+function apriBriefing(){
+  vai('screen-briefing');
+  const f=FAMIGLIE[STATE.famigliaId];
+  let membriHtml='';
+  if(f.membri){
+    membriHtml='<div class="famiglia-membri"><h3>Chi vive in casa</h3>';
+    f.membri.forEach(m=>{
+      const cls=m.proto?'protagonista':'';
+      membriHtml+=`<div class="membro"><span class="membro-nome ${cls}">${m.nome}</span><span class="membro-eta">${m.eta}</span><span class="membro-ruolo ${cls}">${m.ruolo}</span></div>`;
+    });
+    membriHtml+='</div>';
+  }
+  $('#briefScheda').innerHTML=`<div class="nome">Famiglia ${f.nome}</div><div class="tag">${f.tag}</div><div class="scheda-corpo">${f.scheda}</div>${membriHtml}`;
+}
+
+/* ─── INIZIO PARTITA ─── */
+function iniziaPartita(){
+  const sid=TELE.start(STATE.classe,FAMIGLIE[STATE.famigliaId].nome);
+  $('#topbarSid').textContent=STATE.classe+' • '+sid;
+  STATE.episodioCorr=1;STATE.sceneIdx=0;
+  caricaEpisodio();
+}
+
+/* ─── EPISODIO RUNNER ─── */
+function caricaEpisodio(){
+  const ep=EPISODI[STATE.famigliaId]?.[STATE.mese]?.[STATE.episodioCorr];
+  if(!ep){
+    mostraWip('Questo episodio non è ancora scritto','Stiamo lavorando alla scrittura. Per ora torna alla home.');
+    return;
+  }
+  vai('screen-episodio');
+  $('#epEyebrow').textContent=`Episodio ${STATE.episodioCorr} di 4 — Settimana ${STATE.episodioCorr}`;
+  $('#epTitolo').textContent=ep.titolo;
+  $('#epSub').textContent=ep.sub;
+  renderProgress(ep.scene.length);
+  STATE.sceneIdx=0;
+  renderScena();
+}
+
+function renderProgress(nScene){
+  const root=$('#sceneProgress');let html='';
+  for(let i=0;i<nScene;i++){
+    let cls='scene-progress-dot';
+    if(i<STATE.sceneIdx)cls+=' done';
+    else if(i===STATE.sceneIdx)cls+=' now';
+    html+=`<div class="${cls}"></div>`;
+  }
+  root.innerHTML=html;
+}
+
+function renderScena(){
+  const ep=EPISODI[STATE.famigliaId][STATE.mese][STATE.episodioCorr];
+  const sc=ep.scene[STATE.sceneIdx];
+  if(!sc){fineEpisodio();return}
+  renderProgress(ep.scene.length);
+  const c=$('#sceneContainer');
+  c.innerHTML='';
+  const article=document.createElement('article');
+  article.className='scene entered';
+  article.innerHTML=`
+    <div class="scene-illust">${SVG[sc.svg]||SVG.placeholder}</div>
+    <div class="scene-meta">
+      <span class="scene-focal">${sc.focale}</span>
+      <span class="scene-place">${sc.luogo}</span>
+    </div>
+    <div class="scene-body">${sc.paragrafi.map(p=>`<p>${p}</p>`).join('')}</div>
+  `;
+  c.appendChild(article);
+  TELE.scena({ep:STATE.episodioCorr,scena:STATE.sceneIdx,focale:sc.focale});
+
+  if(sc.bivio){
+    setTimeout(()=>renderBivio(sc.bivio,article),400);
+  } else {
+    setTimeout(()=>renderControlliAvanti(article),300);
+  }
+}
+
+function renderBivio(bivio,article){
+  const div=document.createElement('div');
+  div.className='bivio';
+  div.innerHTML=`
+    <p class="bivio-intro">${bivio.intro}</p>
+    <p class="bivio-domanda">${bivio.domanda}</p>
+    <div class="bivio-opts"></div>
+  `;
+  const opts=div.querySelector('.bivio-opts');
+  bivio.opzioni.forEach((o,i)=>{
+    const btn=document.createElement('button');
+    btn.className='bivio-opt';
+    btn.innerHTML=`<span class="bivio-opt-num">${i+1}</span><span>${o.label}${o.sub?`<em>${o.sub}</em>`:''}</span>`;
+    btn.onclick=()=>scegliBivio(bivio,o,i,article,div);
+    opts.appendChild(btn);
+  });
+  article.appendChild(div);
+}
+
+function scegliBivio(bivio,opt,idx,article,bivioDiv){
+  // Applica effetti
+  applicaEffetti(opt.eff);
+  STATE.biviScelti.push({ep:STATE.episodioCorr,scena:STATE.sceneIdx,bivio:bivio.id,opzione:idx+1,label:opt.label});
+  TELE.bivio({ep:STATE.episodioCorr,scena:STATE.sceneIdx,bivio:bivio.id,opzione:idx+1,label:opt.label,eff:JSON.stringify(opt.eff||{})});
+
+  // Disabilita tutte le opzioni
+  bivioDiv.querySelectorAll('.bivio-opt').forEach(b=>b.disabled=true);
+  bivioDiv.querySelectorAll('.bivio-opt').forEach((b,i)=>{if(i!==idx)b.style.opacity='.35'});
+
+  // Mostra conseguenza
+  const cons=document.createElement('div');
+  cons.className='conseguenza';
+  cons.innerHTML=opt.conseguenza;
+  article.appendChild(cons);
+
+  setTimeout(()=>renderControlliAvanti(article),500);
+  window.scrollTo({top:cons.offsetTop-80,behavior:'smooth'});
+}
+
+function renderControlliAvanti(article){
+  const ctrl=document.createElement('div');
+  ctrl.className='scene-controls';
+  const ep=EPISODI[STATE.famigliaId][STATE.mese][STATE.episodioCorr];
+  const ultima=STATE.sceneIdx===ep.scene.length-1;
+  ctrl.innerHTML=`<button class="btn verde" onclick="avantiScena()">${ultima?'Chiudi episodio →':'Avanti →'}</button>`;
+  article.appendChild(ctrl);
+}
+
+function avantiScena(){
+  STATE.sceneIdx++;
+  const ep=EPISODI[STATE.famigliaId][STATE.mese][STATE.episodioCorr];
+  if(STATE.sceneIdx>=ep.scene.length){fineEpisodio();return}
+  renderScena();
+}
+
+function fineEpisodio(){
+  const ep=EPISODI[STATE.famigliaId][STATE.mese][STATE.episodioCorr];
+  TELE.fineEp({ep:STATE.episodioCorr,biviScelti:JSON.stringify(STATE.biviScelti),ind:JSON.stringify(STATE.ind),tratti:JSON.stringify(STATE.tratti),rel:JSON.stringify(STATE.rel)});
+  vai('screen-fine-ep');
+  $('#finEpContent').innerHTML=`
+    <p class="eyebrow">Fine episodio ${STATE.episodioCorr}</p>
+    <h2>${ep.fine.titolo}</h2>
+    <div class="ep-fine-corpo">${ep.fine.corpo}</div>
+    <div class="ep-fine-cliff">${ep.fine.cliff}</div>
+  `;
+  // Controlli
+  if(STATE.episodioCorr<4 && EPISODI[STATE.famigliaId]?.[STATE.mese]?.[STATE.episodioCorr+1]){
+    $('#finEpControls').innerHTML=`<button class="btn lg verde" onclick="prossimoEpisodio()">Settimana ${STATE.episodioCorr+1} →</button>`;
+  } else if(STATE.episodioCorr<4){
+    $('#finEpControls').innerHTML=`<button class="btn lg" onclick="mostraWip('Episodio ${STATE.episodioCorr+1} in lavorazione','La settimana ${STATE.episodioCorr+1} dei Ricci è in scrittura. Tornerà presto.')">Settimana ${STATE.episodioCorr+1} (in arrivo)</button>`;
+  } else {
+    $('#finEpControls').innerHTML=`<button class="btn lg" onclick="location.reload()">Fine partita — rigioca</button>`;
+  }
+}
+
+function prossimoEpisodio(){STATE.episodioCorr++;STATE.sceneIdx=0;caricaEpisodio()}
+
+function mostraWip(titolo,msg){
+  $('#wipTitolo').textContent=titolo;
+  $('#wipMsg').textContent=msg;
+  vai('screen-wip');
+}
+
+/* ─── SVG LIBRARY ─── */
+const SVG={
+  placeholder:`<svg viewBox="0 0 700 200"><rect width="700" height="200" fill="#FAF4E6"/><text x="350" y="105" text-anchor="middle" font-family="Caveat" font-size="22" fill="#8A7560">ambientazione in lavorazione</text></svg>`,
+
+  cucinaRicciMattina:`<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="180" x2="700" y2="180" stroke="#3D2B1F" stroke-width="1.5"/><rect x="0" y="180" width="700" height="3" fill="#A05A2C" opacity=".5"/><rect x="40" y="30" width="100" height="100" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1.5"/><line x1="90" y1="30" x2="90" y2="130" stroke="#3D2B1F" stroke-width="1"/><line x1="40" y1="80" x2="140" y2="80" stroke="#3D2B1F" stroke-width="1"/><line x1="35" y1="130" x2="145" y2="130" stroke="#3D2B1F" stroke-width="2"/><rect x="200" y="115" width="270" height="14" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><rect x="200" y="129" width="270" height="4" fill="#EDDDB4"/><line x1="215" y1="129" x2="215" y2="180" stroke="#3D2B1F" stroke-width="1.5"/><line x1="455" y1="129" x2="455" y2="180" stroke="#3D2B1F" stroke-width="1.5"/><rect x="215" y="100" width="34" height="18" fill="#FAF4E6" stroke="#3D2B1F" stroke-width=".8"/><line x1="220" y1="106" x2="244" y2="106" stroke="#8A7560" stroke-width=".5"/><line x1="220" y1="110" x2="240" y2="110" stroke="#8A7560" stroke-width=".5"/><rect x="255" y="100" width="34" height="18" fill="#FAF4E6" stroke="#3D2B1F" stroke-width=".8"/><line x1="260" y1="106" x2="284" y2="106" stroke="#8A7560" stroke-width=".5"/><line x1="260" y1="110" x2="280" y2="110" stroke="#8A7560" stroke-width=".5"/><rect x="295" y="100" width="34" height="18" fill="#FAF4E6" stroke="#3D2B1F" stroke-width=".8"/><line x1="300" y1="106" x2="324" y2="106" stroke="#8A7560" stroke-width=".5"/><line x1="300" y1="110" x2="320" y2="110" stroke="#8A7560" stroke-width=".5"/><rect x="335" y="100" width="34" height="18" fill="#FAF4E6" stroke="#3D2B1F" stroke-width=".8"/><line x1="340" y1="106" x2="364" y2="106" stroke="#8A7560" stroke-width=".5"/><line x1="340" y1="110" x2="360" y2="110" stroke="#8A7560" stroke-width=".5"/><rect x="385" y="103" width="26" height="14" fill="#3D2B1F" stroke="#3D2B1F" stroke-width=".5" rx="2"/><rect x="388" y="105" width="20" height="6" fill="#C8D6E2"/><line x1="180" y1="100" x2="180" y2="180" stroke="#3D2B1F" stroke-width="2"/><line x1="180" y1="100" x2="180" y2="80" stroke="#3D2B1F" stroke-width="2"/><line x1="170" y1="80" x2="190" y2="80" stroke="#3D2B1F" stroke-width="2"/><line x1="170" y1="120" x2="195" y2="120" stroke="#3D2B1F" stroke-width="2"/><circle cx="195" cy="85" r="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 184 110 Q 195 95 206 110 L 208 130 L 182 130 Z" fill="#5B7FA0" stroke="#3D2B1F" stroke-width="1.5"/><rect x="540" y="120" width="120" height="10" fill="#3D2B1F"/><circle cx="565" cy="125" r="6" fill="none" stroke="#A05A2C" stroke-width="1"/><circle cx="610" cy="125" r="6" fill="none" stroke="#A05A2C" stroke-width="1"/><rect x="595" y="100" width="22" height="22" fill="#3D2B1F"/><rect x="599" y="92" width="14" height="10" fill="#3D2B1F"/><path d="M 615 105 Q 625 105 624 115" fill="none" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 605 90 Q 603 85 605 80 Q 607 75 605 70" fill="none" stroke="#8A7560" stroke-width="1" opacity=".7"/><path d="M 612 88 Q 610 83 612 78" fill="none" stroke="#8A7560" stroke-width="1" opacity=".5"/><rect x="500" y="20" width="40" height="100" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><line x1="500" y1="60" x2="540" y2="60" stroke="#3D2B1F" stroke-width="1"/><line x1="535" y1="35" x2="535" y2="50" stroke="#3D2B1F" stroke-width="1.5"/><line x1="535" y1="80" x2="535" y2="100" stroke="#3D2B1F" stroke-width="1.5"/><rect x="505" y="25" width="13" height="11" fill="#B85C3A" opacity=".7" transform="rotate(-4 511 30)"/><rect x="520" y="27" width="11" height="9" fill="#D4A93C" opacity=".8" transform="rotate(3 525 31)"/><rect x="503" y="40" width="10" height="13" fill="#6B7A3F" opacity=".7"/><rect x="518" y="42" width="14" height="11" fill="#5B7FA0" opacity=".6"/><rect x="506" y="68" width="12" height="10" fill="#C9A968" opacity=".7"/><rect x="520" y="70" width="14" height="11" fill="#A05A2C" opacity=".7"/><rect x="35" y="135" width="120" height="40" fill="#A05A2C" opacity=".7" stroke="#3D2B1F" stroke-width="1.5"/><rect x="35" y="130" width="120" height="10" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1"/><rect x="55" y="140" width="60" height="28" fill="#C8D6E2" stroke="#3D2B1F" stroke-width=".8" rx="3"/><circle cx="70" cy="148" r="6" fill="#FAF4E6" stroke="#3D2B1F" stroke-width=".8"/><line x1="660" y1="180" x2="650" y2="140" stroke="#3D2B1F" stroke-width="1.5"/><line x1="680" y1="180" x2="670" y2="140" stroke="#3D2B1F" stroke-width="1.5"/><rect x="650" y="135" width="22" height="8" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1"/><rect x="652" y="120" width="18" height="18" fill="none" stroke="#3D2B1F" stroke-width="1"/></svg>`,
+
+  cameraMatteo:`<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="180" x2="700" y2="180" stroke="#3D2B1F" stroke-width="1.5"/><rect x="0" y="180" width="700" height="3" fill="#A05A2C" opacity=".5"/><rect x="30" y="20" width="70" height="90" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.5" opacity=".85"/><text x="65" y="55" text-anchor="middle" font-family="Patrick Hand" font-size="11" fill="#FAF4E6">JUVE</text><line x1="40" y1="65" x2="90" y2="65" stroke="#FAF4E6" stroke-width=".8" opacity=".6"/><text x="65" y="85" text-anchor="middle" font-family="Patrick Hand" font-size="9" fill="#FAF4E6" opacity=".8">2023-24</text><rect x="280" y="20" width="100" height="85" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1.5"/><line x1="330" y1="20" x2="330" y2="105" stroke="#3D2B1F" stroke-width="1"/><line x1="280" y1="62" x2="380" y2="62" stroke="#3D2B1F" stroke-width="1"/><line x1="275" y1="105" x2="385" y2="105" stroke="#3D2B1F" stroke-width="2"/><path d="M 280 20 Q 285 50 280 80 Q 285 100 280 105" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1"/><path d="M 380 20 Q 375 50 380 80 Q 375 100 380 105" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1"/><rect x="120" y="135" width="220" height="35" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 160 130 L 200 122 L 240 135 L 280 125 L 320 138 L 320 165 L 160 165 Z" fill="#5B7FA0" opacity=".6" stroke="#3D2B1F" stroke-width="1.2"/><rect x="130" y="125" width="55" height="22" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.2" rx="3"/><line x1="125" y1="170" x2="125" y2="180" stroke="#3D2B1F" stroke-width="2"/><line x1="335" y1="170" x2="335" y2="180" stroke="#3D2B1F" stroke-width="2"/><rect x="355" y="125" width="50" height="55" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><line x1="355" y1="150" x2="405" y2="150" stroke="#3D2B1F" stroke-width="1"/><circle cx="380" cy="138" r="1.8" fill="#3D2B1F"/><circle cx="380" cy="165" r="1.8" fill="#3D2B1F"/><circle cx="380" cy="116" r="9" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><circle cx="370" cy="108" r="3" fill="none" stroke="#3D2B1F" stroke-width="1.5"/><circle cx="390" cy="108" r="3" fill="none" stroke="#3D2B1F" stroke-width="1.5"/><line x1="380" y1="116" x2="380" y2="111" stroke="#3D2B1F" stroke-width="1.5"/><line x1="380" y1="116" x2="384" y2="118" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 360 95 Q 358 92 360 89" fill="none" stroke="#B85C3A" stroke-width="1.2"/><path d="M 355 96 Q 351 91 355 86" fill="none" stroke="#B85C3A" stroke-width="1.2"/><path d="M 400 95 Q 402 92 400 89" fill="none" stroke="#B85C3A" stroke-width="1.2"/><path d="M 405 96 Q 409 91 405 86" fill="none" stroke="#B85C3A" stroke-width="1.2"/><rect x="440" y="120" width="180" height="8" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.5"/><line x1="450" y1="128" x2="450" y2="180" stroke="#3D2B1F" stroke-width="1.5"/><line x1="610" y1="128" x2="610" y2="180" stroke="#3D2B1F" stroke-width="1.5"/><rect x="460" y="110" width="46" height="14" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="1"/><line x1="465" y1="115" x2="500" y2="115" stroke="#FAF4E6" stroke-width=".5"/><line x1="465" y1="119" x2="495" y2="119" stroke="#FAF4E6" stroke-width=".5"/><rect x="515" y="106" width="40" height="18" fill="#C9A968" stroke="#3D2B1F" stroke-width="1"/><text x="535" y="119" text-anchor="middle" font-family="IBM Plex Sans" font-size="8" fill="#3D2B1F" font-weight="700">MAT 3</text><line x1="585" y1="120" x2="585" y2="95" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 570 95 L 600 95 L 595 80 L 575 80 Z" fill="#D4A93C" stroke="#3D2B1F" stroke-width="1.5"/><line x1="582" y1="120" x2="588" y2="120" stroke="#3D2B1F" stroke-width="2"/><ellipse cx="350" cy="178" rx="18" ry="4" fill="#5B7FA0" opacity=".7" stroke="#3D2B1F" stroke-width="1"/><ellipse cx="395" cy="178" rx="18" ry="4" fill="#5B7FA0" opacity=".7" stroke="#3D2B1F" stroke-width="1"/><path d="M 140 175 Q 155 170 175 178 Q 165 180 145 180 Z" fill="#B85C3A" opacity=".7" stroke="#3D2B1F" stroke-width="1"/><rect x="630" y="40" width="55" height="140" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><circle cx="675" cy="115" r="2.5" fill="#3D2B1F"/></svg>`,
+
+  aulaScuola:`<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="180" x2="700" y2="180" stroke="#3D2B1F" stroke-width="1.5"/><rect x="0" y="180" width="700" height="3" fill="#3D2B1F"/><rect x="40" y="20" width="280" height="110" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="2"/><rect x="48" y="28" width="264" height="94" fill="#3D2B1F"/><text x="80" y="55" font-family="Caveat" font-size="22" fill="#FAF4E6">2x + 5 = 13</text><text x="80" y="85" font-family="Caveat" font-size="22" fill="#FAF4E6">x = ?</text><text x="80" y="115" font-family="Caveat" font-size="16" fill="#FAF4E6" opacity=".7">verifica · prima ora</text><line x1="200" y1="170" x2="195" y2="135" stroke="#3D2B1F" stroke-width="2"/><line x1="210" y1="170" x2="215" y2="135" stroke="#3D2B1F" stroke-width="2"/><rect x="190" y="130" width="30" height="8" fill="#3D2B1F"/><circle cx="205" cy="105" r="13" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 192 130 Q 205 110 218 130 L 220 155 L 190 155 Z" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.5"/><rect x="370" y="120" width="80" height="8" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.5"/><line x1="378" y1="128" x2="378" y2="170" stroke="#3D2B1F" stroke-width="2"/><line x1="442" y1="128" x2="442" y2="170" stroke="#3D2B1F" stroke-width="2"/><rect x="385" y="108" width="50" height="14" fill="#FAF4E6" stroke="#3D2B1F" stroke-width=".8"/><rect x="470" y="120" width="80" height="8" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.5"/><line x1="478" y1="128" x2="478" y2="170" stroke="#3D2B1F" stroke-width="2"/><line x1="542" y1="128" x2="542" y2="170" stroke="#3D2B1F" stroke-width="2"/><rect x="485" y="108" width="50" height="14" fill="#FAF4E6" stroke="#3D2B1F" stroke-width=".8"/><line x1="495" y1="115" x2="525" y2="115" stroke="#8A7560" stroke-width=".5"/><rect x="570" y="120" width="80" height="8" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.5"/><line x1="578" y1="128" x2="578" y2="170" stroke="#3D2B1F" stroke-width="2"/><line x1="642" y1="128" x2="642" y2="170" stroke="#3D2B1F" stroke-width="2"/><rect x="585" y="108" width="50" height="14" fill="#FAF4E6" stroke="#3D2B1F" stroke-width=".8"/><line x1="595" y1="115" x2="625" y2="115" stroke="#8A7560" stroke-width=".5"/><circle cx="410" cy="95" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 400 118 Q 410 102 420 118 L 422 140 L 398 140 Z" fill="#5B7FA0" stroke="#3D2B1F" stroke-width="1.5"/><circle cx="510" cy="95" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 500 118 Q 510 102 520 118 L 522 140 L 498 140 Z" fill="#B85C3A" stroke="#3D2B1F" stroke-width="1.5"/><circle cx="610" cy="95" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 600 118 Q 610 102 620 118 L 622 140 L 598 140 Z" fill="#C9A968" stroke="#3D2B1F" stroke-width="1.5"/><rect x="350" y="160" width="14" height="10" fill="#3D2B1F"/></svg>`,
+
+  supermercato:`<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg"><line x1="0" y1="180" x2="700" y2="180" stroke="#3D2B1F" stroke-width="1.5"/><rect x="0" y="180" width="700" height="3" fill="#3D2B1F"/><rect x="0" y="0" width="700" height="20" fill="#FAF4E6"/><line x1="0" y1="20" x2="700" y2="20" stroke="#3D2B1F" stroke-width="1"/><rect x="40" y="40" width="200" height="120" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><line x1="40" y1="80" x2="240" y2="80" stroke="#3D2B1F" stroke-width="1"/><line x1="40" y1="120" x2="240" y2="120" stroke="#3D2B1F" stroke-width="1"/><rect x="52" y="50" width="22" height="24" fill="#B85C3A"/><rect x="80" y="50" width="22" height="24" fill="#C9A968"/><rect x="108" y="50" width="22" height="24" fill="#6B7A3F"/><rect x="136" y="50" width="22" height="24" fill="#5B7FA0"/><rect x="164" y="50" width="22" height="24" fill="#A05A2C"/><rect x="192" y="50" width="22" height="24" fill="#B85C3A"/><rect x="52" y="90" width="22" height="24" fill="#D4A93C"/><rect x="80" y="90" width="22" height="24" fill="#B85C3A"/><rect x="108" y="90" width="22" height="24" fill="#5B7FA0"/><rect x="136" y="90" width="22" height="24" fill="#6B7A3F"/><rect x="164" y="90" width="22" height="24" fill="#C9A968"/><rect x="192" y="90" width="22" height="24" fill="#A05A2C"/><rect x="52" y="130" width="22" height="24" fill="#5B7FA0"/><rect x="80" y="130" width="22" height="24" fill="#6B7A3F"/><rect x="108" y="130" width="22" height="24" fill="#B85C3A"/><rect x="136" y="130" width="22" height="24" fill="#C9A968"/><rect x="164" y="130" width="22" height="24" fill="#D4A93C"/><rect x="192" y="130" width="22" height="24" fill="#A05A2C"/><rect x="320" y="120" width="200" height="50" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.5"/><rect x="320" y="110" width="200" height="14" fill="#3D2B1F"/><rect x="450" y="85" width="40" height="30" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><rect x="455" y="92" width="30" height="10" fill="#3D2B1F"/><circle cx="365" cy="85" r="13" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 350 110 Q 365 95 380 110 L 385 140 L 345 140 Z" fill="#B85C3A" stroke="#3D2B1F" stroke-width="1.5"/><text x="365" y="68" text-anchor="middle" font-family="Caveat" font-size="10" fill="#3D2B1F">ROBERTA</text><circle cx="570" cy="95" r="12" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><circle cx="567" cy="93" r="2" fill="#3D2B1F"/><circle cx="573" cy="93" r="2" fill="#3D2B1F"/><path d="M 555 120 Q 570 105 585 120 L 587 150 L 553 150 Z" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 555 95 Q 560 80 565 80 Q 570 75 575 80 Q 580 80 585 95" fill="#8A7560" stroke="#3D2B1F" stroke-width="1.2"/><rect x="595" y="120" width="50" height="50" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.2" rx="3"/><line x1="605" y1="130" x2="635" y2="130" stroke="#8A7560" stroke-width=".7"/><line x1="605" y1="138" x2="635" y2="138" stroke="#8A7560" stroke-width=".7"/><line x1="605" y1="146" x2="635" y2="146" stroke="#8A7560" stroke-width=".7"/><rect x="525" y="160" width="14" height="10" fill="#3D2B1F"/></svg>`,
+
+  cucinaRicciSera:`<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="lampada" cx="350" cy="90" r="120"><stop offset="0%" stop-color="#D4A93C" stop-opacity=".35"/><stop offset="100%" stop-color="#D4A93C" stop-opacity="0"/></radialGradient></defs><rect width="700" height="200" fill="#2A1E14" opacity=".15"/><line x1="0" y1="180" x2="700" y2="180" stroke="#3D2B1F" stroke-width="1.5"/><rect x="0" y="180" width="700" height="3" fill="#A05A2C" opacity=".5"/><rect x="40" y="30" width="100" height="100" fill="#3D2B1F" stroke="#3D2B1F" stroke-width="1.5"/><line x1="90" y1="30" x2="90" y2="130" stroke="#5C4736" stroke-width="1"/><line x1="40" y1="80" x2="140" y2="80" stroke="#5C4736" stroke-width="1"/><circle cx="350" cy="35" r="6" fill="#D4A93C"/><line x1="350" y1="0" x2="350" y2="30" stroke="#3D2B1F" stroke-width="1"/><path d="M 320 35 L 380 35 L 375 55 L 325 55 Z" fill="#D4A93C" stroke="#3D2B1F" stroke-width="1.5"/><rect x="200" y="115" width="320" height="14" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><rect x="200" y="129" width="320" height="4" fill="#EDDDB4"/><line x1="215" y1="129" x2="215" y2="180" stroke="#3D2B1F" stroke-width="1.5"/><line x1="505" y1="129" x2="505" y2="180" stroke="#3D2B1F" stroke-width="1.5"/><rect x="225" y="98" width="32" height="22" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1" rx="2"/><circle cx="241" cy="109" r="6" fill="#A05A2C" opacity=".6"/><rect x="280" y="98" width="32" height="22" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1" rx="2"/><circle cx="296" cy="109" r="6" fill="#A05A2C" opacity=".6"/><rect x="335" y="98" width="32" height="22" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1" rx="2"/><circle cx="351" cy="109" r="6" fill="#A05A2C" opacity=".6"/><rect x="390" y="98" width="32" height="22" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1" rx="2"/><circle cx="406" cy="109" r="6" fill="#A05A2C" opacity=".6"/><rect x="445" y="98" width="32" height="22" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1" rx="2"/><circle cx="461" cy="109" r="6" fill="#A05A2C" opacity=".6"/><rect x="450" y="40" width="60" height="55" fill="#3D2B1F" stroke="#3D2B1F" stroke-width="1.5" rx="2"/><rect x="455" y="45" width="50" height="40" fill="#2A1E14"/><line x1="180" y1="100" x2="180" y2="180" stroke="#3D2B1F" stroke-width="2"/><line x1="170" y1="80" x2="190" y2="80" stroke="#3D2B1F" stroke-width="2"/><circle cx="195" cy="85" r="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 184 110 Q 195 95 206 110 L 208 130 L 182 130 Z" fill="#5B7FA0" stroke="#3D2B1F" stroke-width="1.5"/><line x1="540" y1="100" x2="540" y2="180" stroke="#3D2B1F" stroke-width="2"/><line x1="530" y1="80" x2="550" y2="80" stroke="#3D2B1F" stroke-width="2"/><circle cx="555" cy="85" r="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 544 110 Q 555 95 566 110 L 568 130 L 542 130 Z" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.5"/><line x1="380" y1="180" x2="380" y2="160" stroke="#3D2B1F" stroke-width="2"/><line x1="370" y1="160" x2="390" y2="160" stroke="#3D2B1F" stroke-width="2"/><circle cx="395" cy="155" r="9" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 386 170 Q 395 162 404 170 L 405 180 L 385 180 Z" fill="#B85C3A" stroke="#3D2B1F" stroke-width="1.5"/><rect x="0" y="0" width="700" height="200" fill="url(#lampada)"/></svg>`,
+
+  cortileScuola:`<svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg"><rect width="700" height="200" fill="#FAF4E6"/><rect x="0" y="160" width="700" height="40" fill="#A05A2C" opacity=".3"/><line x1="0" y1="160" x2="700" y2="160" stroke="#3D2B1F" stroke-width="1.5"/><rect x="40" y="60" width="180" height="105" fill="#A05A2C" opacity=".8" stroke="#3D2B1F" stroke-width="1.5"/><rect x="55" y="80" width="25" height="35" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1"/><rect x="95" y="80" width="25" height="35" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1"/><rect x="135" y="80" width="25" height="35" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1"/><rect x="175" y="80" width="25" height="35" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1"/><text x="130" y="75" text-anchor="middle" font-family="Caveat" font-size="13" fill="#FAF4E6">scuola</text><rect x="280" y="135" width="160" height="30" fill="#8A7560" stroke="#3D2B1F" stroke-width="1.5"/><line x1="280" y1="142" x2="440" y2="142" stroke="#3D2B1F" stroke-width=".5"/><line x1="280" y1="155" x2="440" y2="155" stroke="#3D2B1F" stroke-width=".5"/><circle cx="320" cy="105" r="13" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 304 135 Q 320 115 336 135 L 340 160 L 300 160 Z" fill="#5B7FA0" stroke="#3D2B1F" stroke-width="1.5"/><text x="320" y="80" text-anchor="middle" font-family="Caveat" font-size="11" fill="#3D2B1F">Matteo</text><circle cx="395" cy="105" r="13" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 379 135 Q 395 115 411 135 L 415 160 L 375 160 Z" fill="#B85C3A" stroke="#3D2B1F" stroke-width="1.5"/><text x="395" y="80" text-anchor="middle" font-family="Caveat" font-size="11" fill="#3D2B1F">Marco</text><rect x="390" y="125" width="14" height="9" fill="#6B7A3F" stroke="#3D2B1F" stroke-width=".8"/><text x="397" y="132" text-anchor="middle" font-family="IBM Plex Sans" font-size="6" fill="#FAF4E6">20€</text><path d="M 520 140 Q 530 120 540 140 Q 535 150 525 150 Z" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 540 145 Q 555 125 565 145" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="1.5"/><line x1="528" y1="148" x2="528" y2="160" stroke="#3D2B1F" stroke-width="1.5"/><circle cx="600" cy="80" r="12" fill="#D4A93C" opacity=".8"/><line x1="600" y1="60" x2="600" y2="55" stroke="#D4A93C" stroke-width="1.5"/><line x1="618" y1="68" x2="622" y2="65" stroke="#D4A93C" stroke-width="1.5"/><line x1="618" y1="92" x2="622" y2="95" stroke="#D4A93C" stroke-width="1.5"/><line x1="582" y1="68" x2="578" y2="65" stroke="#D4A93C" stroke-width="1.5"/></svg>`
+};
+
+/* ════════════════════════════════════════════════════════════
+   EPISODI — pilot Ricci × Gennaio · Episodio 1
+   "Le bollette di gennaio" (settimana 1, lun-ven)
+   ════════════════════════════════════════════════════════════ */
+
+const EPISODI = {
+  ricci: {
+    1: {  // Gennaio
+      1: {
+        titolo: "Le bollette di gennaio",
+        sub: "Lunedì-venerdì · prima settimana dell'anno",
+        scene: [
+          // ────────── SCENA 1 — Antonio in cucina, lunedì 7:05 ──────────
+          {
+            focale: 'Antonio', luogo: 'in cucina, lunedì 7:05', svg: 'cucinaRicciMattina',
+            paragrafi: [
+              "Antonio è seduto al tavolo da mezz'ora. Davanti a sé, quattro bollette in fila. Gas. Luce. Acqua. Internet. Le somma con la calcolatrice del telefono. Ogni volta gli viene un numero diverso. Smette di sommare. Guarda fuori dalla finestra. Il cielo è ancora grigio.",
+              "Roberta entra con Sofia in braccio, addormentata. Posa la bambina sul divano. Va al lavandino. Apre il rubinetto. Riempie la moka. Mette su il caffè. Non ha guardato le bollette, ma le ha viste. Antonio aspetta che parli. Lei non parla.",
+              "<span class=\"dialogo\">«Quattrocentoventi.»</span> dice lui.",
+              "<span class=\"dialogo\">«Mmh.»</span>",
+              "<span class=\"dialogo\">«Quattrocentoventi solo questo bimestre. L'anno scorso era trecento.»</span>",
+              "Roberta accende il gas. Guarda il fuoco. <span class=\"dialogo\">«Tu oggi a che ora?»</span>",
+              "<span class=\"dialogo\">«Sette di sera. Forse otto.»</span>",
+              "<span class=\"dialogo\">«Va bene.»</span>",
+              "Davide nove anni passa scalzo per andare in bagno. Non guarda nessuno. Si sente la sveglia di Matteo che suona dalla camera in fondo. Suona da cinque minuti. Nessuno la spegne.",
+              "Antonio prende le bollette e le mette in un cassetto. Le riprenderà domani."
+            ]
+          },
+          // ────────── SCENA 2 — Matteo in camera, lunedì 7:20 ──────────
+          {
+            focale: 'Matteo', luogo: 'camera, lunedì 7:20', svg: 'cameraMatteo',
+            paragrafi: [
+              "Matteo è ancora sotto le coperte. La sveglia sul comodino squilla. Lui sente, ma se si gira verso il muro forse Anna pensa che dorma davvero.",
+              "Dalla cucina arriva la voce di suo padre. Una cifra. Quattro qualcosa. Sua madre non risponde. Solo il rumore della moka. Quel silenzio non è un buon silenzio, lo sa da quando ha imparato a riconoscere i silenzi di sua madre.",
+              "Si gira di più. Si ricorda di matematica. Verifica prima ora. Non ha studiato. Ieri sera doveva, ma poi è uscito con Marco a far girare la bicicletta dietro al supermercato, e quando è tornato sua madre era già a letto perché Sofia aveva il mal di pancia, e a quel punto non aveva più senso aprire il quaderno.",
+              "La porta si apre senza che nessuno bussi. È Anna. Sedici anni, capelli legati male, già vestita.",
+              "<span class=\"dialogo\">«Matteo. Hai matematica prima ora.»</span> Pausa. <span class=\"dialogo\">«Hai studiato?»</span>"
+            ],
+            bivio: {
+              id: 'b1_anna_matematica',
+              intro: "Matteo ha tre minuti per rispondere a sua sorella. Sa che Anna capirà la differenza fra la verità e la bugia. Sa che da tre stanze più in là suo padre sta mettendo via le bollette.",
+              domanda: "Cosa fa Matteo?",
+              opzioni: [
+                {label: "Dice la verità.", sub: "«No. Per niente.»",
+                  eff: {coraggio_civile: 2, fiducia_anna: 5, onesta_pubblica: 1, flag_anna_sa: 'verita'},
+                  conseguenza: "Anna lo guarda un secondo di troppo. Non dice <span class=\"dialogo\">«te l'avevo detto»</span>. Si siede sul bordo del letto. Apre il libro di matematica che è ancora chiuso sulla scrivania. <span class=\"dialogo\">«Cinque minuti. Le equazioni, dimmi che ti ricordi le equazioni.»</span> Matteo si alza dal letto. Sente caldo alla faccia, ma è di vergogna buona — quella che capita quando qualcuno ti sta facendo un favore che non meriti."},
+                {label: "Mente.", sub: "«Sì, ieri sera.»",
+                  eff: {disciplina: -1, fiducia_anna: -10, slancio: 1, flag_anna_sa: 'bugia'},
+                  conseguenza: "Anna lo guarda un secondo di troppo. <span class=\"dialogo\">«Bene.»</span> Esce. La porta resta socchiusa. Matteo sente i suoi passi allontanarsi verso il bagno. Poi sente la voce di sua madre nel corridoio, e poi la voce di Anna che risponde piano. Non riesce a sentire le parole. Sa solo che lei sa."},
+                {label: "Chiede aiuto.", sub: "«Anna, mi aiuti adesso? Cinque minuti, te lo giuro.»",
+                  eff: {coraggio_civile: 1, fiducia_anna: 7, cura: 1, autonomia: -1, flag_anna_sa: 'verita'},
+                  conseguenza: "Anna sospira piano. <span class=\"dialogo\">«Sei un disastro.»</span> Lo dice ridendo. Si siede sul bordo del letto, apre il libro. Sono cinque minuti veri. Quando finiscono lo abbraccia di lato, un secondo. <span class=\"dialogo\">«Vai. E la prossima volta studia di sera, non la mattina.»</span>"},
+                {label: "Provoca.", sub: "«E a te cosa importa?»",
+                  eff: {slancio: 2, fiducia_anna: -15, relazioni: -3, flag_anna_sa: 'bugia'},
+                  conseguenza: "Anna si ferma. Le sue spalle si abbassano di un millimetro. <span class=\"dialogo\">«Hai ragione. Niente.»</span> Esce. Non sbatte la porta. La chiude piano. È peggio così. Matteo resta a letto altri trenta secondi prima di alzarsi. Sente il rumore di sua madre che apparecchia per la colazione. Sente che è un rumore stanco."},
+                {label: "Tace e si gira verso il muro.", sub: "",
+                  eff: {autonomia: -1, fiducia_anna: -5, relazioni: -1, energia: -3, flag_anna_sa: 'silenzio'},
+                  conseguenza: "Anna aspetta. Aspetta ancora. Poi esce. La porta resta aperta. Matteo sente i suoi passi attraverso il corridoio, fino in cucina. Sente la voce di sua madre che chiede qualcosa, e la voce di Anna che risponde qualcosa di breve. Si gira di nuovo. Si vergogna del muro che sta guardando."}
+              ]
+            }
+          },
+          // ────────── SCENA 3 — Matteo in aula, lunedì 8:30 ──────────
+          {
+            focale: 'Matteo', luogo: 'aula 2C, lunedì 8:30', svg: 'aulaScuola',
+            paragrafi: [
+              "Il professor Regonini entra in classe con un pacco di fogli A4. Li conta in piedi davanti alla cattedra. <span class=\"dialogo\">«Diciannove. Manca qualcuno?»</span> Nessuno. Comincia a distribuire.",
+              "Matteo riceve il foglio. Lo guarda. Quattro esercizi. Equazioni di primo grado. Il primo è facile: <em>2x + 5 = 13</em>. Lo sa fare. Anche il secondo gli torna. Al terzo si ferma. Al quarto non capisce nemmeno il testo.",
+              "Marco, sul banco accanto, ha già il foglio davanti e sta scrivendo. Scrive piano, ma scrive. Matteo lo guarda di sottecchi. Marco non alza la testa.",
+              "L'aula è in silenzio. Si sente solo il rumore delle penne. Regonini è seduto alla cattedra, sta correggendo qualcos'altro. Ogni tanto alza lo sguardo. Ogni tanto no."
+            ],
+            bivio: {
+              id: 'b2_verifica',
+              intro: "Matteo guarda il foglio. Ha quaranta minuti. Sa fare due esercizi su quattro. Gli altri due non sa nemmeno da dove cominciare.",
+              domanda: "Cosa fa Matteo?",
+              opzioni: [
+                {label: "Fa quello che sa, onestamente.", sub: "Lascia in bianco quello che non sa.",
+                  eff: {disciplina: 3, coraggio_civile: 1, studio: 2, fiducia_prof: 4},
+                  conseguenza: "Matteo finisce in venti minuti. Resta seduto a guardare il foglio per altri venti. Quando consegna, Regonini lo guarda. <span class=\"dialogo\">«Già?»</span> Matteo annuisce. <span class=\"dialogo\">«Va bene.»</span> Niente di più. Voto previsto: cinque, forse sei. Onesto."},
+                {label: "Copia da Marco appena può.", sub: "Tanto Marco non se ne accorge.",
+                  eff: {coraggio_civile: -3, disciplina: -2, fiducia_prof: -2, slancio: 2, flag_copiato: true},
+                  conseguenza: "Aspetta che Regonini abbassi lo sguardo. Si sporge appena. Vede il foglio di Marco. Copia il terzo esercizio. Poi il quarto. Marco non dice niente, ma sa. Quando Matteo consegna, Regonini lo guarda due secondi di troppo. Matteo torna al posto con la pancia che gli fa un po' male."},
+                {label: "Consegna quasi in bianco.", sub: "«Non sono pronto, prof.»",
+                  eff: {autonomia: 1, coraggio_civile: 2, studio: -2, fiducia_prof: 2},
+                  conseguenza: "Matteo si alza dopo dieci minuti. Posa il foglio sulla cattedra. <span class=\"dialogo\">«Non sono pronto.»</span> Regonini lo guarda. <span class=\"dialogo\">«Lo vedo.»</span> Pausa. <span class=\"dialogo\">«Si sieda. Ne parliamo dopo.»</span> Matteo torna al posto. Sente gli occhi della classe addosso per dieci secondi, poi più niente. Tutti tornano alle proprie equazioni."},
+                {label: "Va dal prof in cattedra.", sub: "«Posso parlarle un attimo?»",
+                  eff: {coraggio_civile: 4, autonomia: 2, fiducia_prof: 6, cura: 1},
+                  conseguenza: "Matteo si alza. Va in cattedra. Parla piano. <span class=\"dialogo\">«Prof, non ho studiato. Mi scusi.»</span> Regonini lo guarda. Annuisce piano. <span class=\"dialogo\">«Bene. Per oggi prendi il foglio, fai quello che sai. Giovedì pomeriggio ti faccio un recupero. Da solo. Mezz'ora. Va bene?»</span> Matteo annuisce. <span class=\"dialogo\">«Grazie prof.»</span>"},
+                {label: "Inventa risposte a caso.", sub: "Lotteria.",
+                  eff: {disciplina: -1, slancio: 1, studio: -1, autonomia: -1},
+                  conseguenza: "Matteo riempie il foglio. Scrive numeri. Scrive x uguale qualcosa, sempre. Consegna prima della fine. Ha una mezza speranza di azzeccarne uno per fortuna. Tornando al posto si chiede perché lo ha fatto. Non si dà una risposta."}
+              ]
+            }
+          },
+          // ────────── SCENA 4 — Roberta al supermercato, mercoledì 16:00 ──────────
+          {
+            focale: 'Roberta', luogo: 'supermercato, mercoledì 16:00', svg: 'supermercato',
+            paragrafi: [
+              "Roberta è alla cassa numero tre da quattro ore. La coda dietro la signora Bianchi è lunga sei persone. La signora Bianchi conta le monete nel palmo della mano. Cinque, dieci, venti, cinquanta. Cinque, dieci, venti, cinquanta. Si è già fermata tre volte.",
+              "<span class=\"dialogo\">«Quanto manca?»</span> chiede piano. La voce le trema appena.",
+              "<span class=\"dialogo\">«Due euro e dieci.»</span> dice Roberta.",
+              "La signora Bianchi guarda nel borsellino. Lo chiude. Lo riapre. Comincia a togliere cose dalla busta. Una scatola di pelati. <span class=\"dialogo\">«Lasciamo questi.»</span>",
+              "Dietro, qualcuno sbuffa. Un uomo. Roberta lo sente, ma non si gira.",
+              "<span class=\"dialogo\">«Signora Bianchi.»</span> dice Roberta. <span class=\"dialogo\">«Aspetti.»</span>",
+              "Tira fuori dalla tasca due euro e venti. Li mette nel piatto della cassa, vicino alle monete della signora.",
+              "<span class=\"dialogo\">«Adesso siamo a posto. Tenga i pelati.»</span>",
+              "La signora Bianchi la guarda. Apre la bocca. Roberta la previene.",
+              "<span class=\"dialogo\">«Niente, niente. Vada.»</span>",
+              "La signora prende la busta. Si avvia. Si gira ancora due volte verso Roberta prima di uscire dalla porta automatica.",
+              "Roberta chiama il prossimo. È l'uomo che ha sbuffato. Le porge dieci euro per due cose. Roberta gli dà il resto senza guardarlo in faccia.",
+              "Stasera farà gli spaghetti aglio olio e peperoncino. Costano poco. A Davide non piacciono, ma se mette anche un pomodorino li mangia."
+            ]
+          },
+          // ────────── SCENA 5 — Matteo a cena, mercoledì sera 20:15 ──────────
+          {
+            focale: 'Matteo', luogo: 'cucina, mercoledì 20:15', svg: 'cucinaRicciSera',
+            paragrafi: [
+              "A tavola sono in cinque. Antonio è tornato presto stasera, alle sette. Anna non c'è, sta dai nonni materni per il compleanno della nonna. Sofia mangia con le mani. Davide gioca con la mollica di pane facendo pallottole piccolissime.",
+              "Roberta porta gli spaghetti. Aglio olio peperoncino con un pomodorino sopra ognuno. Sofia ride. Davide non ride.",
+              "Antonio aspetta che tutti abbiano cominciato. Poi parla a Matteo, ma sembra che parli a tutti.",
+              "<span class=\"dialogo\">«Oggi ha chiamato il professor Regonini.»</span>",
+              "Matteo posa la forchetta. La posa piano. Aspetta.",
+              "<span class=\"dialogo\">«Quanto è andata, lunedì?»</span> chiede Antonio. La voce non è alta. È quella delle cose serie.",
+              "Sofia lo guarda. Davide lo guarda. Anche Roberta lo guarda, ma non smette di mangiare."
+            ],
+            bivio: {
+              id: 'b3_cena_verifica',
+              intro: STATE.flags?.flag_copiato ? "Matteo sa che Regonini ha capito che ha copiato. La cosa peggiora la situazione." : "Antonio sa già com'è andata — Regonini gliel'ha detto. Quello che vuole sentire adesso non è il fatto, è la voce di Matteo che lo dice.",
+              domanda: "Cosa fa Matteo?",
+              opzioni: [
+                {label: "Si scusa.", sub: "«Scusa papà. Non avevo studiato.»",
+                  eff: {coraggio_civile: 3, fiducia_padre: 6, cura: 1, onesta_pubblica: 2},
+                  conseguenza: "Antonio annuisce piano. Riprende a mangiare. Non dice altro per un minuto. Poi: <span class=\"dialogo\">«Mi piace che lo dici. Non mi piace il resto.»</span> Pausa. <span class=\"dialogo\">«Domani sera, dopo cena, fai matematica al tavolo. Io ti guardo. Non ti aiuto, ti guardo. Va bene?»</span> Matteo annuisce."},
+                {label: "Dà la colpa al prof.", sub: "«Non aveva detto che era oggi!»",
+                  eff: {coraggio_civile: -3, fiducia_padre: -8, slancio: 1},
+                  conseguenza: "Antonio appoggia la forchetta. La appoggia con delicatezza, ed è peggio. <span class=\"dialogo\">«Matteo. Il professor Regonini insegna matematica da vent'anni. Tu hai tredici anni. Chi dei due, secondo te, ha più probabilità di aver dimenticato una verifica?»</span> Silenzio. Roberta non alza gli occhi. Davide guarda il piatto. Sofia mette le dita nel sugo."},
+                {label: "Tace.", sub: "Guarda il piatto.",
+                  eff: {autonomia: -1, fiducia_padre: -3, relazioni: -2, energia: -3},
+                  conseguenza: "Antonio aspetta. Aspetta a lungo. Poi riprende a mangiare. La cena finisce in silenzio. Matteo non finisce gli spaghetti. Quando si alza per andare in camera, Antonio lo guarda. Non dice niente. Sarebbe stato meglio se avesse detto qualcosa."},
+                {label: "Si arrabbia.", sub: "«Tutti zero! Capito? Non riesco!»",
+                  eff: {slancio: 3, fiducia_padre: -5, cura: -2, relazioni: -3},
+                  conseguenza: "Matteo si alza di scatto. La sedia gratta sul pavimento. Sofia comincia a piangere — non sa perché, ma piange. Davide guarda il fratello con gli occhi spalancati. Antonio resta seduto. <span class=\"dialogo\">«Vai in camera. Ne riparliamo quando ti calmi.»</span> Matteo va. Sbatte la porta. Si butta sul letto. Sente il pianto di Sofia che non si ferma."},
+                {label: "Promette.", sub: "«Da domani recupero. Te lo giuro.»",
+                  eff: {slancio: 2, fiducia_padre: 2, disciplina: 1, flag_ha_promesso: true},
+                  conseguenza: "Antonio lo guarda a lungo. <span class=\"dialogo\">«Bene. Allora domani sera fai matematica. E venerdì pomeriggio anche. E sabato. E domenica.»</span> Matteo annuisce. <span class=\"dialogo\">«Non giurare, però. Le promesse di chi giura troppo non valgono.»</span> Matteo non sa cosa rispondere. Annuisce ancora."}
+              ]
+            }
+          },
+          // ────────── SCENA 6 — Matteo in cortile, venerdì 10:30 ──────────
+          {
+            focale: 'Matteo', luogo: 'cortile della scuola, venerdì 10:30', svg: 'cortileScuola',
+            paragrafi: [
+              "Intervallo. Cortile della secondaria. Marco si stacca dal gruppo dei compagni e tira Matteo per la manica.",
+              "<span class=\"dialogo\">«Vieni un attimo.»</span>",
+              "Lo porta vicino al muretto dietro alle scale, dove non c'è quasi nessuno. Tira fuori dalla tasca dei pantaloni una banconota. Piegata in quattro.",
+              "<span class=\"dialogo\">«Venti euro.»</span> dice Marco. <span class=\"dialogo\">«L'ho trovata vicino ai distributori automatici. Dieci minuti fa. Per terra. Non c'era nessuno intorno.»</span>",
+              "Matteo guarda i venti euro. Non sa cosa dire.",
+              "<span class=\"dialogo\">«Pensavo di tenerli noi.»</span> dice Marco. <span class=\"dialogo\">«Tanto se non ce li prendiamo noi se li prende qualcun altro. Stiamo a metà. Dieci a testa.»</span>",
+              "Dieci euro. Matteo pensa a quante cose si comprano con dieci euro. Una pizza al ristorante con suo padre. Mezza ricarica del telefono. Un paio di calzini buoni. Pensa anche a sua madre stamattina che cercava il borsellino sul tavolo della cucina e diceva piano <span class=\"dialogo\">«ma dove l'ho messo, dio buono.»</span>"
+            ],
+            bivio: {
+              id: 'b4_soldi_trovati',
+              intro: "Marco aspetta. Il campanello suona fra cinque minuti.",
+              domanda: "Cosa fa Matteo?",
+              opzioni: [
+                {label: "Accetta.", sub: "«Dai. A metà.»",
+                  eff: {coraggio_civile: -4, slancio: 2, autonomia: 1, bilancio: 10, flag_ha_preso_soldi: true},
+                  conseguenza: "Marco gli mette il biglietto da dieci in mano. <span class=\"dialogo\">«Non lo diciamo a nessuno.»</span> Matteo annuisce. Si mette il biglietto nella tasca interna della giacca, quella che si chiude con la cerniera. Lo sente lì per tutto il giorno. Anche di sera, quando si toglie la giacca, lo sente."},
+                {label: "Rifiuta — segreteria.", sub: "«Lascia stare. Portalo in segreteria.»",
+                  eff: {coraggio_civile: 4, cura: 2, fiducia_madre: 2, onesta_pubblica: 3},
+                  conseguenza: "Marco lo guarda male. <span class=\"dialogo\">«Sei serio?»</span> Matteo annuisce. <span class=\"dialogo\">«Magari è di qualcuno che ne ha bisogno.»</span> Marco scuote la testa. <span class=\"dialogo\">«Cioè ti faccio una proposta e tu mi rispondi così.»</span> Pausa lunga. Poi Marco si gira, va verso la segreteria. Matteo non sa se ci andrà davvero. Spera di sì."},
+                {label: "Propone di aspettare.", sub: "«Aspettiamo una settimana. Se nessuno la cerca, vediamo.»",
+                  eff: {autonomia: 3, cura: 1, slancio: -1, coraggio_civile: 1},
+                  conseguenza: "Marco ci pensa. <span class=\"dialogo\">«Ok.»</span> Matteo non sa se Marco la metterà davvero in tasca per una settimana o se l'avrà già spesa per domenica sera. Sa solo che lui non l'ha presa. Per ora basta così."},
+                {label: "Si tira fuori.", sub: "«Tienila tu. Io non la voglio.»",
+                  eff: {autonomia: 2, coraggio_civile: 1, relazioni: -1},
+                  conseguenza: "Marco scrolla le spalle. <span class=\"dialogo\">«Come vuoi.»</span> Si rimette la banconota in tasca. <span class=\"dialogo\">«Sei strano oggi.»</span> Suona la campanella. Tornano in classe insieme. Marco gli parla d'altro. La banconota resta in tasca di Marco. Matteo non sa che fine farà. Ha deciso solo che non lo riguarda."},
+                {label: "Cerca chi l'ha persa.", sub: "Una compagna sta cercando per terra qualcosa.",
+                  eff: {coraggio_civile: 5, cura: 4, onesta_pubblica: 4, fiducia_madre: 3, flag_eroe_silenzioso: true},
+                  conseguenza: "Matteo prende la banconota dalla mano di Marco — Marco non fa in tempo a reagire — e si avvicina a Sara di seconda B, che sta guardando per terra vicino ai distributori. <span class=\"dialogo\">«Hai perso questi?»</span> Sara alza la testa. Gli occhi le si bagnano subito. <span class=\"dialogo\">«Mia mamma me li aveva dati per la cresima di mio cugino.»</span> Marco non parla. Matteo nemmeno. Sara torna in classe stringendo il biglietto. Marco rimane in cortile altri trenta secondi. Poi rientra senza dire niente."}
+              ]
+            }
+          },
+          // ────────── SCENA 7 — Matteo e papà, venerdì 22:30 ──────────
+          {
+            focale: 'Matteo', luogo: 'cucina, venerdì 22:30', svg: 'cucinaRicciSera',
+            paragrafi: [
+              "È tardi. Sofia dorme. Davide dorme. Anna è in camera con la musica nelle cuffie. Roberta è andata a stendere la lavatrice in cantina.",
+              "Matteo passa per andare a prendere un bicchiere d'acqua. Antonio è seduto al tavolo della cucina con il telefono in mano, ma il telefono è spento. Sta solo seduto.",
+              "<span class=\"dialogo\">«Vieni un attimo qui.»</span> dice piano.",
+              "Matteo si siede dall'altra parte del tavolo. Antonio lo guarda.",
+              "<span class=\"dialogo\">«Tua madre è stanca. Anna ha sedici anni e ha le sue cose. Davide è ancora piccolo. Sofia è una bambina.»</span> Pausa. <span class=\"dialogo\">«Tu sei l'unico con cui posso parlare delle cose vere. Capisci?»</span>",
+              "Matteo annuisce piano. Non capisce ancora. Capisce solo che suo padre stasera è diverso.",
+              "<span class=\"dialogo\">«Dimmi una cosa. Veramente. Com'è andata questa settimana?»</span>"
+            ],
+            bivio: {
+              id: 'b5_padre_serale',
+              intro: "Antonio non si arrabbierà. Matteo lo sa. Antonio adesso ha solo bisogno di sapere com'è suo figlio davvero. Sotto al tavolo, Matteo si tocca la tasca interna della giacca — se è ancora quella di stamattina — per vedere se i venti euro sono ancora lì.",
+              domanda: "Cosa fa Matteo?",
+              opzioni: [
+                {label: "Dice tutto.", sub: "Compresa la storia dei soldi trovati, se c'è stata.",
+                  eff: {coraggio_civile: 6, fiducia_padre: 10, cura: 3, onesta_pubblica: 5, legami: 8, flag_ha_detto_tutto: true},
+                  conseguenza: "Matteo racconta. La matematica. Anna alla porta. Il foglio in bianco — o copiato — o consegnato al volo. Marco e i venti euro. Sara che piangeva. Tutto. Antonio ascolta. Non interrompe mai. Quando Matteo finisce, Antonio si appoggia allo schienale. <span class=\"dialogo\">«Hai tredici anni e mi hai appena raccontato la verità. È la cosa più difficile che fai questa settimana, secondo me. Ed è quella che mi fa stare bene stanotte.»</span> Pausa. <span class=\"dialogo\">«Vai a letto. Domani ti aiuto io con matematica.»</span>"},
+                {label: "Mezza verità.", sub: "Dice il voto, salta i soldi e Marco.",
+                  eff: {disciplina: -1, fiducia_padre: 1, cura: 1, autonomia: 1, slancio: 1},
+                  conseguenza: "Matteo racconta della verifica. Della scena con Anna a mezzogiorno. Non dice di Marco. Non dice di Sara. Antonio ascolta. Annuisce. <span class=\"dialogo\">«Grazie. Vai a dormire.»</span> Matteo si alza. Mentre va in camera ha la sensazione, sottile, che suo padre sapesse che c'era dell'altro. Si chiede come lo sa. Si chiede se è successo solo a lui di sentirsi così, o se succede sempre, a tutti, da sempre."},
+                {label: "Mente.", sub: "«Bene papà. Tutto bene.»",
+                  eff: {coraggio_civile: -5, fiducia_padre: -10, disciplina: -2, slancio: 2, flag_ha_mentito_padre: true},
+                  conseguenza: "Antonio lo guarda due secondi di troppo. Poi sorride piano, ma è un sorriso triste. <span class=\"dialogo\">«Va bene Matteo.»</span> Pausa. <span class=\"dialogo\">«Va' a dormire.»</span> Matteo si alza. Mentre lascia la cucina, sente la voce di suo padre dietro di lui, piano: <span class=\"dialogo\">«Buona notte.»</span> Quel <em>buona notte</em> lo sentirà per tutta la settimana dopo."},
+                {label: "Cambia discorso.", sub: "«Papà, perché lavori così tanto?»",
+                  eff: {cura: 4, coraggio_civile: 2, fiducia_padre: 3, legami: 5},
+                  conseguenza: "Antonio resta un attimo zitto. Non se l'aspettava. Poi guarda il telefono spento sul tavolo. <span class=\"dialogo\">«Perché siamo in sei e una bolletta di gennaio costa quattrocentoventi euro.»</span> Pausa. <span class=\"dialogo\">«E perché vorrei che voi quattro non lo sapeste mai.»</span> Si guardano a lungo. Matteo non risponde. Antonio gli fa un cenno con la testa, leggero. <span class=\"dialogo\">«Vai a letto.»</span>"},
+                {label: "Si commuove.", sub: "Si mette a piangere senza voler piangere.",
+                  eff: {cura: 3, fiducia_padre: 5, legami: 4, energia: -5},
+                  conseguenza: "Matteo non sa perché. Le lacrime arrivano da sole. Antonio non si muove subito. Poi si alza, gira intorno al tavolo, si siede accanto a lui. Non lo abbraccia. Gli mette una mano sulla spalla. La tiene lì. Non dicono niente per due minuti. Quando Roberta torna dalla cantina con il cesto della biancheria, capisce in mezzo secondo cosa sta succedendo. Non chiede. Posa il cesto. Si siede anche lei al tavolo, dall'altra parte. Stanno così, tutti e tre, finché Matteo respira di nuovo normale."}
+              ]
+            }
+          }
+        ],
+        fine: {
+          titolo: "Sabato, ore dodici e mezzo",
+          corpo: "Matteo è in cortile dietro al palazzo. Sta riparando la catena della bicicletta. Le mani sono nere di olio. Dall'appartamento al piano terra arriva la voce di Sofia che canta una canzone inventata. Antonio è al lavoro: turno di sabato, doppio. Roberta ha portato Davide al campetto del parrocchia. Anna è ancora a letto.",
+          cliff: "Domenica sera, dopo cena, Roberta lo abbraccia da dietro mentre Matteo guarda la tv. Non dice niente. Lo abbraccia e basta. Lui non si gira, ma non si sposta. Resta lì. È la prima volta che capita così in questa settimana. Lui non sa che sua madre stamattina ha parlato con la prof Bertoli e che lunedì succederà qualcos'altro."
+        }
+      }
+      // Episodi 2, 3, 4 — in arrivo nei prossimi turni
+    }
+  }
+};
+
+/* ─── BOOT ─── */
+window.addEventListener('DOMContentLoaded',()=>{
+  buildClassi();
+  popolaSlotFamiglia();
+  popolaSlotMaterie();
+});
+</script>
 </body></html>
