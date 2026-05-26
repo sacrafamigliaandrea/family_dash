@@ -227,6 +227,33 @@ h2{font-family:'Caveat';font-weight:700;font-size:1.8rem;line-height:1.1}
 .sim-esito h3{font-family:'Caveat';color:var(--ocra);font-size:1.5rem;margin-bottom:12px;line-height:1}
 .sim-cat-step{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0;font-family:'JetBrains Mono';font-size:.86rem;border-bottom:1px dashed rgba(245,236,215,.18)}
 .sim-cat-step .v{font-weight:700}
+.sim-gruppo{font-family:'Caveat';font-weight:700;font-size:1.45rem;color:var(--terra);margin:6px 0 2px;line-height:1.1}
+.sim-gruppo.persone{color:var(--rosso);margin-top:18px}
+.sim-gruppo span{display:block;font-family:'Patrick Hand';font-size:.8rem;color:var(--grafite);font-weight:400}
+.bil-entrate{display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-weight:700;font-size:.95rem;color:var(--verde-tenue);padding:6px 0;border-bottom:1px solid rgba(245,236,215,.3)}
+.bil-sez{display:flex;justify-content:space-between;font-family:'Caveat';font-weight:700;font-size:1.2rem;color:var(--ocra);margin-top:10px;padding-bottom:2px}
+.bil-voci{padding-left:6px}
+.bil-voce{display:flex;justify-content:space-between;font-family:'JetBrains Mono';font-size:.76rem;color:var(--ocra-tenue);padding:2px 0;opacity:.7}
+.bil-voce.mod{opacity:1;color:var(--oro);font-weight:700}
+.bil-resta{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:10px;border-top:2px solid rgba(245,236,215,.4)}
+.bil-resta .lbl{font-family:'Caveat';font-weight:700;font-size:1.4rem}
+.bil-resta .val{font-family:'JetBrains Mono';font-weight:700;font-size:1.5rem}
+.bil-resta.verde .val{color:var(--verde-tenue)}
+.bil-resta.ambra .val{color:var(--oro)}
+.bil-resta.rosso .val{color:#E9A78C}
+.sim-stato{font-family:'Fraunces';font-size:.92rem;line-height:1.5;margin-top:8px;padding:8px 12px;border-radius:3px;background:rgba(245,236,215,.08)}
+.sim-stato.verde{border-left:3px solid var(--verde)}
+.sim-stato.ambra{border-left:3px solid var(--oro)}
+.sim-stato.rosso{border-left:3px solid var(--rosso)}
+.sim-warn{font-family:'Fraunces';font-style:italic;font-size:.88rem;line-height:1.55;margin-top:10px;padding:10px 12px;background:rgba(184,92,58,.18);border:1px solid var(--rosso);border-radius:3px;color:var(--ocra-tenue)}
+.sim-warn strong{color:#E9A78C}
+.sim-link{font-family:'Patrick Hand';font-size:.82rem;color:var(--ocra-tenue);margin-top:12px;padding-top:10px;border-top:1px dashed rgba(245,236,215,.2);line-height:1.5;opacity:.85}
+.sim-azione{max-width:1080px;margin:18px auto 0;text-align:center}
+.sim-libero{font-family:'Patrick Hand';color:var(--grafite);font-size:.95rem;line-height:1.5;background:var(--carta-2);border:1px dashed var(--carta-bordo);border-radius:4px;padding:14px 18px}
+.sim-reazione{background:var(--carta-2);border:1px solid var(--carta-bordo);border-left:4px solid var(--verde);border-radius:4px;padding:18px 22px;margin-top:16px;text-align:left;font-family:'Fraunces';font-size:1.05rem;line-height:1.7;animation:fadeIn .4s ease}
+.sim-reazione .dialogo{font-style:normal}
+.sim-reazione-tag{font-family:'Patrick Hand';color:var(--terra);font-size:.9rem;margin-bottom:8px;letter-spacing:.5px}
+.sim-reazione-ok{font-family:'Patrick Hand';font-style:normal;font-size:.86rem;color:var(--verde);margin-top:12px;padding-top:10px;border-top:1px dashed var(--carta-bordo)}
 .sim-risparmio{background:rgba(107,122,63,.25);border:1px solid var(--verde);border-radius:4px;padding:12px 14px;margin:12px 0}
 .sim-risparmio .big{font-family:'Caveat';font-weight:700;font-size:2.2rem;color:var(--verde-tenue);line-height:1}
 .sim-risparmio .lbl{font-family:'Patrick Hand';font-size:.86rem;color:var(--ocra-tenue)}
@@ -386,14 +413,15 @@ h2{font-family:'Caveat';font-weight:700;font-size:1.8rem;line-height:1.1}
 
 <!-- SIMULATORE -->
 <div class="screen" id="screen-simulatore"><div class="center-wrap sim-wrap">
-  <p class="eyebrow">Il laboratorio di casa</p>
-  <h1>E se in casa Ricci cambiassero qualcosa?</h1>
-  <p class="sottotitolo">Ogni scelta di una famiglia ha un effetto a catena: più consumi → bolletta più alta → meno risparmio → meno soldi per le cose belle. Prova a regolare le abitudini di casa e guarda cosa succede ai soldi — e al pianeta.</p>
+  <p class="eyebrow">Il bilancio di casa Ricci</p>
+  <h1>Ogni scelta sposta i conti di tutta la famiglia</h1>
+  <p class="sottotitolo">Questo è il bilancio vero dei Ricci: due stipendi, le spese di casa, e le spese di ciascuno — l'auto di papà, la mensa di Davide, lo sport dei ragazzi, la materna di Sofia. Muovi le leve e guarda il bilancio cambiare davvero. Scoprirai che i primi risparmi non costano niente a nessuno; gli ultimi, invece, si tolgono alle persone.</p>
   <div class="sim-grid">
     <div class="sim-leve" id="simLeve"></div>
     <div class="sim-esito" id="simEsito"></div>
   </div>
-  <div class="tasti-bottom"><button class="btn" onclick="vai(STATE.figlioId?'screen-story':'screen-intro')">← Torna</button></div>
+  <div class="sim-azione" id="simAzione"></div>
+  <div class="tasti-bottom"><button class="btn" onclick="vai(STATE.figlioId?'screen-fine-ep':'screen-intro')">← Torna</button></div>
 </div></div>
 
 <div class="screen" id="screen-wip"><div class="center-wrap">
@@ -433,12 +461,22 @@ const FAMIGLIE={
     scheda:"Appartamento popolare al piano terra, con un cortile sul retro. Il tavolo della cucina è il centro della casa: ci si pranza, ci si cena, si fanno i compiti, si pagano le bollette. Antonio è in magazzino da quindici anni. Roberta è cassiera al supermercato, le mattine. I conti si fanno alla fine del mese, due volte, per essere sicuri.",
     figli:[
       {id:'matteo',nome:'Matteo',eta:13,disp:true,desc:'Tredici anni. Fa fatica a scuola e a dire la verità quando ha sbagliato. Ma ha un buon cuore, quando non ha paura.', avatar:'rag'},
-      {id:'anna',nome:'Anna',eta:16,disp:false,desc:'Sedici anni, la più grande. Tiene insieme i fratelli. Sta imparando quanto può chiedere per sé.', avatar:'rag2'},
-      {id:'davide',nome:'Davide',eta:9,disp:false,desc:'Nove anni. Guarda tutto, capisce più di quanto sembra. Le sue scelte sono piccole ma vere.', avatar:'bimbo'}
+      {id:'anna',nome:'Anna',eta:16,disp:true,desc:'Sedici anni, la più grande. Tiene insieme i fratelli. Sta imparando quanto può chiedere per sé senza sentirsi in colpa.', avatar:'rag2'},
+      {id:'davide',nome:'Davide',eta:9,disp:true,desc:'Nove anni. Guarda tutto, capisce più di quanto sembra. Le sue scelte sono piccole, ma vere come quelle dei grandi.', avatar:'bimbo'}
     ]
   },
   bruno:{nome:'Bruno',tag:'Artigiano con nonno convivente',disp:false},
-  mancinideluca:{nome:'Mancini & De Luca',tag:'Genitori separati',disp:false},
+  mancinideluca:{nome:'Mancini & De Luca',tag:'Genitori separati, affido condiviso',disp:true,
+    membri:[
+      {nome:'Paolo Mancini',eta:'44',ruolo:'papà, tecnico informatico'},
+      {nome:'Cristina De Luca',eta:'41',ruolo:'mamma, commercialista'},
+      {nome:'Bianca',eta:'12',ruolo:'figlia unica, prima media'}
+    ],
+    scheda:"Bianca ha una valigia sempre mezza pronta. I suoi genitori si sono separati due anni fa e adesso vive «a settimane»: una con la mamma, in centro, una col papà, in periferia. Due case, due camere, due routine, due frigoriferi con cose diverse. I genitori non litigano più come prima, ma si parlano con la voce educata e fredda di chi ha smesso. Bianca, in mezzo, ha imparato a fare la spola — di sé, e a volte dei messaggi.",
+    figli:[
+      {id:'bianca',nome:'Bianca',eta:12,disp:true,desc:'Dodici anni, figlia unica di due genitori separati. Vive tra due case e sta imparando la cosa più difficile: voler bene a entrambi senza diventare il loro tramite.', avatar:'rag2'}
+    ]
+  },
   greco:{nome:'Greco',tag:'Origini miste italo-albanesi',disp:false},
   rizzo:{nome:'Rizzo',tag:'Famiglia con figlio con disabilità',disp:false},
   lombardi:{nome:'Lombardi',tag:'Famiglia giovane, fratellino piccolo',disp:false},
@@ -460,7 +498,7 @@ const STATE={
   tratti:{disciplina:0,slancio:0,coraggio_civile:0,cura:0,autonomia:0},
   rel:{fiducia_anna:50,fiducia_padre:50,fiducia_madre:50,fiducia_prof:50,onesta_pubblica:0},
   biviScelti:[],flags:{},
-  attesaBivio:false,continuaBloccato:false,_t:null
+  attesaBivio:false,continuaBloccato:false,_t:null,simRisultato:null
 };
 
 function $(s){return document.querySelector(s)}
@@ -486,9 +524,10 @@ function selClasse(cl){STATE.classe=cl;$$('.classe-btn').forEach(b=>b.classList.
 function popolaSlotFamiglia(){['slotFamA','slotFamB','slotFamC'].forEach(id=>{const s=$('#'+id);const l=[];for(let i=0;i<24;i++)l.push(rand(FAM_IDS));s.innerHTML=l.map(f=>`<div class="slot-tessera">${FAMIGLIE[f].nome}</div>`).join('');s.style.transform='translateY(0)'})}
 function tiraSlotFamiglia(){
   $('#btnSlotFam').disabled=true;$('#slotFamRisultato').classList.remove('show');
-  const id='ricci';STATE.famigliaId=id;
+  const disponibili=FAM_IDS.filter(f=>FAMIGLIE[f].disp);
+  const id=rand(disponibili);STATE.famigliaId=id;
   ['slotFamA','slotFamB','slotFamC'].forEach((sid,idx)=>{const s=$('#'+sid);const items=[];for(let i=0;i<20+idx*3;i++)items.push(rand(FAM_IDS));items.push(id);s.innerHTML=items.map(f=>`<div class="slot-tessera">${FAMIGLIE[f].nome}</div>`).join('');s.style.transition='none';s.style.transform='translateY(0)';void s.offsetWidth;s.style.transition=`transform ${1.5+idx*.4}s cubic-bezier(.16,.7,.2,1)`;s.style.transform=`translateY(${-(items.length-1)*90}px)`});
-  setTimeout(()=>{const f=FAMIGLIE[id];$('#slotFamRisultato').innerHTML=`Ti tocca la <strong>famiglia ${f.nome}</strong>.<br><span style="opacity:.75;font-size:1.1rem">${f.tag}</span><div class="slot-result-pilot">Pilot: in questa versione conosci i Ricci. Le altre nove famiglie sono in arrivo.</div>`;$('#slotFamRisultato').classList.add('show');$('#btnAccettaFam').style.display='inline-flex';TELE.slot({tipo:'famiglia',valore:f.nome})},2400);
+  setTimeout(()=>{const f=FAMIGLIE[id];$('#slotFamRisultato').innerHTML=`Ti tocca la <strong>famiglia ${f.nome}</strong>.<br><span style="opacity:.75;font-size:1.1rem">${f.tag}</span><div class="slot-result-pilot">Pilot: per ora puoi vivere ${disponibili.length} famiglie. Le altre sono in arrivo.</div>`;$('#slotFamRisultato').classList.add('show');$('#btnAccettaFam').style.display='inline-flex';TELE.slot({tipo:'famiglia',valore:f.nome})},2400);
 }
 
 /* SLOT MESE (pilot: forza Gennaio) */
@@ -716,10 +755,14 @@ function fineEpisodio(){
   vai('screen-fine-ep');
   $('#finEpContent').innerHTML=`<p class="eyebrow">Fine episodio ${STATE.episodioCorr}</p><h2>${ep.fine.titolo}</h2><div class="ep-fine-corpo">${ep.fine.corpo}</div><div class="ep-fine-cliff">${ep.fine.cliff}</div>`;
   const ultimo=STATE.episodioCorr>=numEpisodi();
+  let invitoSim='';
+  if(!STATE.simRisultato && STATE.famigliaId==='ricci'){
+    invitoSim=` <button class="btn sec" style="background:transparent;border:1.5px solid var(--terra);color:var(--terra)" onclick="apriSimulatore()">Porta delle proposte alla famiglia</button>`;
+  }
   if(!ultimo && EPISODI[STATE.famigliaId]?.[STATE.mese]?.[STATE.figlioId]?.[STATE.episodioCorr+1]){
-    $('#finEpControls').innerHTML=`<button class="btn lg verde" onclick="prossimoEpisodio()">Settimana ${STATE.episodioCorr+1} →</button>`;
+    $('#finEpControls').innerHTML=`<button class="btn lg verde" onclick="prossimoEpisodio()">Settimana ${STATE.episodioCorr+1} →</button>${invitoSim}`;
   } else {
-    $('#finEpControls').innerHTML=`<button class="btn lg ocra" onclick="finaleStagione()">Come è finito il mese →</button>`;
+    $('#finEpControls').innerHTML=`<button class="btn lg ocra" onclick="finaleStagione()">Come è finito il mese →</button>${invitoSim}`;
   }
 }
 
@@ -742,14 +785,29 @@ function finaleStagione(){
   if(t.coraggio_civile>=12) ritratto.push(`Ha mostrato coraggio: quello silenzioso, di chi fa la cosa giusta quando nessuno guarda.`);
   if(t.cura>=8) ritratto.push(`E ha mostrato cura — verso la madre, verso una compagna, verso chi aveva meno di lui.`);
 
+  // Effetto del simulatore "vivo"
+  let bloccoSim='';
+  if(STATE.simRisultato){
+    const s=STATE.simRisultato;
+    let esito;
+    if(s.resta<150) esito=`Le proposte che hai portato alla famiglia non bastano a far quadrare un mese difficile come gennaio — ma hanno insegnato a ${prota} a guardare i conti in faccia. È un seme che darà frutti più avanti.`;
+    else if(s.tagliPersone>0) esito=`Le tue proposte facevano risparmiare, ma in parte togliendo cose ai figli. Antonio le ha corrette: «prima si taglia a noi grandi». Alla fine la famiglia mette via circa <strong>${Math.round((s.resta-s.tagliPersone))} € al mese</strong>, senza sacrificare lo sport o la mensa.`;
+    else esito=`Le proposte che hai portato in famiglia — riscaldamento più basso, meno sprechi, scelte più attente — fanno risparmiare circa <strong>${s.resta} € al mese</strong>. In un anno sono <strong>${(s.resta*12).toLocaleString('it-IT')} €</strong>: la gita di ${prota} è pagata, e avanza per una vera vacanza d'estate. Senza che nessuno, in casa, abbia dovuto rinunciare a qualcosa di importante.`;
+    bloccoSim=`<div class="ep-fine-cliff" style="border-color:var(--verde);background:rgba(107,122,63,.12)"><strong>Le tue proposte hanno lasciato il segno.</strong><br>${esito}</div>`;
+  }
+
   vai('screen-fine-ep');
+  const chiusura = STATE.famigliaId==='ricci'
+    ? "<strong>I Ricci ce l'hanno fatta.</strong> Di poco, come quasi ogni mese. La bolletta è pagata, l'affitto anche, la lavatrice gira di nuovo. A fine gennaio, sul conto, sono rimasti pochi euro. Ma sono rimasti. E domani è il primo febbraio."
+    : ep.fine.cliff;
   $('#finEpContent').innerHTML=`
-    <p class="eyebrow">Fine di gennaio</p>
-    <h2>Com'è andato il mese</h2>
+    <p class="eyebrow">Fine del percorso</p>
+    <h2>Com'è andata</h2>
     <div class="ep-fine-corpo">${ritratto.join('<br><br>')}</div>
-    <div class="ep-fine-cliff"><strong>I Ricci ce l'hanno fatta.</strong> Di poco, come quasi ogni mese. La bolletta è pagata, l'affitto anche, la lavatrice gira di nuovo. A fine gennaio, sul conto, sono rimasti pochi euro. Ma sono rimasti. E domani è il primo febbraio.</div>`;
+    <div class="ep-fine-cliff">${chiusura}</div>
+    ${bloccoSim}`;
   $('#finEpControls').innerHTML=`<button class="btn lg" onclick="location.reload()">Gioca un'altra famiglia</button>`;
-  TELE.end({rel:JSON.stringify(STATE.rel),tratti:JSON.stringify(STATE.tratti),biviScelti:JSON.stringify(STATE.biviScelti)});
+  TELE.end({rel:JSON.stringify(STATE.rel),tratti:JSON.stringify(STATE.tratti),biviScelti:JSON.stringify(STATE.biviScelti),sim:JSON.stringify(STATE.simRisultato)});
 }
 
 function mostraWip(t,m){$('#wipTitolo').textContent=t;$('#wipMsg').textContent=m;vai('screen-wip')}
@@ -762,7 +820,8 @@ const SVG={
   aula:`<svg viewBox="0 0 600 130"><line x1="0" y1="118" x2="600" y2="118" stroke="#3D2B1F" stroke-width="1.5"/><rect x="40" y="18" width="240" height="84" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="2"/><rect x="47" y="25" width="226" height="70" fill="#3D2B1F"/><text x="70" y="52" font-family="Caveat" font-size="19" fill="#FAF4E6">2x + 5 = 13</text><text x="70" y="80" font-family="Caveat" font-size="14" fill="#FAF4E6" opacity=".7">verifica · 1ª ora</text><rect x="360" y="92" width="70" height="7" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.3"/><rect x="372" y="80" width="46" height="12" fill="#FAF4E6" stroke="#3D2B1F"/><circle cx="395" cy="70" r="9" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 382 90 Q 395 76 408 90 L 410 108 L 380 108 Z" fill="#5B7FA0" stroke="#3D2B1F" stroke-width="1.3"/><rect x="470" y="92" width="70" height="7" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.3"/><rect x="482" y="80" width="46" height="12" fill="#FAF4E6" stroke="#3D2B1F"/><circle cx="505" cy="70" r="9" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 492 90 Q 505 76 518 90 L 520 108 L 490 108 Z" fill="#B85C3A" stroke="#3D2B1F" stroke-width="1.3"/></svg>`,
   supermercato:`<svg viewBox="0 0 600 130"><line x1="0" y1="118" x2="600" y2="118" stroke="#3D2B1F" stroke-width="1.5"/><rect x="40" y="30" width="180" height="84" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><line x1="40" y1="64" x2="220" y2="64" stroke="#3D2B1F"/><line x1="40" y1="92" x2="220" y2="92" stroke="#3D2B1F"/><rect x="50" y="38" width="20" height="20" fill="#B85C3A"/><rect x="74" y="38" width="20" height="20" fill="#C9A968"/><rect x="98" y="38" width="20" height="20" fill="#6B7A3F"/><rect x="122" y="38" width="20" height="20" fill="#5B7FA0"/><rect x="146" y="38" width="20" height="20" fill="#A05A2C"/><rect x="170" y="38" width="20" height="20" fill="#B85C3A"/><rect x="50" y="70" width="20" height="18" fill="#D4A93C"/><rect x="74" y="70" width="20" height="18" fill="#5B7FA0"/><rect x="98" y="70" width="20" height="18" fill="#6B7A3F"/><rect x="122" y="70" width="20" height="18" fill="#C9A968"/><rect x="146" y="70" width="20" height="18" fill="#A05A2C"/><rect x="170" y="70" width="20" height="18" fill="#B85C3A"/><rect x="320" y="96" width="160" height="18" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.5"/><rect x="320" y="88" width="160" height="10" fill="#3D2B1F"/><circle cx="360" cy="74" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 346 96 Q 360 82 374 96 L 378 116 L 342 116 Z" fill="#B85C3A" stroke="#3D2B1F" stroke-width="1.5"/><text x="360" y="60" text-anchor="middle" font-family="Caveat" font-size="9" fill="#3D2B1F">ROBERTA</text><circle cx="540" cy="80" r="9" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 526 100 Q 540 88 554 100 L 556 116 L 524 116 Z" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 527 78 Q 532 66 540 66 Q 548 66 553 78" fill="#8A7560" stroke="#3D2B1F"/></svg>`,
   cucinaSera:`<svg viewBox="0 0 600 130"><rect width="600" height="130" fill="#2A1E14" opacity=".12"/><line x1="0" y1="118" x2="600" y2="118" stroke="#3D2B1F" stroke-width="1.5"/><circle cx="300" cy="22" r="5" fill="#D4A93C"/><line x1="300" y1="0" x2="300" y2="18" stroke="#3D2B1F"/><path d="M 274 22 L 326 22 L 320 40 L 280 40 Z" fill="#D4A93C" stroke="#3D2B1F" stroke-width="1.3"/><rect x="170" y="86" width="260" height="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><rect x="170" y="97" width="260" height="3" fill="#EDDDB4"/><rect x="200" y="74" width="28" height="12" fill="#FAF4E6" stroke="#3D2B1F" rx="2"/><circle cx="214" cy="80" r="5" fill="#A05A2C" opacity=".6"/><rect x="245" y="74" width="28" height="12" fill="#FAF4E6" stroke="#3D2B1F" rx="2"/><circle cx="259" cy="80" r="5" fill="#A05A2C" opacity=".6"/><rect x="290" y="74" width="28" height="12" fill="#FAF4E6" stroke="#3D2B1F" rx="2"/><circle cx="304" cy="80" r="5" fill="#A05A2C" opacity=".6"/><rect x="335" y="74" width="28" height="12" fill="#FAF4E6" stroke="#3D2B1F" rx="2"/><circle cx="349" cy="80" r="5" fill="#A05A2C" opacity=".6"/><circle cx="180" cy="60" r="8" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 172 76 Q 180 66 188 76 L 190 92 L 170 92 Z" fill="#5B7FA0" stroke="#3D2B1F" stroke-width="1.3"/><circle cx="420" cy="60" r="8" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 412 76 Q 420 66 428 76 L 430 92 L 410 92 Z" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1.3"/></svg>`,
-  cortile:`<svg viewBox="0 0 600 130"><rect width="600" height="130" fill="#FAF4E6"/><rect x="0" y="100" width="600" height="30" fill="#A05A2C" opacity=".25"/><line x1="0" y1="100" x2="600" y2="100" stroke="#3D2B1F" stroke-width="1.5"/><rect x="40" y="36" width="150" height="64" fill="#A05A2C" opacity=".8" stroke="#3D2B1F" stroke-width="1.5"/><rect x="54" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="86" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="118" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="150" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="280" y="80" width="120" height="20" fill="#8A7560" stroke="#3D2B1F" stroke-width="1.3"/><circle cx="320" cy="62" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 306 80 Q 320 66 334 80 L 336 100 L 304 100 Z" fill="#5B7FA0" stroke="#3D2B1F" stroke-width="1.3"/><circle cx="380" cy="62" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 366 80 Q 380 66 394 80 L 396 100 L 364 100 Z" fill="#B85C3A" stroke="#3D2B1F" stroke-width="1.3"/><rect x="376" y="74" width="12" height="8" fill="#6B7A3F" stroke="#3D2B1F" stroke-width=".7"/><text x="382" y="80" text-anchor="middle" font-family="IBM Plex Sans" font-size="5" fill="#FAF4E6">20€</text><circle cx="540" cy="40" r="11" fill="#D4A93C" opacity=".8"/></svg>`
+  cortile:`<svg viewBox="0 0 600 130"><rect width="600" height="130" fill="#FAF4E6"/><rect x="0" y="100" width="600" height="30" fill="#A05A2C" opacity=".25"/><line x1="0" y1="100" x2="600" y2="100" stroke="#3D2B1F" stroke-width="1.5"/><rect x="40" y="36" width="150" height="64" fill="#A05A2C" opacity=".8" stroke="#3D2B1F" stroke-width="1.5"/><rect x="54" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="86" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="118" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="150" y="50" width="20" height="26" fill="#C8D6E2"/><rect x="280" y="80" width="120" height="20" fill="#8A7560" stroke="#3D2B1F" stroke-width="1.3"/><circle cx="320" cy="62" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 306 80 Q 320 66 334 80 L 336 100 L 304 100 Z" fill="#5B7FA0" stroke="#3D2B1F" stroke-width="1.3"/><circle cx="380" cy="62" r="10" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.3"/><path d="M 366 80 Q 380 66 394 80 L 396 100 L 364 100 Z" fill="#B85C3A" stroke="#3D2B1F" stroke-width="1.3"/><rect x="376" y="74" width="12" height="8" fill="#6B7A3F" stroke="#3D2B1F" stroke-width=".7"/><text x="382" y="80" text-anchor="middle" font-family="IBM Plex Sans" font-size="5" fill="#FAF4E6">20€</text><circle cx="540" cy="40" r="11" fill="#D4A93C" opacity=".8"/></svg>`,
+  duecase:`<svg viewBox="0 0 600 130"><line x1="0" y1="118" x2="600" y2="118" stroke="#3D2B1F" stroke-width="1.5"/><rect x="0" y="118" width="600" height="3" fill="#A05A2C" opacity=".5"/><!-- casa mamma --><rect x="60" y="55" width="150" height="63" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 50 55 L 135 22 L 220 55 Z" fill="#B85C3A" opacity=".8" stroke="#3D2B1F" stroke-width="1.5"/><rect x="85" y="72" width="28" height="28" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1"/><rect x="155" y="78" width="30" height="40" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1"/><text x="135" y="113" text-anchor="middle" font-family="Patrick Hand" font-size="10" fill="#3D2B1F">mamma</text><!-- casa papà --><rect x="390" y="55" width="150" height="63" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 380 55 L 465 22 L 550 55 Z" fill="#5B7FA0" opacity=".8" stroke="#3D2B1F" stroke-width="1.5"/><rect x="415" y="72" width="28" height="28" fill="#C8D6E2" stroke="#3D2B1F" stroke-width="1"/><rect x="485" y="78" width="30" height="40" fill="#A05A2C" stroke="#3D2B1F" stroke-width="1"/><text x="465" y="113" text-anchor="middle" font-family="Patrick Hand" font-size="10" fill="#3D2B1F">papà</text><!-- Bianca con valigia nel mezzo --><circle cx="300" cy="78" r="11" fill="#FAF4E6" stroke="#3D2B1F" stroke-width="1.5"/><path d="M 286 100 Q 300 84 314 100 L 316 118 L 284 118 Z" fill="#C9A968" stroke="#3D2B1F" stroke-width="1.5"/><rect x="316" y="96" width="20" height="16" fill="#6B7A3F" stroke="#3D2B1F" stroke-width="1.2" rx="2"/><line x1="320" y1="96" x2="320" y2="91" stroke="#3D2B1F" stroke-width="1.2"/><line x1="332" y1="96" x2="332" y2="91" stroke="#3D2B1F" stroke-width="1.2"/><!-- frecce avanti-indietro --><path d="M 230 40 L 250 40 M 245 36 L 250 40 L 245 44" fill="none" stroke="#8A7560" stroke-width="1.3"/><path d="M 370 40 L 350 40 M 355 36 L 350 40 L 355 44" fill="none" stroke="#8A7560" stroke-width="1.3"/></svg>`
 };
 
 /* ════════ GLOSSARIO ════════ */
@@ -803,65 +862,144 @@ function filtraGlossario(){
   renderGlossario(q?GLOSSARIO.filter(g=>g.t.toLowerCase().includes(q)||g.d.toLowerCase().includes(q)):GLOSSARIO);
 }
 
-/* ════════ SIMULATORE casa Ricci ════════ */
-const SIM={temp:21,docce:'lunghe',luci:'vecchie',standby:'acceso',spesa:'marca',lavatrice:'normale',spostamenti:'auto'};
-const SIM_BASE_GAS_20=140, SIM_PER_GRADO=12;
+/* ════════ SIMULATORE — il bilancio reale dei Ricci ════════ */
+const SIM={
+  // abitudini di casa
+  temp:22, docce:'lunghe', luci:'vecchie', standby:'acceso', spesa:'marca', lavatrice:'normale',
+  // scelte sulle persone
+  secondaAuto:false, sportAnna:true, calcioMatteo:true, mensaDavide:true, sofiaTempo:'pieno'
+};
+const SIM_ENTRATE=2350; // Antonio 1500 + Roberta 850 (netti/mese)
+
 function calcolaSim(){
-  const gradiSopra=Math.max(0,SIM.temp-20);
-  let gas=SIM_BASE_GAS_20+gradiSopra*SIM_PER_GRADO+(SIM.docce==='lunghe'?12:0);
-  if(SIM.temp<20) gas=SIM_BASE_GAS_20-(20-SIM.temp)*10+(SIM.docce==='lunghe'?12:0);
-  let luce=45+(SIM.luci==='vecchie'?18:0)+(SIM.standby==='acceso'?6:0)+(SIM.lavatrice==='normale'?8:0);
-  let spesa=140+(SIM.spesa==='marca'?40:0);
-  let trasp=25+(SIM.spostamenti==='auto'?50:0);
-  const uscite=gas+luce+spesa+trasp;
-  const minimo=(SIM_BASE_GAS_20-20)+45+140+25;
-  const massimo=(SIM_BASE_GAS_20+4*SIM_PER_GRADO+12)+(45+18+6+8)+(140+40)+(25+50);
-  const risparmio=Math.max(0,Math.round(massimo-uscite));
-  const co2pct=Math.max(0,Math.min(100,Math.round(((massimo-uscite)/(massimo-minimo))*100)));
-  return {gas:Math.round(gas),luce:Math.round(luce),spesa,trasp,uscite:Math.round(uscite),risparmio,co2pct};
+  // ── spese di casa ──
+  const affitto=420;
+  let gas=Math.round(210+(SIM.temp-21)*14+(SIM.docce==='lunghe'?12:0));
+  let luce=65+(SIM.luci==='vecchie'?18:0)+(SIM.standby==='acceso'?6:0)+(SIM.lavatrice==='normale'?8:0);
+  let acqua=30+(SIM.docce==='lunghe'?5:0);
+  const internet=45;
+  let spesa=540+(SIM.spesa==='marca'?40:0);
+  const casa={affitto,gas,luce,acqua,internet,spesa};
+  const totCasa=affitto+gas+luce+acqua+internet+spesa;
+  // ── spese per persona ──
+  const antonio=160;                                   // auto: serve per il lavoro
+  const roberta=SIM.secondaAuto?155:35;                // 2ª auto o mezzi
+  const anna=45+(SIM.sportAnna?25:0);                  // bus+libri (+pallavolo)
+  const matteo=15+(SIM.calcioMatteo?40:0);             // materiale (+calcio)
+  const davide=15+(SIM.mensaDavide?60:0);              // materiale (+mensa)
+  const sofia=SIM.sofiaTempo==='pieno'?90:50;          // materna tempo pieno/ridotto
+  const membri={antonio,roberta,anna,matteo,davide,sofia};
+  const totMembri=antonio+roberta+anna+matteo+davide+sofia;
+  const uscite=totCasa+totMembri;
+  const resta=SIM_ENTRATE-uscite;
+  // quanto del risparmio viene da scelte sulle persone (vs sprechi)
+  const tagliPersone=(SIM.secondaAuto?0:0)+(!SIM.sportAnna?25:0)+(!SIM.calcioMatteo?40:0)+(!SIM.mensaDavide?60:0)+(SIM.sofiaTempo!=='pieno'?40:0);
+  // CO2 dalle sole abitudini
+  const sprecoMax=(210+3*14+12)+(65+18+6+8)+(30+5)+(540+40);
+  const sprecoMin=(210-2*14)+65+30+540;
+  const sprecoOra=gas+luce+acqua+spesa;
+  const co2pct=Math.max(0,Math.min(100,Math.round(((sprecoMax-sprecoOra)/(sprecoMax-sprecoMin))*100)));
+  return {casa,totCasa,membri,totMembri,uscite,resta,tagliPersone,co2pct,gas};
+}
+
+function statoConti(r){
+  if(r<100) return {cls:'rosso',txt:"I conti <strong>non tornano</strong>: a fine mese non resta quasi niente. Un imprevisto e si va sotto."};
+  if(r<280) return {cls:'ambra',txt:"I conti tornano, ma <strong>di poco</strong>. Si arriva a fine mese senza margine per le sorprese."};
+  if(r<430) return {cls:'verde',txt:"C'è un <strong>piccolo margine</strong>: si può mettere via qualcosa o concedersi un extra ogni tanto."};
+  return {cls:'verde',txt:"<strong>Buon equilibrio</strong>: la famiglia può risparmiare per la vacanza o per gli imprevisti."};
 }
 function attivitaPer(r){
-  if(r<=10) return "Con questo risparmio, in famiglia ci scappa <strong>un gelato per tutti</strong> ogni tanto.";
-  if(r<=35) return "Con questo risparmio ci paghi <strong>una pizza in famiglia</strong> ogni mese.";
-  if(r<=70) return "Con questo risparmio: <strong>cinema per i ragazzi più una pizza</strong>. Oppure lo metti da parte.";
-  if(r<=110) return "Con questo risparmio paghi <strong>la gita scolastica di Matteo</strong>. E ne avanza.";
-  return "Con questo risparmio, a fine anno, ci sta <strong>una settimana di campeggio al lago</strong> d'estate.";
+  if(r<100) return "Non avanza niente per gli extra. La gita, lo sport, una pizza fuori: tutto rimandato.";
+  if(r<280) return "Con quel poco che resta, ci sta <strong>una pizza in famiglia</strong> una volta ogni tanto.";
+  if(r<430) return "Con questo margine: <strong>la gita di Matteo</strong> e qualcosa messo da parte per gli imprevisti.";
+  return "Con questo margine, a fine anno: <strong>una settimana di vacanza</strong> tutti insieme. E un piccolo fondo per le emergenze.";
 }
+
 function apriSimulatore(){vai('screen-simulatore');renderSimLeve();aggiornaSim()}
-function renderSimLeve(){
-  $('#simLeve').innerHTML=`
-  <div class="sim-leva">
+
+function levaSlider(){
+  return `<div class="sim-leva">
     <div class="sim-leva-top"><span class="sim-leva-nome">Riscaldamento</span><span class="sim-leva-val" id="vTemp">${SIM.temp}°</span></div>
-    <div class="sim-leva-desc">Ogni grado in più scalda di più… e costa di più. In casa si sta bene già a 19-20°.</div>
+    <div class="sim-leva-desc">È la voce che pesa di più sul gas. In casa si sta bene già a 19-20°.</div>
     <input type="range" min="18" max="24" value="${SIM.temp}" oninput="SIM.temp=+this.value;document.getElementById('vTemp').textContent=this.value+'°';aggiornaSim()">
-  </div>
-  ${levaToggle('Docce','docce',[['brevi','brevi','eco'],['lunghe','lunghe','']],'Docce brevi = meno acqua calda da scaldare col gas.')}
-  ${levaToggle('Lampadine','luci',[['led','a LED','eco'],['vecchie','vecchie','']],'Le LED consumano fino a 5 volte meno delle vecchie lampadine.')}
-  ${levaToggle('Stand-by TV e PC','standby',[['spento','li spengo','eco'],['acceso','li lascio','']],'Gli apparecchi in stand-by consumano anche da «spenti».')}
-  ${levaToggle('Spesa','spesa',[['discount','prodotti base','eco'],['marca','sempre di marca','']],'Le marche del supermercato costano meno a parità di qualità, spesso.')}
-  ${levaToggle('Lavatrice','lavatrice',[['eco','piena e in eco','eco'],['normale','quando capita','']],'Lavare a pieno carico e in modalità eco fa girare meno la lavatrice.')}
-  ${levaToggle('Tragitti corti','spostamenti',[['sostenibile','bici o bus','eco'],['auto','sempre in auto','']],'Per i tragitti brevi, bici e bus costano molto meno dell auto.')}
-  `;
+  </div>`;
 }
 function levaToggle(nome,key,opts,desc){
-  const btns=opts.map(o=>`<button class="${SIM[key]===o[0]?'on '+(o[2]||''):''}" onclick="SIM.${key}='${o[0]}';renderSimLeve();aggiornaSim()">${o[1]}</button>`).join('');
+  const btns=opts.map(o=>`<button class="${SIM[key]===o[0]?'on '+(o[2]||''):''}" onclick="SIM['${key}']=${typeof o[0]==='boolean'?o[0]:`'${o[0]}'`};renderSimLeve();aggiornaSim()">${o[1]}</button>`).join('');
   return `<div class="sim-leva"><div class="sim-leva-top"><span class="sim-leva-nome">${nome}</span></div><div class="sim-leva-desc">${desc}</div><div class="sim-toggle">${btns}</div></div>`;
+}
+function renderSimLeve(){
+  $('#simLeve').innerHTML=`
+   <div class="sim-gruppo">Abitudini di casa <span>— risparmi «indolori», spesso buoni anche per il pianeta</span></div>
+   ${levaSlider()}
+   ${levaToggle('Docce','docce',[['brevi','brevi','eco'],['lunghe','lunghe','']],'Docce brevi: meno acqua calda da scaldare col gas.')}
+   ${levaToggle('Lampadine','luci',[['led','a LED','eco'],['vecchie','vecchie','']],'Le LED consumano fino a 5 volte meno.')}
+   ${levaToggle('Stand-by','standby',[['spento','spengo tutto','eco'],['acceso','lascio acceso','']],'Gli apparecchi consumano anche da «spenti».')}
+   ${levaToggle('Spesa','spesa',[['discount','prodotti base','eco'],['marca','sempre di marca','']],'Le marche del supermercato costano meno, a pari qualità.')}
+   ${levaToggle('Lavatrice','lavatrice',[['eco','piena e in eco','eco'],['normale','quando capita','']],'A pieno carico e in eco gira meno.')}
+
+   <div class="sim-gruppo persone">Scelte sulle persone <span>— qui risparmi togliendo qualcosa a qualcuno: con prudenza</span></div>
+   ${levaToggle('Auto della famiglia','secondaAuto',[[false,'una sola','eco'],[true,'due auto','']],'Con due auto si fa prima, ma la seconda costa benzina, bollo e assicurazione.')}
+   ${levaToggle('Pallavolo di Anna','sportAnna',[[true,'sì'],[false,'la togliamo']],'Lo sport di un figlio non è uno spreco: è crescita. Toglierlo si sente.')}
+   ${levaToggle('Calcio di Matteo','calcioMatteo',[[true,'sì'],[false,'lo togliamo']],'Per molti ragazzi lo sport è lo spazio tutto loro.')}
+   ${levaToggle('Mensa di Davide','mensaDavide',[[true,'mensa'],[false,'pranza dai nonni']],'Se i nonni possono tenerlo a pranzo si risparmia, ma non sempre è possibile.')}
+   ${levaToggle('Materna di Sofia','sofiaTempo',[['ridotto','part-time','eco'],['pieno','tempo pieno']],'Il tempo ridotto costa meno, ma vuol dire che qualcuno deve esserci alle 13.')}
+  `;
+}
+
+function vociCasa(c,base){
+  const row=(k,lbl,v,b)=>`<div class="bil-voce ${v!==b?'mod':''}"><span>${lbl}</span><span>${v} €</span></div>`;
+  return row('affitto','Affitto',c.affitto,420)+row('gas','Gas',c.gas,210)+row('luce','Luce',c.luce,65)+row('acqua','Acqua',c.acqua,30)+row('internet','Internet',c.internet,45)+row('spesa','Spesa',c.spesa,540);
+}
+function vociMembri(m){
+  const base={antonio:160,roberta:35,anna:70,matteo:55,davide:75,sofia:90};
+  const row=(lbl,v,b)=>`<div class="bil-voce ${v!==b?'mod':''}"><span>${lbl}</span><span>${v} €</span></div>`;
+  return row('Antonio · auto',m.antonio,160)+row('Roberta · trasporti',m.roberta,35)+row('Anna · scuola, sport',m.anna,70)+row('Matteo · scuola, sport',m.matteo,55)+row('Davide · scuola, mensa',m.davide,75)+row('Sofia · materna',m.sofia,90);
 }
 function aggiornaSim(){
   const r=calcolaSim();
+  const st=statoConti(r.resta);
   const alberi=Math.max(0,Math.round(r.co2pct/12));
+  const notaPersone=r.tagliPersone>0?`<div class="sim-warn">Di questo margine, <strong>${r.tagliPersone} €</strong> arrivano da tagli sulle persone (sport, mensa, materna). A volte è necessario — ma è l'ultima cosa da toccare, non la prima.</div>`:'';
   $('#simEsito').innerHTML=`
-   <h3>Cosa succede ai soldi</h3>
-   <div class="sim-cat-step"><span>Bolletta gas</span><span class="v">${r.gas} €</span></div>
-   <div class="sim-cat-step"><span>Bolletta luce</span><span class="v">${r.luce} €</span></div>
-   <div class="sim-cat-step"><span>Spesa</span><span class="v">${r.spesa} €</span></div>
-   <div class="sim-cat-step"><span>Trasporti</span><span class="v">${r.trasp} €</span></div>
-   <div class="sim-cat-step"><span>In tutto, al mese</span><span class="v">${r.uscite} €</span></div>
-   <div class="sim-risparmio"><div class="big">${r.risparmio} €<span style="font-size:1rem"> / mese</span></div><div class="lbl">risparmiati rispetto a una casa che spreca tutto</div></div>
-   <div class="sim-attivita">${attivitaPer(r.risparmio)}</div>
+   <h3>Il bilancio del mese, in casa Ricci</h3>
+   <div class="bil-entrate"><span>Entrate (2 stipendi)</span><span>+ ${SIM_ENTRATE} €</span></div>
+   <div class="bil-sez">Spese di casa <span>− ${r.totCasa} €</span></div>
+   <div class="bil-voci">${vociCasa(r.casa)}</div>
+   <div class="bil-sez">Spese per ciascuno <span>− ${r.totMembri} €</span></div>
+   <div class="bil-voci">${vociMembri(r.membri)}</div>
+   <div class="bil-resta ${st.cls}"><span class="lbl">Resta a fine mese</span><span class="val">${r.resta} €</span></div>
+   <div class="sim-stato ${st.cls}">${st.txt}</div>
+   <div class="sim-attivita">${attivitaPer(r.resta)}</div>
+   ${notaPersone}
    <div class="sim-ambiente"><div class="sim-co2bar"><div class="sim-co2fill" style="width:${r.co2pct}%"></div></div></div>
-   <div class="sim-pianeta">Più risparmi, meno consumi, meno inquini: con queste scelte è come piantare <strong>${alberi} alber${alberi===1?'o':'i'}</strong> all'anno. Le scelte buone per il portafoglio, qui, sono spesso anche quelle buone per il pianeta.</div>
+   <div class="sim-pianeta">Solo con le abitudini di casa, senza togliere niente a nessuno, è come piantare <strong>${alberi} alber${alberi===1?'o':'i'}</strong> all'anno. Le scelte buone per il portafoglio, qui, sono spesso le stesse buone per il pianeta.</div>
+   <div class="sim-link">Questo è il bilancio vero della famiglia che hai conosciuto: lo stesso gas da 420 € a bimestre dell'episodio 1, lo stesso affitto. Le tue scelte qui lo cambiano davvero.</div>
   `;
+  // area azione: solo se sei in partita
+  const az=$('#simAzione');
+  if(STATE.figlioId){
+    az.innerHTML=`<button class="btn lg verde" onclick="proponiAllaFamiglia()">Porta queste proposte alla famiglia →</button><div id="simReazione"></div>`;
+  } else {
+    az.innerHTML=`<p class="sim-libero">Stai esplorando il simulatore liberamente. Durante una partita, qui potrai <em>portare le tue proposte alla famiglia</em> e vedere come reagiscono.</p>`;
+  }
+}
+
+function proponiAllaFamiglia(){
+  const r=calcolaSim();
+  STATE.simRisultato={resta:r.resta,tagliPersone:r.tagliPersone,co2pct:r.co2pct,annuo:r.resta*12};
+  const prota=getEpisodio()?getEpisodio().protaNome:'tuo figlio';
+  let reazione;
+  if(r.resta<150){
+    reazione=`Antonio guarda i conti che ${prota} gli ha portato. Sospira, ma sorride. <span class="dialogo">«Hai ragione a provarci, e questi tagli li facciamo davvero. Ma vedi? Anche stringendo, i conti restano stretti. Per quello lavoriamo io e tua madre: perché tu non debba farci questi conti. Però bravo. Pochi alla tua età ci pensano.»</span>`;
+  } else if(r.tagliPersone>0){
+    reazione=`Antonio studia i conti. <span class="dialogo">«Funziona, eccome. Però guarda qui.»</span> Indica con il dito. <span class="dialogo">«Hai tolto il calcio a tuo fratello, o la mensa, per far quadrare. Senti come ragiona questa famiglia: prima si toglie a noi grandi, poi alle comodità, e per ultimo — proprio per ultimo — ai figli. Rimetti quelle voci, e i soldi li troviamo da un'altra parte. D'accordo?»</span>`;
+  } else {
+    reazione=`Antonio guarda il foglio che ${prota} gli ha portato. Lo legge due volte. Poi chiama Roberta. <span class="dialogo">«Vieni a vedere cosa ha messo insieme.»</span> Riscaldamento a venti gradi, una doccia più corta, le lampadine giuste, una spesa più attenta. <span class="dialogo">«Risparmiamo davvero, e senza togliere niente a nessuno. Da domani in questa casa si fa così. E quello che mettiamo via»</span> — guarda ${prota} — <span class="dialogo">«lo decidiamo insieme.»</span>`;
+  }
+  $('#simReazione').innerHTML=`<div class="sim-reazione"><div class="sim-reazione-tag">A tavola, quella sera</div>${reazione}<div class="sim-reazione-ok">Le tue proposte sono state portate in famiglia. Le ritroverai alla fine del mese.</div></div>`;
+  TELE.beat({tipo:'simulatore_proposto',resta:r.resta,tagliPersone:r.tagliPersone});
+  document.getElementById('simReazione').scrollIntoView({behavior:'smooth',block:'center'});
 }
 
 window.addEventListener('DOMContentLoaded',()=>{buildClassi();popolaSlotFamiglia();initVoci()});
@@ -1354,7 +1492,320 @@ const EPISODI={
    cliff:"Quello che è cambiato davvero, però, non si vede sul conto. Si vede in come Matteo e suo padre, adesso, si guardano."
   }
  }
- }}}
+ },
+
+ /* ════════════ ANNA, 16 anni — stessa famiglia, altro sguardo ════════════ */
+ anna:{ 1:{
+  titolo:"Le bollette di gennaio",
+  sub:"La stessa settimana, vista da chi è già grande",
+  insegna:"come è fatta una bolletta, e quanto costa davvero un'uscita con gli amici",
+  protaNome:"Anna", protaEta:16,
+  giorni:[
+   { nome:"Lunedì mattina",
+     beats:[
+      {col:'fam',tipo:'illust',svg:'cucinaMattina'},
+      {col:'fam',tipo:'narr',tag:'In cucina, 7:00',testo:"È arrivata la bolletta del gas. La più cara dell'anno: gennaio, riscaldamento acceso tutto il giorno. Antonio la guarda in silenzio."},
+      {col:'fam',tipo:'bolletta',ente:'GAS · DISTRIBUZIONE',sotto:'Famiglia Ricci',tipo2:'Bimestrale<br>gen–feb',tot:420,totLabel:'Totale',
+        righe:[
+         {voce:'Quota fissa',euro:30,spiega:"<strong>Quota fissa.</strong> La paghi sempre, anche se non accendi il gas. Mantiene tubi e contatore. È come un abbonamento."},
+         {voce:'Gas consumato',euro:280,spiega:"<strong>Gas consumato.</strong> Quanto ne hai bruciato per scaldare casa e acqua. A gennaio è tanto: i termosifoni vanno tutto il giorno."},
+         {voce:'Imposte e accise',euro:50,spiega:"<strong>Imposte e accise.</strong> Tasse che lo Stato mette sul gas. Non vanno all'azienda: vanno allo Stato."},
+         {voce:'IVA (10%)',euro:60,spiega:"<strong>IVA.</strong> Si aggiunge in fondo a quasi ogni acquisto. Sul gas di casa è il 10%."}
+        ]},
+      {col:'fam',tipo:'narr',testo:"Anna, a differenza di Matteo, queste cose le sa già. Le ha imparate guardando i genitori fare i conti, anno dopo anno. Sapere come gira il denaro di casa è il primo, silenzioso modo in cui un figlio diventa grande."},
+
+      {col:'rag',tipo:'illust',svg:'cameraMatteo'},
+      {col:'rag',tipo:'narr',tag:'Anna, già in piedi dalle 6:30',testo:"Anna è la prima a svegliarsi. Sempre. A sedici anni ha già il radar per il tono di voce dei genitori: stamattina è quello dei mesi difficili."},
+      {col:'rag',tipo:'narr',testo:"Ha lei stessa un'interrogazione di fisica oggi, e ha studiato fino a tardi. Ma sa che Matteo ha la verifica di matematica e che di sicuro non ha aperto libro."},
+      {col:'rag',tipo:'narr',testo:"Si ferma davanti alla porta del fratello. Se entra ad aiutarlo, perde il ripasso suo dell'ultimo minuto. Se tira dritto, Matteo va incontro a un'altra insufficienza — e a un'altra cena pesante."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a1_fratello',
+        intro:"Nessuno le ha chiesto di occuparsi di Matteo. Se lo è preso da sola, quel ruolo, da quando è la più grande. Ma oggi ha bisogno anche lei del suo tempo.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Aiutare Matteo, rinunciando al ripasso.",eff:{cura:5,fiducia_anna:4,legami:3,studio:-2},conseguenza:"Anna entra, apre il libro di Matteo, gli fa ripassare le equazioni in cinque minuti. Lui non lo dirà mai, ma quel gesto se lo ricorderà da grande. Anna va alla sua interrogazione un po' meno pronta. Andrà bene lo stesso: le cose che sai per davvero non te le toglie la fretta."},
+         {label:"Pensare alla propria interrogazione.",eff:{autonomia:4,studio:2,cura:-1},conseguenza:"Anna decide che oggi, per una volta, viene prima lei. Ripassa fisica in cucina. Matteo se la caverà da solo, o non se la caverà: ha tredici anni, è ora che impari. Non è egoismo. È anche giusto che la grande, ogni tanto, scelga sé stessa."},
+         {label:"Svegliare la mamma perché ci pensi lei.",eff:{relazioni:-1,autonomia:-1},conseguenza:"Anna va a chiamare la madre. Ma Roberta sta già preparando la colazione per sei persone, con Sofia tra le gambe. Le lancia uno sguardo stanco: «Anna, ci pensi tu?». E così, ancora una volta, il problema torna ad Anna. In una famiglia numerosa, i grandi crescono prima."},
+         {label:"Lasciare un biglietto con gli esercizi.",eff:{cura:3,autonomia:2,fiducia_anna:2},conseguenza:"Anna scrive al volo tre equazioni svolte su un foglio e lo lascia sul cuscino di Matteo. Non è un ripasso, ma è un appiglio. Poi va a studiare la sua fisica. Un piccolo gesto che costa poco e aiuta comunque: a volte la soluzione non è tutto-o-niente."}
+        ]}}
+     ]},
+   { nome:"Martedì",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Quanto "pesa" un\'uscita',
+        righe:[
+         {k:'Biglietto concerto',v:'35 €'},
+         {k:'Treno andata/ritorno',v:'12 €'},
+         {k:'Panino + bibita',v:'8 €'},
+         {k:'In tutto',v:'55 €'}
+        ],nota:"Una serata «da 35 euro» di biglietto, in realtà ne costa 55. Le spese nascoste — trasporto, cibo, gli extra — quasi sempre raddoppiano il prezzo che avevi in testa. Imparare a contarle tutte prima è ciò che distingue chi gestisce i soldi da chi se li ritrova finiti."},
+      {col:'fam',tipo:'narr',testo:"Cinquantacinque euro sono più di un decimo di quello che resta ai Ricci a fine mese. In una famiglia, ogni spesa di uno è una spesa tolta a qualcun altro. Non è una colpa: è solo come funziona una coperta corta."},
+
+      {col:'rag',tipo:'illust',svg:'cortile'},
+      {col:'rag',tipo:'narr',tag:'A scuola, intervallo',testo:"Giada, la sua migliore amica, arriva di corsa: <span class=\"dialogo\">«Anna! Sabato c'è il concerto. Ci andiamo TUTTE. Dimmi che vieni.»</span>"},
+      {col:'rag',tipo:'narr',testo:"Anna vorrebbe esserci. Da morire. Ma ha già fatto il conto in testa — lei i conti li sa fare — e sa che 55 euro, questo mese, a casa non ci sono. E sa che chiederli stasera, dopo la bolletta, sarebbe come chiedere alla mamma di togliere qualcosa a Sofia."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a2_concerto',
+        intro:"Giada aspetta. Dietro di lei, le altre. Anna ha un attimo per decidere chi essere, davanti a tutte.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Dire la verità, semplice.",sub:"«Questo mese non posso. Magari il prossimo.»",eff:{coraggio_civile:5,onesta_pubblica:4,autonomia:3},conseguenza:"Lo dice senza drammi, guardando Giada negli occhi. Nessuna scusa inventata. Giada per un attimo non sa cosa dire, poi: «Va bene. Ti racconto tutto». Dire «non posso permettermelo» a sedici anni, davanti agli altri, è una delle cose più difficili e più adulte che esistano. Anna l'ha appena fatta."},
+         {label:"Inventare una scusa.",sub:"«Ho un impegno di famiglia.»",eff:{coraggio_civile:-3,onesta_pubblica:-2},conseguenza:"La scusa funziona, Giada non insiste. Ma Anna passa la settimana col piccolo peso della bugia, e con la paura che qualcuno scopra che era a casa. Nascondere di avere pochi soldi costa fatica: spesso più della verità."},
+         {label:"Chiedere i soldi ai genitori.",eff:{autonomia:-2,relazioni:-1,bilancio:-55},conseguenza:"La sera Anna chiede. Roberta non dice di no — non direbbe mai di no a una cosa così. Ma Anna vede l'ombra che le passa sul viso mentre fa i conti, e capisce che quei 55 euro verranno tolti da qualche altra parte. Va al concerto, ma non si diverte fino in fondo."},
+         {label:"Decidere di guadagnarseli.",sub:"«Trovo io il modo.»",eff:{autonomia:5,disciplina:3,slancio:2},conseguenza:"Anna dice a Giada: «Vedo se riesco a mettere insieme i soldi per tempo». Non chiede a casa: cerca un modo suo. È la risposta più difficile — e la più libera. Perché i soldi che guadagni te ne danno un altro tipo, di libertà."}
+        ]}}
+     ]},
+   { nome:"Giovedì",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Il lavoro che non si vede',
+        righe:[
+         {k:'Roberta: cassiera',v:'4 h al giorno, pagate'},
+         {k:'Roberta: casa e figli',v:'tante ore, non pagate'},
+         {k:'Valore «di mercato»',v:'enorme, eppure invisibile'}
+        ],nota:"Cucinare, pulire, badare ai figli, tenere insieme una casa: è lavoro vero, faticoso, che vale moltissimo — ma nessuno lo paga e quasi nessuno lo conta. In tante famiglie ricade soprattutto sulle donne, mamme e figlie grandi. Riconoscerlo è il primo passo per dividerlo in modo più giusto."},
+      {col:'fam',tipo:'narr',testo:"Sabato Roberta ha il turno lungo al supermercato. Qualcuno deve stare con Sofia, cinque anni. Quel «qualcuno», in casa Ricci, di solito ha sedici anni e si chiama Anna."},
+
+      {col:'rag',tipo:'narr',tag:'Giovedì sera',testo:"Roberta entra in camera di Anna con la voce di chi sta per chiedere un favore che dà per scontato. <span class=\"dialogo\">«Sabato mattina mi tieni Sofia? Ho il turno fino alle due.»</span>"},
+      {col:'rag',tipo:'narr',testo:"Sabato mattina Anna aveva detto a Giada che forse usciva. È l'unica mattina libera della settimana. E intanto Sofia, dalla porta, la guarda con quegli occhi che sciolgono."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a3_sofia',
+        intro:"Anna ama Sofia. Ma ama anche la sua libertà, e comincia a sentire che essere «la grande» significa rinunciare sempre per prima.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Dire sì, ma parlarne dopo.",sub:"Tenere Sofia, e poi chiarire con la mamma.",eff:{cura:4,coraggio_civile:3,fiducia_madre:4,legami:2},conseguenza:"Anna tiene Sofia. Ma la sera parla con la mamma, con calma: «Mamma, lo faccio volentieri. Però non darlo sempre per scontato. Anche io a volte vorrei il sabato.» Roberta resta zitta, poi annuisce. «Hai ragione. Scusa.» È nato qualcosa di nuovo: una figlia che diventa anche un po' un'alleata."},
+         {label:"Dire sì e basta.",eff:{cura:3,autonomia:-2,energia:-3},conseguenza:"Anna dice sì, senza fiatare, come sempre. Sofia è felice. Ma dentro, Anna sente accumularsi quel peso silenzioso di chi dice sempre sì. Non esplode oggi. Ma le rinunce non dette, prima o poi, qualcuno le conta."},
+         {label:"Dire di no.",sub:"«Mamma, sabato no.»",eff:{autonomia:4,relazioni:-2,cura:-1},conseguenza:"Anna dice no. Roberta resta spiazzata — non se l'aspettava. Trova un'altra soluzione, a fatica. Anna esce con Giada, ma con un velo di colpa. A volte dire no è giusto e necessario. E a volte costa lo stesso. Crescere è imparare a reggere tutti e due i pesi."},
+         {label:"Proporre uno scambio.",sub:"«Sabato sì, ma domenica esco io.»",eff:{autonomia:3,cura:3,fiducia_madre:3},conseguenza:"Anna propone un patto: tiene Sofia sabato, ma domenica la mattina è sua, libera. Roberta ci pensa e accetta. È la soluzione degli adulti: non «sì» o «no», ma un accordo in cui ognuno dà e ognuno riceve. Anna sta imparando a negoziare la propria vita."}
+        ]}}
+     ]},
+   { nome:"Venerdì",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Guadagnare da studenti',
+        righe:[
+         {k:'Ripetizioni',v:'8–12 €/ora'},
+         {k:'Babysitting',v:'6–8 €/ora'},
+         {k:'Piccoli lavori',v:'a ore, saltuari'}
+        ],nota:"A sedici anni si possono già guadagnare piccole somme oneste: aiutare un ragazzino più piccolo nei compiti, fare babysitting, dare una mano a un negozio. Non per «essere ricchi», ma per avere qualcosa di proprio — e per scoprire quanto vale un'ora del proprio tempo."},
+      {col:'fam',tipo:'narr',testo:"In matematica e fisica Anna va forte. È la cosa che, senza che lei ci avesse mai pensato, può trasformarsi in qualche euro: c'è sempre un ragazzino di terza media che arranca con le espressioni."},
+
+      {col:'rag',tipo:'narr',tag:'Venerdì pomeriggio',testo:"La mamma di un ragazzino di terza media, conoscente di Roberta, ha chiesto in giro: cerca qualcuno bravo che dia una mano al figlio con la matematica. Due volte a settimana. Dieci euro l'ora."},
+      {col:'rag',tipo:'narr',testo:"Dieci euro l'ora. Due ore a settimana. Ottanta euro al mese. Anna fa il conto in un lampo: il concerto, e pure quello dopo. Soldi suoi, guadagnati con la testa che ha. Ma sono anche due pomeriggi in meno per studiare e per sé."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a4_lavoro',
+        intro:"È la prima vera occasione di Anna di avere soldi suoi. Ma è anche una responsabilità: un altro che conta su di lei, ogni settimana.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Accettare, e organizzarsi.",eff:{autonomia:5,disciplina:4,slancio:3,legami:2},conseguenza:"Anna dice sì. Si rifà l'orario della settimana per incastrare studio, fratelli e ripetizioni. È stanca, ma per la prima volta i soldi che spenderà saranno suoi, scelti da lei. E scopre una cosa: insegnare ciò che sai è anche il modo migliore per impararlo meglio."},
+         {label:"Accettarne solo una a settimana.",eff:{autonomia:4,disciplina:2,cura:1},conseguenza:"Anna propone una sola volta a settimana, per non sovraccaricarsi. Guadagna meno, ma non sacrifica lo studio né del tutto il tempo libero. Conoscere i propri limiti, e dirli prima, è una forma di intelligenza che pochi hanno a sedici anni."},
+         {label:"Rifiutare, ha già troppo.",eff:{autonomia:2,energia:1},conseguenza:"Anna ci pensa e dice no: tra liceo, fratelli e casa, non ce la fa. È una scelta legittima: aggiungere troppo avrebbe fatto crollare tutto. Ma le resta la curiosità di com'era, avere qualcosa di suo. Tornerà l'occasione."},
+         {label:"Accettare e mettere via i soldi.",eff:{autonomia:4,disciplina:4,cura:2},conseguenza:"Anna accetta, ma decide in partenza: metà di quello che guadagna lo mette da parte. Non per il concerto: per la patente, fra due anni. A sedici anni pensare già a un obiettivo lontano e iniziare a costruirlo, un euro alla volta, è rarissimo. E potentissimo."}
+        ]}}
+     ]}
+  ],
+  fine:{
+   titolo:"Domenica sera",
+   corpo:"Anna ha attraversato la settimana come attraversa sempre tutto: tenendo insieme i pezzi, i suoi e quelli degli altri. Ha imparato che si può dire «non me lo posso permettere» senza vergogna, che si può dire «no» con amore, e che i soldi guadagnati da sé pesano e valgono diversamente da quelli ricevuti.",
+   cliff:"Stasera, mentre lava i piatti, sente suo padre dire piano alla mamma: «Anna è già più grande di quanto vorrei». Non doveva sentirlo. Ma l'ha sentito, e per un attimo non sa se essere fiera o triste. Forse, a sedici anni, le due cose vanno insieme."
+  }
+ }},
+
+ /* ════════════ DAVIDE, 9 anni — lo sguardo del più piccolo ════════════ */
+ davide:{ 1:{
+  titolo:"Le bollette di gennaio",
+  sub:"La stessa settimana, con gli occhi di chi ha nove anni",
+  insegna:"la differenza tra ciò che si vuole e ciò che serve",
+  protaNome:"Davide", protaEta:9,
+  giorni:[
+   { nome:"Lunedì",
+     beats:[
+      {col:'fam',tipo:'illust',svg:'cucinaMattina'},
+      {col:'fam',tipo:'narr',tag:'In cucina',testo:"È arrivata una bolletta cara: quella del gas, che a gennaio costa di più perché il riscaldamento sta acceso tanto. I grandi parlano a voce bassa di soldi."},
+      {col:'fam',tipo:'box',titolo:'Volere o servire?',
+        righe:[
+         {k:'Mi SERVE',v:'cibo, scarpe, libri'},
+         {k:'Lo VOGLIO',v:'il gioco nuovo, le scarpe «giuste»'}
+        ],nota:"Tutti vogliono tante cose. Ma quando i soldi non bastano per tutto, gli adulti scelgono prima ciò che SERVE, poi — se avanza — ciò che si VUOLE. Imparare questa differenza da piccoli è una specie di superpotere: aiuta per tutta la vita."},
+
+      {col:'rag',tipo:'illust',svg:'cortile'},
+      {col:'rag',tipo:'narr',tag:'Davide, in cortile',testo:"A scuola, Leo è arrivato con le scarpe nuove. Quelle con la luce nella suola, che si accende quando cammini. Tutti intorno a guardare."},
+      {col:'rag',tipo:'narr',testo:"Davide le ha viste in vetrina. Costano tanto. Lui ha le scarpe dell'anno scorso, un po' strette ma ancora buone. E stamattina ha sentito papà dire che è un mese difficile."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d1_scarpe',
+        intro:"Leo gli chiede, davanti agli altri: «Tu perché non ce le hai le scarpe con la luce?» Davide sente una piccola fitta.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Dire la verità, tranquillo.",sub:"«Le mie vanno ancora bene.»",eff:{coraggio_civile:4,onesta_pubblica:3,autonomia:2},conseguenza:"Davide guarda le sue scarpe, poi Leo. «Le mie camminano uguale. E non si scaricano.» Lo dice senza tristezza, e qualcuno ride — ma con lui, non di lui. Davide scopre che non serve avere tutto per stare bene tra gli altri. Serve solo non vergognarsi di quello che si è."},
+         {label:"Inventare una bugia.",sub:"«Me le comprano domani.»",eff:{coraggio_civile:-2,onesta_pubblica:-2},conseguenza:"«Me le comprano domani, anche più belle delle tue.» Leo ci crede. Ma domani Davide non avrà le scarpe nuove, e dovrà inventarne un'altra di bugia. Le bugie sulle cose sono come le caramelle: una tira l'altra, e fanno male ai denti."},
+         {label:"Arrabbiarsi.",sub:"Spingere Leo.",eff:{slancio:2,relazioni:-3},conseguenza:"Davide dà uno spintone a Leo. Arriva la maestra. Davide finisce a spiegare perché, e si vergogna più per lo spintone che per le scarpe. La rabbia, quando ci si sente piccoli, è una scorciatoia che porta sempre nel posto sbagliato."},
+         {label:"Andare a casa e chiederle.",eff:{relazioni:-1,bilancio:-60},conseguenza:"La sera Davide chiede le scarpe con la luce. Roberta lo guarda, poi guarda Antonio. C'è un silenzio. Poi la mamma dice piano: «Vediamo il mese prossimo, amore». Davide capisce, da come l'ha detto, che «il mese prossimo» a volte vuol dire un'altra cosa. E decide di non chiederlo più."}
+        ]}}
+     ]},
+   { nome:"Mercoledì",
+     beats:[
+      {col:'fam',tipo:'narr',tag:'I soldi di casa',testo:"In una famiglia di sei persone, ogni euro ha già un posto dove andare: la spesa, l'affitto, le bollette. Anche cinque euro, per la scuola, vanno chiesti al momento giusto."},
+      {col:'fam',tipo:'box',titolo:'Anche i piccoli capiscono',
+        righe:[
+         {k:'Quello che vedi',v:'i grandi preoccupati'},
+         {k:'Quello che puoi fare',v:'non aggiungere pesi'}
+        ],nota:"I bambini capiscono molto più di quanto i grandi pensino. Non possono pagare le bollette, ma possono fare una cosa importante: non trasformare ogni piccolo desiderio in una battaglia. È già un grande aiuto."},
+
+      {col:'rag',tipo:'narr',tag:'Davide, a scuola',testo:"La maestra dice: «Per la gita al museo servono cinque euro, portateli entro venerdì». Cinque euro. Davide pensa subito alla faccia della mamma stamattina."},
+      {col:'rag',tipo:'narr',testo:"Sa che cinque euro non sono tanti. Ma sa anche che, questa settimana, ogni «mamma mi servono dei soldi» fa comparire quella piccola ruga sulla fronte di Roberta."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d2_gita',
+        intro:"La gita gli piacerebbe tanto. Ma non vuole essere un altro peso, proprio adesso.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Chiederli con semplicità, spiegando.",sub:"«Mamma, per la gita. Ma se è difficile, non fa niente.»",eff:{coraggio_civile:4,cura:4,fiducia_madre:5},conseguenza:"Davide lo dice proprio così, aggiungendo da solo «se è difficile non fa niente». Roberta si ferma. Quel bambino di nove anni le ha appena offerto una via d'uscita, per gentilezza. Lei trova i cinque euro all'istante — quel «non fa niente» le ha tolto il peso, invece di aggiungerlo. «Vai alla gita, amore.»"},
+         {label:"Non dire niente e rinunciare.",eff:{cura:2,autonomia:1,relazioni:-1},conseguenza:"Davide non chiede i soldi e dice alla maestra che non viene. Per proteggere la mamma, rinuncia da solo. È un gesto dolce e triste insieme: a nove anni non dovrebbe già fare il grande così. Quando Roberta lo scoprirà, le si stringerà il cuore — e troverà quei cinque euro comunque."},
+         {label:"Chiederli con un capriccio.",sub:"«TUTTI vanno, devo andare!»",eff:{slancio:1,relazioni:-2,fiducia_madre:-2},conseguenza:"Davide fa la voce del capriccio. Roberta sospira, stanca. Trova i cinque euro, ma con fatica e un po' di nervoso. Davide va alla gita, ma non si è accorto di aver reso una piccola cosa più pesante di quanto fosse. I capricci, nei mesi difficili, pesano doppio."},
+         {label:"Chiedere a Anna o Matteo.",eff:{legami:3,cura:1},conseguenza:"Davide va dalla sorella grande: «Anna, mi presti cinque euro per la gita? Non voglio chiederli alla mamma stavolta». Anna lo guarda, sorpresa da quel pensiero così grande in un fratello così piccolo. Glieli dà dai suoi. Tra fratelli, certe volte, ci si tiene su a vicenda."}
+        ]}}
+     ]},
+   { nome:"Venerdì",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'I piccoli gesti contano',
+        righe:[
+         {k:'Spegnere la luce',v:'risparmia un pochino'},
+         {k:'Non sprecare l\'acqua',v:'risparmia un pochino'},
+         {k:'Tanti pochini',v:'fanno un tanto'}
+        ],nota:"Un bambino non può risolvere i problemi di soldi di una famiglia. Ma può imparare i piccoli gesti — spegnere la luce uscendo, non lasciare l'acqua aperta, aver cura delle cose — che messi insieme aiutano davvero. E soprattutto fanno sentire parte della squadra."},
+      {col:'fam',tipo:'narr',testo:"Antonio dice sempre: «In questa casa non ci sono spettatori. Anche il più piccolo è in squadra». Davide quella frase l'ha imparata a memoria, anche se non la capisce ancora del tutto."},
+
+      {col:'rag',tipo:'illust',svg:'cucinaSera'},
+      {col:'rag',tipo:'narr',tag:'Davide, venerdì sera',testo:"Davide ha un salvadanaio. Dentro ci sono otto euro e cinquanta: regali, monetine, un anno di pazienza. È un tesoro, per lui."},
+      {col:'rag',tipo:'narr',testo:"Sente i genitori in cucina parlare della lavatrice che fa uno strano rumore e che «se si rompe sono guai». Davide guarda il suo salvadanaio. Pensa una cosa che gli sembra enorme."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d3_salvadanaio',
+        intro:"Otto euro e cinquanta non aggiustano una lavatrice. Davide non lo sa con certezza, ma lo intuisce. Eppure quel pensiero — aiutare — gli scoppia dentro.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Offrire il salvadanaio, semplicemente.",sub:"«Papà, ho otto euro e cinquanta. Tieni.»",eff:{cura:6,legami:7,coraggio_civile:4,fiducia_padre:5},conseguenza:"Davide arriva in cucina col salvadanaio stretto al petto e lo posa sul tavolo. «Per la lavatrice.» Antonio e Roberta si guardano. Antonio si inginocchia davanti a lui: «Davide, questo è il regalo più grande che ho ricevuto quest'anno. Ma questi sono tuoi. A papà e mamma basta che tu voglia aiutare. Quello vale più di otto euro e cinquanta.» Quella sera, in casa Ricci, qualcosa scalda più del riscaldamento."},
+         {label:"Tenere il tesoro per sé.",eff:{autonomia:2},conseguenza:"Davide guarda il salvadanaio, poi lo rimette sullo scaffale. In fondo è suo, ci ha messo un anno. Non c'è niente di male: un bambino ha diritto al suo piccolo tesoro. Ma quel pensiero — «potevo aiutare» — gli resta addosso, gentile, come un seme."},
+         {label:"Chiedere ai grandi se servono.",sub:"«Servono i miei soldi?»",eff:{cura:3,coraggio_civile:2,fiducia_padre:3},conseguenza:"Davide chiede, timido, dalla porta della cucina. Roberta lo abbraccia: «No tesoro, ci pensiamo noi. Ma che pensiero gentile». Davide torna in camera leggero: ha offerto, gli hanno detto di no, e va bene così. A volte conta più il chiedere che il dare."},
+         {label:"Promettere di non spendere più nulla.",eff:{cura:3,disciplina:2,legami:2},conseguenza:"Davide annuncia solenne: «Da oggi non chiedo più niente, così risparmiamo!». Antonio sorride: «Bravo. Ma tu devi anche essere un bambino, Davide. Aiuti già solo capendo». Una promessa troppo grande per un cuore piccolo — ma fatta col cuore giusto."}
+        ]}}
+     ]}
+  ],
+  fine:{
+   titolo:"Sabato mattina",
+   corpo:"Davide ha nove anni e questa settimana ha capito cose che molti grandi non capiscono: che si può stare bene anche senza le scarpe con la luce, che chiedere al momento giusto è un modo di voler bene, e che anche il più piccolo della casa fa parte della squadra.",
+   cliff:"Sul suo salvadanaio, adesso, Davide ha disegnato a pennarello una piccola lavatrice. «Per le emergenze», ha spiegato a Sofia, serissimo. Sofia non ha capito. Ma ha annuito lo stesso, perché Davide, per lei, sa sempre le cose."
+  }
+ }}
+ }},
+
+ /* ════════════════ MANCINI & DE LUCA — Bianca, tra due case ════════════════ */
+ mancinideluca:{ 1:{ bianca:{ 1:{
+  titolo:"La settimana della valigia",
+  sub:"Una settimana qualunque, tra la casa della mamma e quella del papà",
+  insegna:"come funziona, in soldi e in affetti, una famiglia separata",
+  protaNome:"Bianca", protaEta:12,
+  giorni:[
+   { nome:"Domenica sera — il cambio",
+     beats:[
+      {col:'fam',tipo:'illust',svg:'duecase'},
+      {col:'fam',tipo:'narr',tag:'Due case, una figlia',testo:"Quando due genitori si separano, una famiglia che stava in una casa si divide in due. E due case costano più di una: due affitti, due letti, due frigoriferi, due di quasi tutto."},
+      {col:'fam',tipo:'box',titolo:'Quanto costa vivere in due case',
+        righe:[
+         {k:'Affitto casa mamma',v:'600 €'},
+         {k:'Affitto casa papà',v:'550 €'},
+         {k:'Prima, insieme',v:'una sola casa'}
+        ],nota:"Separarsi, oltre che doloroso, è caro: dove prima bastava un affitto, ora ne servono due. Per questo, anche quando i genitori non vivono più insieme, devono comunque mettersi d'accordo sui soldi del figlio. Non è più amore: è collaborazione. E non sempre è facile."},
+      {col:'fam',tipo:'narr',testo:"Bianca ha due camerette, in due case diverse. Sembra fortuna — «due di tutto!» — ma chi vive così sa che è anche fatica: ricordarsi dove hai lasciato cosa, non sentirsi mai del tutto «a casa» da nessuna parte."},
+
+      {col:'rag',tipo:'narr',tag:'Bianca, la valigia',testo:"Domenica sera. Bianca chiude la valigia: stanotte si cambia casa, da mamma a papà. Lo fa ogni settimana, con la precisione di chi l'ha fatto cento volte."},
+      {col:'rag',tipo:'narr',testo:"Sulla porta, la mamma le sistema il colletto e dice, con la voce un po' troppo tranquilla: <span class=\"dialogo\">«Ricordati di dire a tuo padre che mi deve la sua metà del dentista. Centonovanta euro. Glielo dici tu?»</span>"},
+      {col:'rag',tipo:'narr',testo:"Bianca conosce questa scena. È quella in cui lei diventa il filo del telefono tra due persone che non vogliono parlarsi. E ogni volta, dentro, le si stringe qualcosa."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'b_messaggera',
+        intro:"La mamma non sta facendo niente di terribile: ha davvero diritto a quei soldi. Ma chiederlo <em>tramite Bianca</em> mette la figlia in mezzo a una cosa da grandi.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Dirlo con gentilezza, ma una volta sola.",sub:"E chiedere che la prossima volta si scrivano.",eff:{coraggio_civile:5,autonomia:4,fiducia_madre:3},conseguenza:"Bianca lo riferirà al papà, ma poi dice alla mamma, piano: <span class=\"dialogo\">«Mamma, te lo dico stavolta. Ma la prossima scrivetevi un messaggio voi due, per i soldi. Io non sono brava a fare questo.»</span> La mamma la guarda, sorpresa. Poi annuisce, e c'è quasi vergogna nel suo «hai ragione». Bianca ha appena messo un piccolo confine, con dolcezza. È una cosa che molti adulti non sanno fare."},
+         {label:"Rifiutare di fare la messaggera.",sub:"«Mamma, scrivetelo voi.»",eff:{autonomia:5,coraggio_civile:3,relazioni:-1},conseguenza:"<span class=\"dialogo\">«Non glielo dico io. Sono cose vostre.»</span> La mamma resta male per un attimo, ma è un male sano. Bianca ha ragione: i soldi tra i genitori non dovrebbero passare dalla bocca di una figlia di dodici anni. A volte un «no» è la cosa più sana che puoi dire a chi ami."},
+         {label:"Dirlo, senza fare storie.",eff:{cura:2,fiducia_madre:1,autonomia:-1},conseguenza:"Bianca dice «va bene, mamma» e lo riferirà. È quello che fa sempre, per tenere tutto liscio. Funziona, oggi. Ma ogni volta che fa la messaggera, si carica un pezzettino di un peso che non è suo. Quei pezzetti, col tempo, diventano pesanti."},
+         {label:"Proporre di parlarne tutti insieme.",eff:{coraggio_civile:4,cura:3,legami:3},conseguenza:"<span class=\"dialogo\">«Mamma, perché non ci sediamo una volta tutti e tre a dirci le cose dei soldi?»</span> La mamma sospira: <span class=\"dialogo\">«Magari, amore. Ci proviamo.»</span> Forse non succederà presto. Ma Bianca ha detto ad alta voce il suo desiderio più grande: che i suoi genitori, almeno per le cose che la riguardano, tornino a parlarsi."}
+        ]}}
+     ]},
+   { nome:"Martedì — il libro dimenticato",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Il mantenimento',
+        righe:[
+         {k:'Cos\'è',v:'soldi per le spese del figlio'},
+         {k:'Chi lo versa',v:'di solito un genitore all\'altro'},
+         {k:'A cosa serve',v:'cibo, vestiti, scuola di Bianca'}
+        ],nota:"Quando i genitori si separano, un giudice stabilisce chi tiene il figlio e quanto ciascuno deve contribuire. Spesso un genitore versa all'altro un <em>assegno di mantenimento</em> ogni mese. Non è «pagare» il figlio: è dividersi il costo di farlo crescere, anche stando in due case."},
+      {col:'fam',tipo:'narr',testo:"I genitori di Bianca guadagnano più o meno uguale, e se la dividono quasi a metà. Ma «metà» va deciso, scritto, rispettato. È la parte noiosa e necessaria dell'amore che finisce: trasformarlo in accordi."},
+
+      {col:'rag',tipo:'illust',svg:'cameraMatteo'},
+      {col:'rag',tipo:'narr',tag:'Bianca, mercoledì mattina',testo:"Disastro. Il libro di matematica è rimasto a casa della mamma, e questa è la settimana del papà. Bianca se ne accorge alle 7:15, con lo scuolabus tra venti minuti."},
+      {col:'rag',tipo:'narr',testo:"È il prezzo nascosto della doppia vita: metà delle tue cose è sempre nell'altra casa. E i due genitori, quando si tratta di rimediare ai pasticci, tendono a darsi la colpa a vicenda — col solito sorriso gelido."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'b_libro',
+        intro:"Bianca potrebbe chiamare la mamma e scatenare l'ennesimo «tuo padre doveva controllare lo zaino». Oppure gestirla da sé.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Risolverla da sola.",sub:"Chiede il libro a una compagna per oggi.",eff:{autonomia:5,coraggio_civile:3,disciplina:2},conseguenza:"Bianca manda un messaggio a Sara: <span class=\"dialogo\">«Mi fai vedere il tuo a matematica? Ho lasciato il mio dall'altra parte.»</span> Risolto, senza tirare in mezzo nessuno. Imparare a tappare da soli i buchi della doppia casa è una delle competenze segrete dei figli di separati."},
+         {label:"Chiamare la mamma con calma.",sub:"Solo per il libro, senza accuse.",eff:{cura:2,autonomia:2,fiducia_madre:2},conseguenza:"Bianca chiama: <span class=\"dialogo\">«Mamma, ho scordato il libro. Me lo tieni che lo prendo sabato? Per oggi mi arrangio.»</span> Niente drammi, niente colpe. La mamma, abituata alle telefonate-accusa, resta spiazzata dalla semplicità. A volte i figli insegnano ai grandi come si fa."},
+         {label:"Chiamare il papà nel panico.",eff:{relazioni:-1,energia:-2},conseguenza:"Bianca chiama il papà in lacrime. Lui, per «risolvere», scrive un messaggio velenoso alla mamma. Parte la solita guerra fredda via chat, per un libro di matematica. Bianca arriva a scuola con lo stomaco chiuso. Trasformare un piccolo problema in una battaglia: è la trappola in cui i grandi cadono sempre."},
+         {label:"Lasciar perdere e prendersi la nota.",eff:{autonomia:-1,disciplina:-2},conseguenza:"Bianca decide di non fare niente e si prende la nota per il libro mancante. È più facile, oggi. Ma rinunciare a risolvere i problemi — anche piccoli — è un'abitudine che costa cara. I problemi non spariscono: si accumulano."}
+        ]}}
+     ]},
+   { nome:"Giovedì — il regalo",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Le spese straordinarie',
+        righe:[
+         {k:'Dentista (apparecchio)',v:'400 € → 200 a testa'},
+         {k:'Gita scolastica',v:'80 € → 40 a testa'},
+         {k:'Sport (un anno)',v:'300 € → 150 a testa'}
+        ],nota:"Oltre alle spese di tutti i giorni, ci sono quelle grandi e impreviste: il dentista, gli occhiali, la gita, lo sport. Per legge, di solito, i genitori separati le dividono <strong>a metà</strong>. Ma «a metà» richiede che si parlino e si accordino. Quando non lo fanno, in mezzo ci finisce il figlio."},
+      {col:'fam',tipo:'narr',testo:"E poi c'è una tentazione, in cui cascano tanti genitori separati: comprare l'affetto. Fare il regalo più bello dell'altro, per sentirsi «il genitore preferito». Sembra amore. Spesso è solo gara."},
+
+      {col:'rag',tipo:'illust',svg:'duecase'},
+      {col:'rag',tipo:'narr',tag:'Bianca, da papà',testo:"Il papà arriva a casa con un pacchetto. Dentro c'è l'ultimo modello di smartphone, quello costoso, quello che la mamma aveva detto «assolutamente no, sei troppo piccola»."},
+      {col:'rag',tipo:'narr',testo:"<span class=\"dialogo\">«Così quando sei dalla mamma ci sentiamo quando vuoi»</span>, dice il papà, raggiante. Bianca capisce due cose insieme: che è bellissimo, quel telefono. E che il papà gliel'ha preso anche un po' <em>contro</em> la mamma."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'b_regalo',
+        intro:"Bianca lo vuole, quel telefono — da morire. Ma sente che accettarlo così la trascina dentro una gara tra i suoi genitori.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Dirlo onestamente al papà.",sub:"«Papà, la mamma aveva detto no.»",eff:{coraggio_civile:6,onesta_pubblica:4,fiducia_madre:4,cura:2},conseguenza:"<span class=\"dialogo\">«Papà, mi piace tantissimo. Ma la mamma aveva detto no, e se lo accetto solo da te poi litigate.»</span> Il papà resta in silenzio. Forse ci era cascato anche lui, nella gara. <span class=\"dialogo\">«Hai ragione. Lo decidiamo insieme, io e lei. Hai più giudizio tu di noi due.»</span> Bianca ha rifiutato di essere il premio di una competizione."},
+         {label:"Accettarlo, ma proporre di dirlo alla mamma.",eff:{cura:3,coraggio_civile:3,legami:2},conseguenza:"Bianca abbraccia il papà, ma aggiunge: <span class=\"dialogo\">«Lo dico alla mamma, però. Non voglio nasconderlo.»</span> Il papà esita, poi annuisce. La trasparenza disinnesca la gara: un regalo fatto alla luce del sole non è più un'arma contro l'altro genitore."},
+         {label:"Accettarlo e tenerlo segreto.",eff:{onesta_pubblica:-3,fiducia_madre:-3,relazioni:-1},conseguenza:"Bianca prende il telefono e decide di non dirlo alla mamma. Per due settimane vive col terrore che lo scopra. Quando succede — e succede sempre — la mamma non si arrabbia con lei, ma col papà. E Bianca si sente in colpa per una guerra che non ha cominciato lei."},
+         {label:"Rifiutarlo del tutto.",sub:"«Non lo voglio, se vi fa litigare.»",eff:{autonomia:4,cura:3,coraggio_civile:3},conseguenza:"<span class=\"dialogo\">«Papà, tienilo tu per ora. Non voglio una cosa che vi fa litigare.»</span> Il papà ci resta male, ma capisce. È una rinuncia grande, per una dodicenne. Forse troppo grande: a volte i figli di separati si caricano del compito di «tenere la pace», e si dimenticano di essere bambini."}
+        ]}}
+     ]},
+   { nome:"Sabato — la gita",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Il bilancio di Bianca, tra due case',
+        righe:[
+         {k:'Spese quotidiane',v:'le paga chi la ospita'},
+         {k:'Spese grandi',v:'divise a metà'},
+         {k:'Decisioni',v:'da prendere insieme'}
+        ],nota:"La vita di Bianca, in soldi, è un accordo continuo tra due persone che non si amano più ma che le vogliono bene tutte e due. Funziona quando i genitori riescono a separare le due cose: il loro rapporto finito, e il loro essere ancora — per sempre — i genitori della stessa figlia."},
+      {col:'fam',tipo:'narr',testo:"La cosa più difficile, per due separati, è proprio questa: smettere di essere una coppia senza smettere di essere una squadra. Pochi ci riescono subito. Alcuni, col tempo, imparano."},
+
+      {col:'rag',tipo:'illust',svg:'aula'},
+      {col:'rag',tipo:'narr',tag:'Bianca, la circolare della gita',testo:"Arriva la circolare: gita di tre giorni a Firenze, 180 euro. Bianca la vuole tantissimo: ci vanno tutti i suoi amici. Ma 180 euro è una «spesa grande», di quelle da dividere — e da litigarci sopra."},
+      {col:'rag',tipo:'narr',testo:"Quella sera, sul suo telefono, vede partire i messaggi tra i genitori. «Pagala tu che questo mese sei messo meglio.» «Avevamo detto metà.» «Sempre i soldi con te.» Bianca guarda lo schermo e vorrebbe solo andare a Firenze con le amiche."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'b_gita',
+        intro:"I genitori stanno trasformando la sua gita in un'altra battaglia. Bianca ha imparato che può starne fuori — o provare a cambiare le cose.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Scrivere a entrambi, insieme.",sub:"Un messaggio chiaro a mamma e papà.",eff:{coraggio_civile:6,autonomia:5,legami:4,cura:3},conseguenza:"Bianca crea un gruppo coi due genitori e scrive: <span class=\"dialogo\">«Io vorrei tanto andare a Firenze. So che costa. Potete dividere come l'altra volta? Non litigate per la mia gita, per favore.»</span> Silenzio. Poi la mamma: «Ok». Poi il papà: «Ok, metà». A volte basta che a ricordare agli adulti come si fa sia proprio chi hanno messo in mezzo."},
+         {label:"Parlarne a voce col genitore con cui è.",eff:{coraggio_civile:4,cura:2,autonomia:2},conseguenza:"Bianca affronta il papà di persona: <span class=\"dialogo\">«Papà, ne parlo con te perché sono qui. Trovate un accordo, per favore? È solo una gita.»</span> Il papà, guardandola in faccia invece che leggere uno schermo, si ammorbidisce. Le cose dette guardandosi negli occhi sono più difficili da trasformare in guerra."},
+         {label:"Rinunciare alla gita per non far litigare.",eff:{cura:2,autonomia:-2,energia:-3},conseguenza:"Bianca dice che non le interessa andare. È una bugia: le interessa moltissimo. Ma preferisce rinunciare piuttosto che essere il motivo di un litigio. È un gesto dolce e sbagliato insieme: i suoi desideri contano, e cancellarli per tenere la pace non è una pace vera."},
+         {label:"Lasciare che litighino.",eff:{relazioni:-2,energia:-2},conseguenza:"Bianca chiude il telefono e cerca di non pensarci. I genitori litigheranno, poi qualcuno pagherà, e lei alla gita ci andrà comunque. Ma quella sera si addormenta con la sensazione di essere, ancora una volta, il campo di battaglia di una guerra che non ha scelto."}
+        ]}}
+     ]}
+  ],
+  fine:{
+   titolo:"Domenica — di nuovo la valigia",
+   corpo:"Un'altra settimana è passata, tra le due case. Bianca ha imparato — di nuovo, un po' di più — la cosa più difficile della sua vita doppia: che può voler bene a tutti e due i suoi genitori senza diventare il filo del telefono tra loro, senza essere il premio di una gara, senza fare da campo di battaglia.",
+   cliff:"Mentre richiude la valigia per tornare dalla mamma, Bianca pensa una cosa che non ha mai detto a nessuno: che la casa, per lei, non è né quella del papà né quella della mamma. La sua casa è dove riesce a essere semplicemente una ragazza di dodici anni. E quei momenti, piano piano, sta imparando a costruirseli da sola."
+  }
+ }}}}
 };
 </script>
 
