@@ -275,9 +275,13 @@ tr.clickable{cursor:pointer}
 
 const ENDPOINT = 'https://script.google.com/macros/s/AKfycbwRWrMZ80zUtbko-8acWM_zikgaUieBIKvT3Tc3vWY7Z0dWZolaK8KOXJY0Nv7uy_QDcg/exec';
 
-// In versione PLAIN niente password: si entra subito.
-// Quando Andrea cripta col cripto-password.html, questo file viene rimpiazzato dallo shell criptato.
-const LOGIN_DISABILITATO = true;
+// ═══ GATE AES-256-GCM ═══
+// Il blob qui sotto contiene, cifrato con la password docente, il token di lettura.
+// Senza la password corretta non si ottiene il token, e senza token l'Apps Script
+// rifiuta di restituire i dati. Per cambiare password/token: usa cripto-familydash-dashboard.html
+// PASSWORD DI DEFAULT: sacrafamiglia26  ·  CAMBIALA appena testato.
+const AUTH_BLOB = 'ivcczCyCOnRxl0GpJbyrgX66gyY6JjoYCOI94fnwuYoPKUHPKH4GT9OZAJ1gsIyuHQ+/B/f1HjH2V0Xr9eGEk4ui78iMiqjXdZ6wwQBHJJwdIQZysL4QwUMHcpY=';
+let AUTH_TOKEN = null;  // riempito dopo login riuscito
 
 const MATERIE_NOMI={ITA:'Italiano',MAT:'Matematica',ING:'Inglese',SCI:'Scienze',STO:'Storia/Geo',TEC:'Tecnologia',MOT:'Motoria',ARTE:'Arte/Musica'};
 const MATERIE_IDS=['ITA','MAT','ING','SCI','STO','TEC','MOT','ARTE'];
@@ -293,6 +297,7 @@ function jsonp(sheet, params){
     window[cbName]=function(data){clearTimeout(timeout);cleanup();resolve(data)};
     const cleanup=()=>{delete window[cbName];if(s.parentNode)s.parentNode.removeChild(s)};
     const qs=['action=read','sheet='+encodeURIComponent(sheet),'callback='+cbName];
+    if(AUTH_TOKEN) qs.push('token='+encodeURIComponent(AUTH_TOKEN));
     if(params && params.classe) qs.push('classe='+encodeURIComponent(params.classe));
     if(params && params.limit) qs.push('limit='+params.limit);
     const s=document.createElement('script');
@@ -672,11 +677,35 @@ function setupTabs(){
 
 function nomeMese(n){const mm=['','Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];return mm[Number(n)]||n}
 
-/* ═══ LOGIN PLAIN (in versione cifrata viene rimpiazzato dallo shell) ═══ */
-function tentaLogin(){
-  if(LOGIN_DISABILITATO){entra();return}
-  // Placeholder: in versione AES, il decifratore vive nello shell esterno
-  document.getElementById('loginErr').textContent='Versione PLAIN: nessuna password. Premi Entra.';
+/* ═══ LOGIN AES-256-GCM ═══ */
+async function decifraBlob(password, blobB64){
+  const enc=new TextEncoder(), dec=new TextDecoder();
+  const blob=Uint8Array.from(atob(blobB64), c=>c.charCodeAt(0));
+  const salt=blob.slice(0,16), iv=blob.slice(16,28), ct=blob.slice(28);
+  const km=await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+  const key=await crypto.subtle.deriveKey(
+    {name:'PBKDF2', salt, iterations:150000, hash:'SHA-256'},
+    km, {name:'AES-GCM', length:256}, false, ['decrypt']
+  );
+  const pt=await crypto.subtle.decrypt({name:'AES-GCM', iv}, key, ct);  // lancia se password errata
+  return dec.decode(pt);
+}
+
+async function tentaLogin(){
+  const pw=document.getElementById('loginPin').value.trim();
+  const errEl=document.getElementById('loginErr');
+  if(!pw){errEl.textContent='Inserisci la password.';return}
+  errEl.innerHTML='<span class="loader"></span> verifico…';
+  try{
+    const plain=await decifraBlob(pw, AUTH_BLOB);
+    const data=JSON.parse(plain);
+    if(data.check!=='FAMILYDASH_OK') throw new Error('check');
+    AUTH_TOKEN=data.token;
+    entra();
+  }catch(e){
+    errEl.textContent='Password errata.';
+    document.getElementById('loginPin').value='';
+  }
 }
 function entra(){
   document.getElementById('loginOverlay').style.display='none';
@@ -687,13 +716,7 @@ function entra(){
 document.getElementById('loginPin').addEventListener('keypress',e=>{if(e.key==='Enter')tentaLogin()});
 
 window.addEventListener('DOMContentLoaded',()=>{
-  // In versione plain: niente login, entra subito
-  if(LOGIN_DISABILITATO){
-    document.getElementById('loginOverlay').style.display='none';
-    document.getElementById('dashboard').style.display='block';
-    setupTabs();
-    caricaTutto();
-  }
+  document.getElementById('loginPin').focus();
 });
 </script>
 </body></html>
