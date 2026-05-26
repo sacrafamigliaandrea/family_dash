@@ -719,7 +719,7 @@ function renderBeat(b){
   wrap.className='beat highlight';
   if(b.tipo==='illust'){
     const cover=FAMIGLIE[STATE.famigliaId] && FAMIGLIE[STATE.famigliaId].img;
-    const usaCover = cover && STATE.giornoIdx===0 && STATE.beatIdx===0;
+    const usaCover = cover && STATE.episodioCorr===1 && STATE.giornoIdx===0 && STATE.beatIdx===0;
     if(b.img || usaCover){
       const src=b.img||cover;
       wrap.innerHTML=`<div class="illust foto"><img src="${src}" alt="" loading="lazy" onerror="imgFallback(this,'${b.svg||''}')"></div>`;
@@ -1641,7 +1641,263 @@ const EPISODI={
    corpo:"Anna ha attraversato la settimana come attraversa sempre tutto: tenendo insieme i pezzi, i suoi e quelli degli altri. Ha imparato che si può dire «non me lo posso permettere» senza vergogna, che si può dire «no» con amore, e che i soldi guadagnati da sé pesano e valgono diversamente da quelli ricevuti.",
    cliff:"Stasera, mentre lava i piatti, sente suo padre dire piano alla mamma: «Anna è già più grande di quanto vorrei». Non doveva sentirlo. Ma l'ha sentito, e per un attimo non sa se essere fiera o triste. Forse, a sedici anni, le due cose vanno insieme."
   }
- }},
+ },
+
+ 2:{
+  titolo:"Quanto vale un'ora",
+  sub:"Anna comincia a dare ripetizioni, e scopre quanto pesa il proprio tempo",
+  insegna:"come si dà valore al proprio lavoro e perché un impegno preso va onorato",
+  protaNome:"Anna", protaEta:16,
+  giorni:[
+   { nome:"Lunedì — quanto chiedere",
+     beats:[
+      {col:'fam',tipo:'illust',svg:'cameraMatteo'},
+      {col:'fam',tipo:'narr',tag:'La prima ripetizione',testo:"La mamma di Luca, un ragazzino di terza media che annega in matematica, ha chiamato: due pomeriggi a settimana. Alla fine fa la domanda che spiazza Anna: «Quanto vuoi, cara?»."},
+      {col:'fam',tipo:'box',titolo:'Quanto vale un\'ora del tuo lavoro',
+        righe:[
+         {k:'Troppo poco',v:'svaluti te stessa'},
+         {k:'Troppo',v:'nessuno ti chiama'},
+         {k:'Il giusto',v:'quanto vale, lì, quel lavoro'}
+        ],nota:"Dare un prezzo al proprio lavoro è difficile, soprattutto la prima volta. Chiedere troppo poco — per timidezza, per «non sembrare avida» — è un errore comune, specie tra le ragazze. Il tuo tempo e le tue competenze valgono: riconoscerlo non è arroganza, è rispetto per te stessa."},
+      {col:'fam',tipo:'narr',testo:"Per le ripetizioni di matematica, in zona, si va dagli 8 ai 12 euro l'ora. Anna lo sa. La domanda vera non è «quanto posso chiedere», ma «riesco a dire ad alta voce quanto valgo, senza scusarmi?»."},
+
+      {col:'rag',tipo:'narr',tag:'Anna, al telefono',testo:"«Quanto vuoi, cara?» La parola «cara» le fa venire voglia di rispondere «ma no, quello che vuole lei». È la trappola gentile in cui cadono in tante: regalare il proprio tempo per non sembrare interessate."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a2b1_prezzo',
+        intro:"Anna sa che vale dieci euro l'ora. Ma dirlo a una signora adulta, lei sedicenne, le sembra quasi maleducato.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Dire il prezzo giusto, con calma.",sub:"«Dieci euro l'ora, come si usa qui.»",eff:{autonomia:5,coraggio_civile:4,disciplina:2},conseguenza:"Anna inspira e lo dice: «Di solito sono dieci euro l'ora». La signora: «Perfetto, mi sembra giusto». Tutto qui. Nessuno si è offeso. Anna scopre una cosa enorme: che dire il proprio valore con voce ferma, senza scusarsi, di solito funziona — ed è rispettato proprio perché è detto bene."},
+         {label:"Dire una cifra troppo bassa.",sub:"«Mah, sei euro?»",eff:{autonomia:-2,disciplina:-1},conseguenza:"Anna spara basso, per timidezza. La signora accetta felice — ovvio. Ma dopo due settimane, facendo i conti delle ore, Anna capisce di essersi svalutata. Si è regalata un pezzo del suo tempo per la paura di chiedere. È una lezione che, per fortuna, si impara presto."},
+         {label:"Lasciare decidere a lei.",sub:"«Quello che crede.»",eff:{autonomia:-1},conseguenza:"«Decida lei.» La signora, in buona fede, propone una cifra onesta. Stavolta va bene. Ma lasciare che siano gli altri a stabilire quanto vali è un'abitudine rischiosa: prima o poi capiti con qualcuno che ne approfitta. Meglio imparare a dirlo da sé."},
+         {label:"Chiedere troppo, per sicurezza.",sub:"«Quindici euro.»",eff:{autonomia:1,relazioni:-2},conseguenza:"Anna spara alto. La signora esita, dice che ci pensa, e richiama una ragazza più economica. Anna resta senza il lavoretto. Sopravvalutarsi può costare l'occasione: il «giusto» non è né il massimo né il minimo, è quanto vale davvero quella cosa, in quel posto."}
+        ]}}
+     ]},
+   { nome:"Sabato — l'impegno preso",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Un impegno è un impegno',
+        righe:[
+         {k:'Quando ti pagano',v:'qualcuno conta su di te'},
+         {k:'Mollare all\'ultimo',v:'lasci a piedi una persona'},
+         {k:'Affidabilità',v:'vale più del talento'}
+        ],nota:"Nel lavoro, anche piccolo, la cosa che conta di più non è essere i più bravi: è essere affidabili. Chi mantiene gli impegni, arriva puntuale, avvisa per tempo, viene richiamato e raccomandato. Il talento apre le porte; l'affidabilità le tiene aperte."},
+      {col:'fam',tipo:'narr',testo:"È una verità che vale a sedici anni con le ripetizioni e a quaranta con un lavoro vero: la fiducia si costruisce un appuntamento mantenuto alla volta, e si distrugge con un solo «scusa, oggi non posso» di troppo."},
+
+      {col:'rag',tipo:'illust',svg:'cortile'},
+      {col:'rag',tipo:'narr',tag:'Anna, sabato pomeriggio',testo:"Sabato c'è ripetizione con Luca alle 15. Ma alle 14 le scrivono le amiche: si trovano tutte in centro, giornata di sole, l'occasione perfetta. E lei è già pronta, il pomeriggio è suo."},
+      {col:'rag',tipo:'narr',testo:"Basterebbe un messaggio: «Luca, oggi salto, scusa». La signora capirebbe, forse. Ma Luca ha la verifica lunedì, e quel pomeriggio insieme se l'aspetta. Anna sente il tiro alla fune tra la sua voglia di libertà e la parola data."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a2b2_impegno',
+        intro:"Nessuno la obbligherebbe a tener fede. Potrebbe inventare una scusa e nessuno saprebbe mai. La scelta è solo sua.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Onorare l'impegno, raggiungere gli amici dopo.",eff:{disciplina:5,autonomia:3,legami:2,coraggio_civile:2},conseguenza:"Anna fa la ripetizione, e raggiunge le amiche alle 17 quando ha finito. Arriva tardi, ma arriva. Luca quel lunedì prende un bel voto, e la signora la raccomanda a un'altra famiglia. Anna ha scoperto che mantenere la parola non toglie la libertà: la sposta solo un po' più in là, e la fa pesare di più."},
+         {label:"Spostare la ripetizione, avvisando subito.",sub:"Chiamare ora, proporre un altro giorno.",eff:{disciplina:3,autonomia:3,relazioni:1},conseguenza:"Anna chiama subito: «Posso recuperare domani mattina? Oggi mi è capitata una cosa». Avvisare per tempo e proporre un'alternativa è diverso dal mollare all'ultimo: è gestire un imprevisto da persona seria. La signora apprezza la correttezza. Va con le amiche, ma il debito con Luca lo salda."},
+         {label:"Saltare con una scusa.",eff:{disciplina:-3,onesta_pubblica:-2,relazioni:-1},conseguenza:"«Scusi, oggi sto poco bene.» Bugia. Anna va in centro e si diverte, ma con un retrogusto. Luca lunedì va male alla verifica. La signora non dice niente, ma la chiama un po' meno, poi non la chiama più. Le occasioni perse così non sbattono la porta: si chiudono piano, in silenzio."},
+         {label:"Non presentarsi e basta.",eff:{disciplina:-5,onesta_pubblica:-3,relazioni:-3},conseguenza:"Anna semplicemente non va, e mette il telefono in tasca. Luca aspetta per niente. La fiducia, costruita in settimane, crolla in un pomeriggio. È la lezione più dura del lavoro: ci vuole tanto a guadagnarsi una reputazione, e un attimo a buttarla."}
+        ]}}
+     ]},
+   { nome:"Mercoledì — insegnare davvero",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'La scorciatoia che non insegna',
+        righe:[
+         {k:'Fargli i compiti',v:'veloce, ma inutile'},
+         {k:'Fargli capire',v:'lento, ma resta'},
+         {k:'Il tuo lavoro vero',v:'farlo diventare autonomo'}
+        ],nota:"Chi insegna è tentato dalla scorciatoia: dare la risposta, fare l'esercizio al posto dell'altro. È più rapido e sembra gentile. Ma il lavoro vero — quello che vale i soldi che ti danno — è un altro: portare l'altro a farcela da solo. Vale per le ripetizioni come per crescere un figlio."},
+      {col:'fam',tipo:'narr',testo:"E poi c'è una scoperta che fanno quasi tutti quelli che insegnano: che spiegare una cosa a un altro è il modo migliore per capirla davvero anche tu. Anna, aiutando Luca, sta studiando due volte."},
+
+      {col:'rag',tipo:'narr',tag:'Anna e Luca',testo:"Luca è scoraggiato. «Non ci capisco niente, fammeli tu questi esercizi, tanto è uguale.» La penna è lì, Anna potrebbe risolverglieli in cinque minuti e finire prima. Luca sarebbe contento, lei pure."},
+      {col:'rag',tipo:'narr',testo:"Ma sa che se glieli fa lei, lunedì alla verifica Luca sarà di nuovo da solo, e di nuovo perso. Il vero lavoro per cui la pagano non è «consegnare esercizi fatti»: è far accendere la lampadina in testa a quel ragazzino."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a2b3_insegnare',
+        intro:"Sono le 16:45, Anna è stanca, Luca pure. La via facile è fare e finire. Quella giusta è più lunga.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Spiegare con un altro metodo, con pazienza.",eff:{cura:5,disciplina:4,autonomia:3,slancio:2},conseguenza:"Anna posa la penna. «Aspetta, te la spiego in un altro modo.» Disegna, fa esempi col calcio che a Luca piace, rallenta. A un certo punto Luca dice: «Aaah, ho capito!». È il momento per cui vale la pena fare questo mestiere. E Anna, spiegando, ha capito quell'argomento meglio di prima. Doppio guadagno."},
+         {label:"Fare un esercizio insieme, poi lasciarlo provare.",eff:{cura:3,disciplina:3,autonomia:2},conseguenza:"Anna ne fa uno mostrando ogni passaggio, poi: «Ora questo provalo tu, io guardo». Luca sbaglia, riprova, ci arriva. È il metodo giusto: prima il modello, poi l'autonomia. Anna sta imparando a insegnare, che è un mestiere a sé."},
+         {label:"Fargli gli esercizi per finire prima.",eff:{cura:-2,disciplina:-2},conseguenza:"Anna glieli fa lei. Finiscono presto, Luca è contento, il quaderno è pieno di esercizi giusti. Ma lunedì, davanti alla verifica, Luca è solo come prima. Anna ha consegnato un lavoro che sembrava fatto, ma non ha fatto il lavoro vero. E in fondo lo sa."},
+         {label:"Arrendersi: «Non è portato».",eff:{cura:-3,slancio:-2},conseguenza:"Anna si scoraggia e archivia Luca come «caso perso». Ma quasi nessuno è un caso perso: di solito serve solo trovare la porta giusta per entrare. Rinunciare al primo muro è il contrario di quello per cui la pagano. E si perde anche lei la soddisfazione più grande."}
+        ]}}
+     ]}
+  ],
+  fine:{
+   titolo:"Fine del primo mese di lavoro",
+   corpo:"Anna ha imparato a dire quanto vale senza scusarsi, a onorare un impegno anche quando il sole chiamava altrove, e che il lavoro vero — con Luca come nella vita — è far diventare gli altri capaci da soli. In tasca ha i suoi primi ottanta euro, guadagnati interamente con la sua testa.",
+   cliff:"La sera conta le banconote sul letto. Non è tanto. Ma è suo, fino all'ultimo centesimo, e nessuno potrà mai dirle come spenderlo. È la prima volta che sente quel tipo particolare di libertà — quella che hai solo coi soldi che ti sei guadagnato. E adesso viene la parte difficile: decidere cosa farne."
+  }
+ },
+
+ 3:{
+  titolo:"I soldi miei",
+  sub:"Anna ha guadagnato. Ora deve decidere cosa farne — la prova più difficile",
+  insegna:"come si gestisce un budget personale: spendere, mettere da parte, e darsi un obiettivo",
+  protaNome:"Anna", protaEta:16,
+  giorni:[
+   { nome:"Venerdì — la regola dei tre vasi",
+     beats:[
+      {col:'fam',tipo:'illust',svg:'cameraMatteo'},
+      {col:'fam',tipo:'narr',tag:'160 euro',testo:"Dopo due mesi di ripetizioni, Anna ha centosessanta euro. Tutti suoi. Per la prima volta nella vita ha una piccola somma da gestire — e nessuno che le dica come."},
+      {col:'fam',tipo:'box',titolo:'La regola dei tre vasi',
+        righe:[
+         {k:'Spendere ora',v:'le cose che ti fanno star bene'},
+         {k:'Mettere da parte',v:'per un obiettivo tuo'},
+         {k:'Tenere da parte',v:'per le sorprese / per aiutare'}
+        ],nota:"Un modo semplice di gestire i propri soldi, a ogni età, è dividerli in tre «vasi» appena arrivano: una parte da godersi subito, una da accantonare per qualcosa che desideri, una da tenere per gli imprevisti. Non serve essere precisi al centesimo: serve farlo <em>prima</em> di spendere, non con quel che avanza."},
+      {col:'fam',tipo:'narr',testo:"Il segreto non è quanto guadagni: è cosa decidi di farne <em>prima</em> di averlo in mano. Chi divide appena riceve, mette via senza accorgersene. Chi aspetta «quello che resta», di solito non trova mai niente da mettere via."},
+
+      {col:'rag',tipo:'narr',tag:'Anna, in camera',testo:"Centosessanta euro. La tentazione ha un nome preciso: quegli stivali che ha visto, le uscite del weekend, le cose che le amiche hanno e lei no. Tutto, subito, sarebbe bellissimo per una settimana."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a3b1_vasi',
+        intro:"Sono i suoi primi soldi veri. Può farne quello che vuole: è una libertà nuova, e un po' la spaventa.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Dividerli: un po' subito, un po' da parte.",eff:{disciplina:5,autonomia:4,slancio:2},conseguenza:"Anna fa tre mucchietti: sessanta da godersi (gli stivali, sì, ma scelti bene), ottanta da mettere via, venti per le emergenze. Si compra una cosa che voleva davvero, e si gode il piacere doppio: di averla, e di aver fatto le cose con la testa. Dividere prima di spendere: è la regola che la accompagnerà per la vita."},
+         {label:"Spendere tutto, se lo merita.",eff:{slancio:2,disciplina:-3},conseguenza:"Anna si toglie tutti gli sfizi: stivali, uscite, qualche vestito. Per una settimana è felicissima. Poi i soldi sono finiti, e le ripetizioni ricominciano da zero. Se li è goduti, è vero. Ma non ha imparato la cosa più utile: che si può godere <em>e</em> mettere via, non per forza o l'uno o l'altro."},
+         {label:"Risparmiarli tutti, senza toccarne uno.",eff:{disciplina:3,autonomia:1,energia:-1},conseguenza:"Anna mette via tutto, fiera della propria disciplina. Ammirevole — ma rischioso a modo suo: chi non si concede mai niente, prima o poi crolla e spende tutto in un colpo. Anche godersi un po' di ciò che si guadagna fa parte del gestire bene. Il segreto è l'equilibrio, non il sacrificio totale."},
+         {label:"Nasconderli e non pensarci.",eff:{autonomia:-1},conseguenza:"Anna li mette in un cassetto e cerca di non pensarci, quasi a disagio per quella piccola ricchezza. Ma i soldi non gestiti non «si comportano bene» da soli: o li governi tu con un minimo di piano, o se ne vanno senza che tu sappia dove. Evitare la decisione è anch'essa una decisione, di solito la peggiore."}
+        ]}}
+     ]},
+   { nome:"Domenica — quando casa ha bisogno",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Aiutare senza sostituirsi',
+        righe:[
+         {k:'Un gesto',v:'scalda e unisce'},
+         {k:'Mantenere la casa',v:'è compito dei genitori'},
+         {k:'Il confine giusto',v:'aiuto, non mi carico tutto'}
+        ],nota:"Quando un figlio guadagna qualcosa e vede i genitori in difficoltà, l'istinto è dare tutto. Un gesto d'aiuto è bellissimo. Ma far quadrare i conti di casa <strong>non è compito di un sedicenne</strong>: è dei grandi. Aiutare ogni tanto è amore; sentirsi responsabili del bilancio familiare è un peso che non spetta a quell'età."},
+      {col:'fam',tipo:'narr',testo:"È un equilibrio delicato, in famiglie dove i soldi sono stretti: i figli grandi vogliono aiutare, ed è giusto che lo facciano un po'. Ma i genitori che si rispettano non lasciano che siano i figli a reggere la casa. Quel confine protegge l'infanzia che resta."},
+
+      {col:'rag',tipo:'illust',svg:'cucinaSera'},
+      {col:'rag',tipo:'narr',tag:'Anna, domenica sera',testo:"Sente i genitori in cucina: è saltata la caldaia di scorta, servono soldi che questo mese non ci sono. Anna pensa al suo gruzzolo nel cassetto. Ottanta euro messi via. Potrebbe risolvere — o quasi."},
+      {col:'rag',tipo:'narr',testo:"Una parte di lei vuole entrare e posare tutto sul tavolo, come un eroe. Un'altra parte, più piccola e zittita, pensa che quei soldi sono i suoi, sudati, per il suo futuro. E si sente in colpa solo a pensarlo."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a3b2_aiuto',
+        intro:"Nessuno le ha chiesto niente — anzi, i genitori non sanno nemmeno quanto ha messo via. La scelta è tutta dentro di lei.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Offrire un aiuto, non tutto.",sub:"«Ho trenta euro, se servono.»",eff:{cura:5,legami:4,autonomia:3,fiducia_padre:3},conseguenza:"Anna entra: «Ho un po' di soldi delle ripetizioni. Trenta euro, se possono servire». Il padre la guarda commosso, e fa la cosa giusta: «Grazie tesoro, ma questi pensieri li facciamo noi. Tieni i tuoi soldi». Forse li accetta, forse no — ma è nato qualcosa di bello: un gesto vero, dentro un confine sano. Anna ha aiutato senza caricarsi la casa sulle spalle."},
+         {label:"Dare tutto quello che ha.",eff:{cura:4,autonomia:-3,legami:2},conseguenza:"Anna posa sul tavolo tutti i suoi ottanta euro. Il gesto è enorme, e i genitori si commuovono. Ma c'è un'ombra: una sedicenne che svuota i suoi risparmi per la caldaia di casa si sta caricando un peso che non è il suo. I genitori, se attenti, glieli ridaranno. L'amore va bene; sostituirsi a loro, no."},
+         {label:"Tenere tutto per sé, in silenzio.",eff:{autonomia:2,legami:-2},conseguenza:"Anna resta in camera e non dice niente. Sono soldi suoi, guadagnati, ha tutto il diritto di tenerli. Vero. Ma resta con un piccolo nodo: poteva offrire anche solo un gesto, e non l'ha fatto. A volte non è questione di quanto dai, ma del fatto che ti sei fatto avanti."},
+         {label:"Sentirsi in colpa e non decidere.",eff:{energia:-2,autonomia:-1},conseguenza:"Anna rimugina tutta la sera, combattuta, e finisce per non fare niente — né offrire, né godersi la propria scelta. Il senso di colpa che paralizza è il peggiore: non aiuta la famiglia e tormenta lei. Meglio una piccola scelta serena che una grande indecisione."}
+        ]}}
+     ]},
+   { nome:"Martedì — un obiettivo lontano",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Il potere di un obiettivo',
+        righe:[
+         {k:'Risparmiare «per niente»',v:'è difficile, ci si stanca'},
+         {k:'Risparmiare PER qualcosa',v:'dà senso a ogni euro'},
+         {k:'Poco x tanto tempo',v:'diventa molto'}
+        ],nota:"Mettere via soldi «in generale» è noioso e si molla presto. Ma quando hai un <em>obiettivo</em> preciso — la patente, un viaggio, uno strumento — ogni euro messo da parte ha un senso, e resistere alla spesa di troppo diventa più facile. E una piccola somma, accantonata con costanza per molti mesi, cresce più di quanto sembri."},
+      {col:'fam',tipo:'narr',testo:"È la differenza tra «dovrei risparmiare» e «sto risparmiando per la patente». La prima è una buona intenzione che svanisce. La seconda è un progetto, con una meta che si avvicina un mese alla volta. E vedere la meta avvicinarsi è il miglior carburante che esista."},
+
+      {col:'rag',tipo:'narr',tag:'Anna, due anni davanti',testo:"Tra due anni Anna potrà prendere la patente. Costa: scuola guida, esami, tutto insieme quasi mille euro. Una cifra enorme — oggi. Ma due anni sono tanti mesi, e lei ottanta euro al mese, più o meno, li sa fare."},
+      {col:'rag',tipo:'narr',testo:"Potrebbe vivere alla giornata, godersi i soldi mese per mese, e poi a diciotto anni chiedere tutto ai genitori come fanno in tanti. Oppure cominciare oggi a costruirsi da sola quella libertà, un pezzettino alla volta."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a3b3_obiettivo',
+        intro:"Mille euro in due anni sembrano impossibili visti tutti insieme. Ma divisi per i mesi, forse no. È una scelta su che tipo di persona vuole diventare.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Aprire un «fondo patente» e versarci ogni mese.",eff:{disciplina:6,autonomia:5,slancio:3},conseguenza:"Anna prende un vecchio barattolo, ci scrive «PATENTE» e mette via i primi quaranta euro. Si dà una regola: metà di ogni guadagno va lì. Vedere quella cifra crescere, mese dopo mese, diventa quasi un gioco. A diciotto anni avrà la sua patente coi suoi soldi — e qualcosa di molto più grande: la prova di sapersi dare un obiettivo e raggiungerlo."},
+         {label:"Mettere via, ma senza un piano fisso.",eff:{disciplina:3,autonomia:2},conseguenza:"Anna decide che metterà via «quello che riesce», quando riesce. Meglio di niente, e qualcosa accantonerà. Ma senza una regola precisa, nei mesi di tentazioni il fondo si fermerà. Un obiettivo senza un piano è un desiderio; con un piano diventa una meta. Le manca solo l'ultimo passo."},
+         {label:"Pensarci più avanti, c'è tempo.",eff:{disciplina:-2},conseguenza:"Anna si dice che due anni sono lontani, comincerà più in là. Ma «più in là» ha l'abitudine di non arrivare mai, e i mesi persi all'inizio sono proprio quelli che pesano di più alla fine. Iniziare presto, anche con poco, è il vero segreto: non la cifra, il tempo."},
+         {label:"Tanto chiederà i soldi ai genitori.",eff:{autonomia:-3},conseguenza:"Anna pensa che a diciotto anni la patente gliela pagheranno mamma e papà, come ad altri. Forse è vero. Ma rinuncia, senza accorgersene, alla cosa più preziosa: la soddisfazione di essersela conquistata. E in una casa dove i soldi sono stretti, contare sempre sui genitori è anche un po' ingiusto verso di loro."}
+        ]}}
+     ]}
+  ],
+  fine:{
+   titolo:"Il barattolo sullo scaffale",
+   corpo:"Anna ha imparato a dividere i suoi soldi prima di spenderli, ad aiutare la famiglia senza caricarsene il peso, e a darsi un obiettivo lontano da costruire un euro alla volta. Sullo scaffale, adesso, c'è un barattolo con scritto «PATENTE», e dentro i primi mattoni della sua indipendenza.",
+   cliff:"Davide, il fratello piccolo, ha visto il barattolo e le ha chiesto cos'è. «I miei soldi per quando sarò grande», ha detto Anna. Il giorno dopo, sullo scaffale di Davide, è comparso un barattolo identico, con scritto a pennarello «FUTURO». A volte si insegna di più con un barattolo che con mille parole."
+  }
+ },
+
+ 4:{
+  titolo:"Più grande di così",
+  sub:"Un'occasione per sé, o restare per la famiglia: la scelta che dice chi è Anna",
+  insegna:"investire su se stessi, il costo-opportunità, e l'equilibrio tra dare e crescere",
+  protaNome:"Anna", protaEta:16,
+  giorni:[
+   { nome:"Lunedì — l'occasione",
+     beats:[
+      {col:'fam',tipo:'illust',svg:'aula'},
+      {col:'fam',tipo:'narr',tag:'Una proposta',testo:"La prof di inglese propone ad Anna uno stage estivo di tre settimane: un corso intensivo con certificazione, in città. Costa poco — c'è una borsa di studio — ma sono tre settimane di mattine, lontano da casa, tutto luglio."},
+      {col:'fam',tipo:'box',titolo:'Investire su se stessi',
+        righe:[
+         {k:'Comprare una cosa',v:'la usi e finisce'},
+         {k:'Imparare qualcosa',v:'resta per sempre, con te'},
+         {k:'Il miglior investimento',v:'spesso sei tu'}
+        ],nota:"Esiste un tipo di spesa che rende più di ogni altra: quella che fai per imparare — un corso, una lingua, un'abilità. Le cose si consumano; ciò che impari diventa parte di te e ti accompagna tutta la vita. Gli economisti lo chiamano «capitale umano». A casa lo si chiama, semplicemente, farsi una testa."},
+      {col:'fam',tipo:'narr',testo:"Ma ogni scelta ha un costo nascosto: ciò a cui rinunci per farla. Si chiama costo-opportunità. Tre settimane di corso vogliono dire tre settimane in cui Anna non c'è, non guadagna con le ripetizioni, non aiuta in casa. Scegliere è sempre anche rinunciare."},
+
+      {col:'rag',tipo:'narr',tag:'Anna, a casa',testo:"Quella certificazione, sul serio, le aprirebbe porte: per l'università, per i lavoretti, per il futuro. Anna lo sente. È un'occasione di quelle che non capitano spesso a una ragazza della sua famiglia."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a4b1_occasione',
+        intro:"La borsa copre quasi tutto. Resterebbe da trovare poco — magari proprio dal barattolo. Ma l'idea di spendere per sé, in una casa che fa i conti, la mette a disagio.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Cogliere l'occasione, è un investimento.",eff:{autonomia:5,slancio:4,disciplina:3},conseguenza:"Anna decide di provarci. Quei soldi spesi per imparare non sono soldi persi: sono il miglior investimento che possa fare alla sua età. Userà un po' del fondo, lo ricostruirà dopo. Per la prima volta sceglie di scommettere su se stessa — e capisce che farlo non è egoismo, è costruirsi gli strumenti per aiutare, un domani, anche meglio."},
+         {label:"Cercare un modo per farlo senza rinunce.",sub:"Corso al mattino, ripetizioni al pomeriggio.",eff:{autonomia:4,disciplina:4,cura:2},conseguenza:"Anna studia l'incastro: corso la mattina, qualche ripetizione il tardo pomeriggio, e i fratelli quando può. Faticoso, ma possibile. Trovare il modo di non rinunciare del tutto a niente — crescere senza abbandonare la famiglia — è la soluzione più adulta e più difficile. E spesso la migliore."},
+         {label:"Rinunciare per non pesare sulla famiglia.",eff:{cura:3,autonomia:-3,slancio:-2},conseguenza:"Anna dice di no, per non chiedere quei pochi soldi e per esserci in casa d'estate. È un gesto generoso. Ma rinunciare sempre alle proprie occasioni «per non pesare» ha un costo che non si vede subito: il rischio di restare indietro, e di un piccolo rimpianto che cresce. Anche la sua crescita conta, eccome."},
+         {label:"Aspettare che siano i genitori a decidere.",eff:{autonomia:-2},conseguenza:"Anna porta la proposta ai genitori e lascia decidere a loro. Loro, che la amano, le diranno probabilmente di andare. Ma a sedici anni, davanti a un'occasione per sé, imparare a decidere in prima persona — pesando pro e contro — è parte di ciò che lo stage stesso le insegnerebbe."}
+        ]}}
+     ]},
+   { nome:"Mercoledì — quello che serve a casa",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Dare e crescere non sono nemici',
+        righe:[
+         {k:'Chi dà sempre',v:'si svuota'},
+         {k:'Chi pensa solo a sé',v:'si isola'},
+         {k:'L\'equilibrio',v:'crescere PER poter dare'}
+        ],nota:"Nelle famiglie unite, i figli grandi imparano presto a dare. È una ricchezza. Ma c'è una verità che spesso sfugge: per poter aiutare davvero gli altri, un domani, devi prima diventare qualcuno. Coltivare se stessi non è il contrario del prendersi cura della famiglia: spesso ne è la condizione."},
+      {col:'fam',tipo:'narr',testo:"Roberta, d'estate, conta su Anna per i fratelli mentre lei è al lavoro. Non glielo dice, ma lo dà per scontato — come è sempre stato. È la coperta corta di sempre: se Anna cresce e si allontana un po', un pezzo di casa resta scoperto."},
+
+      {col:'rag',tipo:'illust',svg:'cucinaSera'},
+      {col:'rag',tipo:'narr',tag:'Anna e la mamma',testo:"«Mamma, a luglio vorrei fare quel corso d'inglese.» Roberta si ferma, e nella sua faccia Anna legge tutto: la felicità per lei, e insieme il pensiero — «e i bambini, d'estate, chi me li tiene?»."},
+      {col:'rag',tipo:'narr',testo:"Nessuna delle due ha torto. La mamma ha davvero bisogno di lei. E Anna ha davvero diritto a quell'occasione. È il nodo più difficile della sua età: dove finisce il dovere verso chi ami e comincia il diritto a costruirti."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a4b2_famiglia',
+        intro:"Non c'è una risposta giusta facile. C'è solo il modo in cui Anna deciderà di tenere insieme due cose che le stanno entrambe a cuore.",
+        domanda:"Tu cosa le consigli?",
+        opzioni:[
+         {label:"Parlarne, e cercare insieme una soluzione.",eff:{coraggio_civile:5,cura:4,legami:4,autonomia:3},conseguenza:"Anna non sceglie da sola né si arrende: apre il discorso. «Mamma, ci tengo a questo corso. Ma so dei bambini. Troviamo un modo insieme?» Salta fuori che la nonna può tenerli due mattine, e una vicina le altre. Mettere il problema sul tavolo invece di subirlo: è così che una figlia diventa un'alleata adulta dei genitori, non solo un aiuto da comandare."},
+         {label:"Fare il corso e organizzare lei i fratelli.",sub:"Corso la mattina, fratelli il pomeriggio.",eff:{disciplina:4,cura:3,autonomia:3,energia:-2},conseguenza:"Anna si prende il corso e, in cambio, si carica i fratelli tutti i pomeriggi. Estate piena, niente riposo. Cresce e tiene fede alla famiglia, ma rischia di arrivare a settembre svuotata. Funziona, se non esagera: anche chi dà tanto deve ricordarsi di lasciare un po' per sé."},
+         {label:"Rinunciare al corso per i fratelli.",eff:{cura:4,autonomia:-3,slancio:-3},conseguenza:"Anna mette da parte il corso e si dedica ai fratelli, come sempre. La mamma è sollevata, i bambini felici. Ma è l'ennesima volta che la grande arretra per fare spazio agli altri. Un gesto d'amore — che però, ripetuto sempre, rischia di cancellare i suoi sogni un'estate alla volta."},
+         {label:"Andarsene sbattendo la porta.",sub:"«Penso sempre a tutti tranne che a me!»",eff:{autonomia:1,relazioni:-3,legami:-2},conseguenza:"Anna esplode: anni di rinunce vengono fuori tutti insieme, male. C'è una verità vera nel suo grido — ha dato tanto. Ma detta così ferisce la mamma e non risolve niente. Il diritto a pensare a sé è sacrosanto: va rivendicato con fermezza, non con una porta sbattuta che lascia tutti più soli."}
+        ]}}
+     ]},
+   { nome:"Domenica — chi vuole essere",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Le scelte che ci definiscono',
+        righe:[
+         {k:'Cosa compri',v:'dice cosa ti piace'},
+         {k:'Come scegli',v:'dice chi sei'},
+         {k:'A sedici anni',v:'inizi a deciderlo tu'}
+        ],nota:"Crescere, alla fine, è questo: passare dal subire le scelte degli altri al farne di proprie, e prendersene la responsabilità. Non esistono scelte perfette — esistono scelte fatte con la testa e con il cuore, sapendo a cosa si rinuncia. Imparare a sceglierle da sé è il vero passaggio all'età adulta."},
+      {col:'fam',tipo:'narr',testo:"Questa settimana Anna non ha solo deciso di un corso d'inglese. Ha deciso, un po', che tipo di adulta vuole diventare: una che si annulla per gli altri, una che pensa solo a sé, o una che cerca, ogni volta, il punto difficile in cui le due cose stanno insieme."},
+
+      {col:'rag',tipo:'narr',tag:'Anna, domenica sera',testo:"Qualunque cosa abbia scelto questa settimana, Anna sente di essere cambiata. Non è più la ragazzina che diceva sì a tutto per non disturbare, né quella che dice no a tutto per ripicca. Sta diventando qualcuno che sceglie."},
+      {col:'rag',tipo:'narr',testo:"Guarda il barattolo «PATENTE», pensa al corso, ai fratelli, ai suoi primi soldi guadagnati. Tutti pezzi di una stessa cosa: una ragazza che, un mese alla volta, sta imparando a tenere in mano la propria vita."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'a4b3_chi',
+        intro:"Non è un bivio su cosa fare, ma su come guardare a se stessa. L'ultima cosa che Anna porta a casa da questa stagione.",
+        domanda:"Tu cosa le consigli di tenersi, di tutto questo?",
+        opzioni:[
+         {label:"Che può dare alla famiglia E costruirsi.",eff:{autonomia:5,cura:4,legami:3,slancio:3},conseguenza:"Anna capisce la cosa più importante: che voler bene alla sua famiglia e voler bene al proprio futuro non sono in guerra. Si può fare la grande e restare una ragazza con dei sogni. Anzi: più lei diventa qualcuno, più potrà esserci — per i suoi, e per la vita che si sta costruendo. È cresciuta, e non si è persa per strada."},
+         {label:"Che il proprio valore non si misura in soldi.",eff:{autonomia:4,cura:3},conseguenza:"Anna si tiene questo: che guadagnare, risparmiare, gestire sono strumenti — utili, importanti — ma che lei vale per chi è, non per quanto ha nel barattolo. È una saggezza rara a sedici anni, e la terrà coi piedi per terra anche quando, da grande, di soldi ne girerà di più."},
+         {label:"Che ha il diritto di pensare anche a sé.",eff:{autonomia:5,coraggio_civile:3},conseguenza:"Anna si tiene il permesso che si è data da sola: quello di esistere anche per sé, non solo in funzione degli altri. Per una figlia maggiore abituata a venire sempre dopo, è una piccola rivoluzione gentile. Non smetterà di amare la sua famiglia: imparerà a non sparirci dentro."},
+         {label:"Che non deve crescere troppo in fretta.",eff:{cura:2,energia:1,legami:2},conseguenza:"Anna si concede una cosa difficile per lei: il diritto di essere ancora, ogni tanto, semplicemente una sedicenne. Di sbagliare, di riposare, di non avere tutto sotto controllo. Ha imparato a gestire soldi e responsabilità — ma anche che non deve diventare adulta tutta in una volta. C'è tempo. E va bene così."}
+        ]}}
+     ]}
+  ],
+  fine:{
+   titolo:"La fine di una stagione",
+   corpo:"In questi mesi Anna è passata dall'imbarazzo di chiedere quanto vale, al guadagnarsi i primi soldi, al gestirli con la regola dei tre vasi, fino a scommettere su se stessa senza abbandonare la sua famiglia. Ha imparato il mestiere più difficile: tenere insieme il dare e il crescere.",
+   cliff:"Sullo scaffale, ora, ci sono due barattoli: «PATENTE» di Anna e «FUTURO» di Davide. La sera, a volte, Anna ci mette dentro una moneta e pensa che la cosa più importante che ha guadagnato, quest'anno, non sono gli euro. È sapere, finalmente, di poter scegliere chi essere."
+  }
+ }
+ },
 
  /* ════════════ DAVIDE, 9 anni — lo sguardo del più piccolo ════════════ */
  davide:{ 1:{
@@ -1726,8 +1982,265 @@ const EPISODI={
    corpo:"Davide ha nove anni e questa settimana ha capito cose che molti grandi non capiscono: che si può stare bene anche senza le scarpe con la luce, che chiedere al momento giusto è un modo di voler bene, e che anche il più piccolo della casa fa parte della squadra.",
    cliff:"Sul suo salvadanaio, adesso, Davide ha disegnato a pennarello una piccola lavatrice. «Per le emergenze», ha spiegato a Sofia, serissimo. Sofia non ha capito. Ma ha annuito lo stesso, perché Davide, per lei, sa sempre le cose."
   }
- }}
- }},
+ },
+
+ 2:{
+  titolo:"Le cose costano",
+  sub:"Davide rompe qualcosa, e scopre quanto lavoro c'è dietro ogni oggetto",
+  insegna:"che dietro le cose ci sono soldi e fatica, e che riparare è meglio che buttare",
+  protaNome:"Davide", protaEta:9,
+  giorni:[
+   { nome:"Lunedì — il tablet caduto",
+     beats:[
+      {col:'fam',tipo:'illust',svg:'cameraMatteo'},
+      {col:'fam',tipo:'narr',tag:'Un guaio',testo:"Davide stava giocando col tablet di famiglia sul tavolo. Un movimento di troppo, e bum: a terra. Lo schermo è tutto una ragnatela di crepe. Il cuore gli va a mille."},
+      {col:'fam',tipo:'box',titolo:'Quanto lavoro c\'è in una cosa',
+        righe:[
+         {k:'Un tablet',v:'tante ore di lavoro di papà'},
+         {k:'Aggiustarlo',v:'altri soldi'},
+         {k:'La lezione',v:'le cose si trattano con cura'}
+        ],nota:"Quando rompiamo qualcosa per disattenzione, non si rompe solo un oggetto: se ne va anche il lavoro che è servito per comprarlo. Non vuol dire vivere nel terrore di toccare le cose — vuol dire trattarle con cura, perché dietro ognuna c'è la fatica di qualcuno."},
+
+      {col:'rag',tipo:'narr',tag:'Davide, da solo in stanza',testo:"Nessuno ha visto. Davide guarda lo schermo rotto e pensa velocissimo: potrebbe dire che era già così, o che è stato il gatto, o nasconderlo in fondo a un cassetto e sperare."},
+      {col:'rag',tipo:'narr',testo:"Ma sa anche che il tablet serve a tutti, che papà lo userà domani, e che le bugie — l'ha imparato il mese scorso — sono come le caramelle: una tira l'altra."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d2b1_tablet',
+        intro:"Davide ha nove anni e una scelta da grande davanti: cosa fare di un guaio che ha combinato lui, quando nessuno l'ha visto.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Andare subito a dirlo, scusandosi.",eff:{coraggio_civile:6,onesta_pubblica:5,fiducia_padre:4},conseguenza:"Davide va dal papà col tablet in mano e la voce tremante: «Papà, è caduto a me. Scusa.» Il papà sospira, ma poi gli mette una mano sulla testa: «Grazie per avermelo detto subito. Le cose si rompono. Le bugie fanno più danni di uno schermo crepato.» Davide scopre che dire la verità su un guaio, anche se fa paura, pesa molto meno che tenerla dentro."},
+         {label:"Dirlo, offrendo i soldi del salvadanaio.",eff:{coraggio_civile:5,cura:4,fiducia_padre:4},conseguenza:"Davide confessa e aggiunge: «Posso darti i soldi del salvadanaio per aggiustarlo». Il papà si commuove: «No, tesoro, li tieni. Ma il fatto che tu l'abbia offerto vale più della riparazione.» Davide impara che prendersi la responsabilità di un errore è da grandi — e che spesso chi lo fa viene perdonato più in fretta."},
+         {label:"Nascondere il tablet e tacere.",eff:{onesta_pubblica:-4,fiducia_padre:-3},conseguenza:"Davide infila il tablet in fondo a un cassetto e fa finta di niente. Per due giorni vive col terrore. Quando salta fuori — e salta sempre fuori — il papà è più dispiaciuto per il nascondiglio che per lo schermo. Il guaio era piccolo; nasconderlo l'ha reso grande."},
+         {label:"Dare la colpa al gatto.",eff:{onesta_pubblica:-5,relazioni:-2},conseguenza:"«È stato il gatto!» Ma il gatto dormiva in salotto, e tutti lo sanno. La bugia regge cinque minuti, poi crolla, e Davide si ritrova nei guai due volte: per il tablet e per la bugia. Incolpare un altro — anche un gatto — del proprio errore è la strada che complica tutto."}
+        ]}}
+     ]},
+   { nome:"Mercoledì — lo zaino sfilacciato",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Riparare o buttare?',
+        righe:[
+         {k:'Buttare e ricomprare',v:'facile, ma costa e spreca'},
+         {k:'Riparare',v:'un po\' di pazienza, e dura'},
+         {k:'Le cose',v:'non si buttano al primo strappo'}
+        ],nota:"Viviamo in un tempo in cui sembra normale buttare e ricomprare tutto. Ma molte cose si possono aggiustare: una cucitura, una colla, un po' di pazienza. Riparare costa meno, spreca meno, e insegna che le cose hanno valore. Non tutto ciò che si rompe è da gettare."},
+      {col:'fam',tipo:'narr',testo:"È un'abitudine che si impara da piccoli e resta per la vita: guardare una cosa rotta e chiedersi «si può aggiustare?» prima di «quando me ne comprano una nuova?»."},
+
+      {col:'rag',tipo:'illust',svg:'cameraMatteo'},
+      {col:'rag',tipo:'narr',tag:'Davide, lo zaino',testo:"Lo zaino di Davide ha una bretella che si è scucita. Funziona ancora, ma un suo compagno ne ha uno nuovo, fiammante, con i supereroi. Davide vorrebbe dire a casa che il suo è «rotto» per averne uno nuovo."},
+      {col:'rag',tipo:'narr',testo:"In realtà basterebbe qualche punto di cucitura. La nonna sa farlo in dieci minuti. Ma uno zaino nuovo coi supereroi è un'altra cosa… o no?"},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d2b2_zaino',
+        intro:"Davide sa che lo zaino si può aggiustare. Sa anche che dire «è rotto» potrebbe fargli avere quello nuovo. Piccola scelta, grande abitudine.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Chiedere alla nonna di ripararlo.",eff:{cura:5,disciplina:3,legami:3},conseguenza:"Davide porta lo zaino dalla nonna: «Me lo aggiusti?». In dieci minuti, qualche punto, ed è come nuovo. La nonna è felice di sentirsi utile, Davide è fiero del «suo» zaino salvato. Ha imparato una piccola magia: che tante cose rotte non sono finite, aspettano solo qualcuno che abbia voglia di aggiustarle."},
+         {label:"Provare a ripararlo lui stesso.",eff:{autonomia:4,disciplina:4,slancio:2},conseguenza:"Davide si fa dare ago e filo e ci prova da solo. I primi punti sono storti, ride, riprova. Alla fine tiene. Non è perfetto, ma l'ha fatto lui — e questo lo rende il suo zaino preferito. Aggiustare con le proprie mani dà una soddisfazione che comprare non dà mai."},
+         {label:"Dire che è rotto per averne uno nuovo.",eff:{onesta_pubblica:-3,cura:-2},conseguenza:"Davide dice a casa che lo zaino «non si può più usare». Forse cola lo zaino nuovo, forse no. Ma ha buttato via una cosa ancora buona e ha gonfiato un po' la verità per un capriccio. In una casa dove i soldi sono contati, è un piccolo strappo — più alla fiducia che allo zaino."},
+         {label:"Tenerlo rotto e lamentarsi.",eff:{cura:-1,energia:-1},conseguenza:"Davide continua a usarlo scucito, ma si lamenta ogni giorno di quanto sia brutto. Eppure la soluzione era a portata di mano: dieci minuti dalla nonna. Lamentarsi di un problema che si potrebbe risolvere in poco tempo è il modo più faticoso di affrontarlo."}
+        ]}}
+     ]},
+   { nome:"Venerdì — la cura delle cose",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Aver cura è risparmiare',
+        righe:[
+         {k:'Cose trattate bene',v:'durano di più'},
+         {k:'Durare di più',v:'ricomprare di meno'},
+         {k:'Ricomprare di meno',v:'più soldi per le cose belle'}
+        ],nota:"Aver cura delle proprie cose — la bici, le scarpe, i giochi, i libri — non è solo «essere ordinati»: è un modo concreto di risparmiare. Una cosa che dura il doppio è una cosa che si compra la metà delle volte. E quei soldi non spesi possono diventare qualcosa di bello per tutti."},
+      {col:'fam',tipo:'narr',testo:"In casa Ricci, dove ogni euro ha un posto, le cose che durano sono un piccolo tesoro. E un bambino che impara a non rovinare i suoi giochi sta già, a modo suo, aiutando la famiglia."},
+
+      {col:'rag',tipo:'illust',svg:'cameraMatteo'},
+      {col:'rag',tipo:'narr',tag:'Davide, la bici',testo:"La bici di Davide è sempre buttata in giardino, sotto la pioggia. La catena comincia ad arrugginire. Papà gliel'ha detto mille volte: «mettila al riparo». Stasera piove di nuovo, e Davide è già sul divano, comodo."},
+      {col:'rag',tipo:'narr',testo:"Alzarsi e mettere via la bici è una fatica piccola, noiosa. Ma sa che se si arrugginisce, papà dovrà sistemarla o comprarne un'altra — e questo mese, lo sa, non è il caso."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d2b3_bici',
+        intro:"Nessuno lo sta guardando, ed è comodo sul divano. La bici è là fuori sotto la pioggia. Cosa fa un bambino che ha capito quanto valgono le cose?",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Alzarsi e mettere la bici al riparo.",eff:{cura:5,disciplina:4,fiducia_padre:3},conseguenza:"Davide si alza, sbuffa un po', ma va a mettere la bici sotto la tettoia. Papà, che l'ha visto dalla finestra, non dice niente — ma sorride. A volte aiutare la famiglia non è fare grandi gesti: è alzarsi dal divano per una cosa noiosa, perché hai capito che è giusto."},
+         {label:"Mettere via la bici e proporre di pulirla.",eff:{cura:5,disciplina:3,legami:3},conseguenza:"Davide non solo mette via la bici, ma il sabato chiede a papà di pulirla insieme. Diventa un momento loro due, con lo straccio e l'olio per la catena. Aver cura delle cose è diventato persino un modo per stare insieme. Doppia vittoria."},
+         {label:"Rimandare a domani.",eff:{cura:-2,disciplina:-1},conseguenza:"«La metto via domani.» Ma intanto piove tutta la notte, e la catena arrugginisce ancora un po'. Domani sarà uguale a oggi. Rimandare le piccole cure è il modo in cui le cose, lentamente, si rovinano: non per un disastro, ma per tanti «domani»."},
+         {label:"Lasciarla fuori, tanto è solo una bici.",eff:{cura:-3},conseguenza:"Davide resta sul divano: «È solo una bici». Ma quella bici, se si rovina, vorrà dire soldi che a casa mancano, o niente bici per un po'. «È solo una cosa» è il pensiero che porta a sprecare — e in una famiglia che fa i conti, ogni cosa rovinata pesa su tutti."}
+        ]}}
+     ]}
+  ],
+  fine:{
+   titolo:"Le cose che durano",
+   corpo:"Davide ha nove anni e questa settimana ha imparato che dietro ogni oggetto c'è il lavoro di qualcuno, che dire la verità su un guaio costa meno che nasconderlo, e che aver cura delle proprie cose è un modo silenzioso di voler bene alla sua famiglia.",
+   cliff:"Adesso la bici di Davide dorme sempre sotto la tettoia, e lo zaino salvato dalla nonna ha un punto di cucitura un po' storto che lui mostra fiero a tutti: «L'ho aggiustato, non l'ho buttato». Sembra poco. Ma è il modo in cui un bambino comincia a capire il valore delle cose."
+  }
+ },
+
+ 3:{
+  titolo:"Anche i piccoli possono",
+  sub:"Davide vuole qualcosa di suo, e scopre che può guadagnarselo",
+  insegna:"che anche un bambino può meritarsi le cose con pazienza, senza solo chiederle",
+  protaNome:"Davide", protaEta:9,
+  giorni:[
+   { nome:"Lunedì — il desiderio",
+     beats:[
+      {col:'fam',tipo:'illust',svg:'cortile'},
+      {col:'fam',tipo:'narr',tag:'Una cosa desiderata',testo:"È uscito un album di figurine nuovo, quello di cui parlano tutti a scuola. Per completarlo servono soldi, e Davide sa che a casa, questo mese, le figurine non sono certo una priorità."},
+      {col:'fam',tipo:'box',titolo:'Chiedere o meritare?',
+        righe:[
+         {k:'Chiedere e basta',v:'a volte sì, a volte no'},
+         {k:'Guadagnarsi qualcosa',v:'vale di più'},
+         {k:'Anche a 9 anni',v:'si può, nel proprio piccolo'}
+        ],nota:"Un bambino non può «lavorare», ma può meritarsi qualcosa: aiutando in casa più del solito, dando una mano a un nonno o a un vicino, mettendo da parte le proprie monetine con pazienza. Le cose che ci guadagniamo, anche piccole, ci rendono più fieri di quelle che ci vengono semplicemente regalate."},
+
+      {col:'rag',tipo:'narr',tag:'Davide, a casa',testo:"Davide sta per fare quello che fa sempre: chiedere i soldi a mamma. Ma poi pensa ad Anna e al suo barattolo «PATENTE», a come lei si guadagna le sue cose. E gli viene un'idea che lo fa sentire grande."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d3b1_desiderio',
+        intro:"Davide ha nove anni e un desiderio. La via più facile è chiedere. Ma ce n'è un'altra, più lunga e più sua.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Provare a guadagnarsele, come Anna.",eff:{autonomia:5,disciplina:4,slancio:3},conseguenza:"Davide decide: «Me le guadagno io, le figurine». Non sa ancora come, ma la decisione lo riempie di una fierezza nuova. Imitare la sorella grande, che si costruisce le cose da sola, è il modo migliore in cui un fratellino impari: guardando, e provando a fare lo stesso, nel suo piccolo."},
+         {label:"Chiedere, ma offrendosi di aiutare in cambio.",eff:{autonomia:4,cura:3,fiducia_madre:3},conseguenza:"Davide propone a mamma: «Se ti aiuto di più in casa, mi dai qualcosa per le figurine?». Roberta sorride: le piace che non chieda e basta, ma offra qualcosa in cambio. È un primo, sano scambio: niente è dovuto, tutto si può meritare. E lui imparerà il valore di ciò che otterrà."},
+         {label:"Chiedere i soldi e basta.",eff:{autonomia:-1},conseguenza:"Davide chiede i soldi come al solito. Forse mamma glieli dà, forse no, vista l'aria che tira. Ma in ogni caso ha perso un'occasione: quella di scoprire che, anche a nove anni, certe cose può cominciare a meritarsele, e che così sono molto più belle."},
+         {label:"Fare i capricci finché cede qualcuno.",eff:{relazioni:-3,fiducia_madre:-2},conseguenza:"Davide insiste, piagnucola, mette il muso. Magari alla fine qualcuno cede per sfinimento. Ma ha ottenuto le figurine nel modo peggiore: senza meritarle, e lasciando dietro di sé un po' di nervoso. I capricci, anche quando «funzionano», costano sempre qualcosa a tutti."}
+        ]}}
+     ]},
+   { nome:"Mercoledì — il piccolo lavoro",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Modi giusti per un bambino',
+        righe:[
+         {k:'Aiutare la nonna',v:'commissioni, compagnia'},
+         {k:'I propri disegni',v:'una bancarella per la festa'},
+         {k:'La pazienza',v:'un po\' alla volta'}
+        ],nota:"Ci sono modi onesti e adatti all'età perché un bambino metta da parte qualche euro: una mano vera a un nonno o a un vicino, vendere i propri disegnini alla festa della scuola, raccogliere e riordinare. Non per «mandarlo a lavorare», ma per fargli assaggiare la soddisfazione di guadagnare con le proprie forze."},
+      {col:'fam',tipo:'narr',testo:"Il valore non è nei pochi euro che mette insieme: è in quello che impara. Che le cose costano fatica, che la pazienza paga, e che c'è una gioia speciale nel comprarsi qualcosa coi soldi sudati da soli."},
+
+      {col:'rag',tipo:'illust',svg:'cortile'},
+      {col:'rag',tipo:'narr',tag:'Davide, l\'idea',testo:"Davide disegna benissimo — lo dicono tutti. Alla festa della scuola, sabato, ci sarà un banchetto dei bambini. Potrebbe vendere i suoi disegni: dinosauri, draghi, macchine da corsa. Ma c'è il rischio che nessuno li compri, e che gli amici ridano."},
+      {col:'rag',tipo:'narr',testo:"Oppure può chiedere alla vicina, la signora Pina, se ha bisogno di una mano: lei gli chiede sempre di portarle su la spesa, e gli dà sempre qualcosa. Lavoretti veri, da bambino. Ma serve coraggio, e un po' di pazienza."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d3b2_lavoro',
+        intro:"Le idee ci sono. Manca solo il coraggio di provarci, accettando che forse non funziona subito.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Allestire il banchetto dei disegni.",eff:{coraggio_civile:5,autonomia:4,slancio:4},conseguenza:"Davide prepara venti disegni e un cartello: «1 euro l'uno». Alla festa, all'inizio nessuno si ferma, e lui ha paura. Poi un genitore compra un drago, poi un altro. A fine giornata ha nove euro e gli occhi che brillano. Ha scoperto che il coraggio di provarci, anche col rischio di un buco nell'acqua, è metà del guadagno."},
+         {label:"Aiutare la signora Pina con costanza.",eff:{cura:4,disciplina:5,legami:3},conseguenza:"Davide bussa dalla signora Pina e si offre di aiutarla con la spesa tutte le settimane. Lei è contenta della compagnia e gli dà ogni volta qualche moneta. Non è tanto, ma è costante, e Davide impara la cosa più difficile: che mettere da parte poco, con pazienza, alla fine fa molto."},
+         {label:"Aspettare di sentirsi più sicuro.",eff:{disciplina:-1,slancio:-2},conseguenza:"Davide rimanda: «Magari la prossima festa». Ma la sicurezza non arriva aspettando: arriva provando. Le occasioni — la festa, la signora Pina — passano, e chi aspetta sempre di «sentirsi pronto» rischia di non cominciare mai. A volte bisogna partire un po' spaventati."},
+         {label:"Rinunciare, è troppa fatica.",eff:{slancio:-3,autonomia:-2},conseguenza:"Davide decide che è troppo lavoro per qualche figurina, e lascia perdere. Tornerà a chiedere i soldi, come prima. Ma si è perso la scoperta più bella: che guadagnarsi le cose, anche faticando, dà una soddisfazione che ricevere e basta non darà mai."}
+        ]}}
+     ]},
+   { nome:"Venerdì — la tentazione",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'La pazienza di aspettare',
+        righe:[
+         {k:'Spendere subito il poco',v:'e ricominciare da zero'},
+         {k:'Aspettare e sommare',v:'e arrivare alla meta'},
+         {k:'Il segreto',v:'non toccare il barattolo'}
+        ],nota:"La prova più difficile, quando si mette da parte, non è guadagnare: è non spendere subito quel poco che hai per una piccola tentazione di passaggio. Chi impara ad aspettare, a lasciar crescere il gruzzolo verso la meta, ha imparato una delle cose più utili della vita — e quasi nessuno la impara a nove anni."},
+      {col:'fam',tipo:'narr',testo:"È la stessa pazienza del barattolo di Anna, in versione piccola. Resistere alla caramella di oggi per il gelato più grande di domani: sembra una sciocchezza, ma è il muscolo che, allenato da bambini, rende forti da grandi."},
+
+      {col:'rag',tipo:'illust',svg:'cortile'},
+      {col:'rag',tipo:'narr',tag:'Davide, vicino alla meta',testo:"Davide ha messo insieme dodici euro, tra disegni e signora Pina. Gli bastano quasi per l'album e un bel po' di figurine. Ma oggi, davanti al chiosco, vede una sciocchezza che costa tre euro: lucina, dura un giorno, la vogliono tutti."},
+      {col:'rag',tipo:'narr',testo:"Tre euro sono poco. Ma sono tre euro in meno verso le figurine che ha sudato per settimane. La manina è già in tasca, sulle monete."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d3b3_tentazione',
+        intro:"Nessuno lo saprebbe. Sono soldi suoi, può fare quello che vuole. La prova è tutta dentro di lui: aspettare, o cedere.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Resistere e arrivare alla meta.",eff:{disciplina:6,autonomia:4,slancio:2},conseguenza:"Davide toglie la mano dalle monete. «No, queste sono per le figurine.» Tira dritto. Il giorno dopo si compra l'album coi suoi soldi, e quella sensazione — averlo guadagnato e aspettato — è dieci volte meglio della lucina che oggi non ha comprato. Ha allenato, senza saperlo, il muscolo più prezioso: la pazienza."},
+         {label:"Comprarla, ma solo con una moneta «extra».",eff:{disciplina:3,autonomia:2},conseguenza:"Davide fa un patto con se stesso: si concede la lucina solo perché ha una moneta in più trovata per caso, senza toccare il «fondo figurine». È un buon compromesso: ci si può anche concedere uno sfizio, se non si intacca l'obiettivo. Sta imparando a distinguere i suoi soldi «per la meta» da quelli «per il piacere»."},
+         {label:"Cedere e comprare la lucina.",eff:{disciplina:-3,slancio:-1},conseguenza:"Davide cede: tre euro per la lucina. Si diverte un pomeriggio, poi la lucina si scarica e finisce in un cassetto. E le figurine sono di nuovo più lontane. Ha scoperto, a sue spese, perché aspettare è difficile: perché il piccolo piacere di adesso grida sempre più forte della meta di domani."},
+         {label:"Spendere tutto in sciocchezze.",eff:{disciplina:-5,autonomia:-2},conseguenza:"Una volta cominciato, Davide spende un po' qui, un po' là, e a fine giornata del gruzzolo non resta quasi niente. Le settimane di pazienza svanite in un pomeriggio. È la lezione più dura del risparmio: che basta un attimo di «tanto è poco» ripetuto tante volte per ritrovarsi di nuovo a zero."}
+        ]}}
+     ]}
+  ],
+  fine:{
+   titolo:"Le figurine guadagnate",
+   corpo:"Davide ha imparato che anche a nove anni si possono meritare le cose invece di chiederle soltanto, che provarci richiede un po' di coraggio, e che la cosa più difficile non è guadagnare ma aspettare senza spendere subito. Il suo album di figurine, comprato coi suoi soldi, è il suo oggetto più prezioso.",
+   cliff:"Ogni figurina attaccata, Davide la guarda un secondo in più delle altre. Non perché valga di più — vale uguale a quelle dei compagni. Ma le sue se le è guadagnate, una commissione e un disegno alla volta. E una cosa che ti sei guadagnato, anche piccola, ha un sapore tutto suo."
+  }
+ },
+
+ 4:{
+  titolo:"Più bello se diviso",
+  sub:"Davide ha qualcosa di suo, e scopre cosa succede quando lo si condivide",
+  insegna:"che condividere non è perdere, e che la generosità rende più ricchi, non più poveri",
+  protaNome:"Davide", protaEta:9,
+  giorni:[
+   { nome:"Lunedì — l'amico che guarda",
+     beats:[
+      {col:'fam',tipo:'illust',svg:'cortile'},
+      {col:'fam',tipo:'narr',tag:'Un amico senza',testo:"A scuola, Matteo Bianchi — un compagno di Davide — guarda l'album delle figurine con gli occhi di chi non ce l'ha. La sua famiglia, di figurine, non ne compra: ci sono cose più importanti."},
+      {col:'fam',tipo:'box',titolo:'Condividere non è perdere',
+        righe:[
+         {k:'Tieni tutto per te',v:'hai le tue cose'},
+         {k:'Dividi con un amico',v:'hai le cose E un amico più felice'},
+         {k:'La gioia',v:'cresce se la dividi'}
+        ],nota:"C'è una cosa strana e bellissima nella generosità: che dando, di solito, non diventi più povero. Una figurina doppia regalata a un amico vale, per lui, tantissimo — e a te non toglie quasi niente. Le cose materiali dividendole si dimezzano; la gioia, dividendola, si moltiplica."},
+
+      {col:'rag',tipo:'narr',tag:'Davide, le doppie',testo:"Davide ha un mucchietto di figurine doppie, che non gli servono. Matteo Bianchi le guarda. A Davide basterebbe dargliene qualcuna: a lui non cambia niente, per Matteo sarebbe una festa."},
+      {col:'rag',tipo:'narr',testo:"Ma una vocina dice: «sono le mie, le ho guadagnate io, perché regalarle?». Le ha sudate davvero, quelle figurine. È giusto tenersele? O è più bello qualcos'altro?"},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d4b1_doppie',
+        intro:"Davide ha guadagnato quelle figurine con fatica — ha tutto il diritto di tenerle. La domanda non è cosa è giusto, ma cosa lo farebbe sentire meglio.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Regalare le doppie a Matteo.",eff:{cura:6,legami:6,slancio:3},conseguenza:"Davide gli allunga le doppie: «Tieni, a me non servono». La faccia di Matteo si illumina come a Natale. E Davide scopre la cosa strana della generosità: che quel sorriso lì gli ha dato più gioia delle figurine stesse. Non ha perso niente, ha guadagnato un amico più felice e una sensazione bellissima. Le cose che ti sei guadagnato sono anche le più belle da donare."},
+         {label:"Proporre uno scambio alla pari.",eff:{cura:3,autonomia:3,legami:3},conseguenza:"Davide propone: «Facciamo cambio? Tu hai qualcosa che a me manca?». Matteo tira fuori due figurine che a Davide servivano. Tutti e due felici, nessuno ha perso. Lo scambio è un'altra forma di condivisione: si chiama reciprocità, e tiene insieme le amicizie alla pari, senza che nessuno si senta in debito."},
+         {label:"Tenersele tutte, sono sue.",eff:{autonomia:1,legami:-2},conseguenza:"Davide se le tiene: «Le ho guadagnate io». È vero, ne ha il diritto. Ma resta con un piccolo nodo guardando Matteo allontanarsi. Ha tenuto qualche cartoncino doppio che non userà mai, e si è perso un sorriso e un'amicizia più forte. A volte il diritto di tenere e la voglia di stare bene non vanno d'accordo."},
+         {label:"Venderle a Matteo.",eff:{legami:-3,relazioni:-2},conseguenza:"Davide prova a farsi pagare le doppie da Matteo, che però non ha soldi e ci resta male. Far pagare un amico per qualcosa che a te non serve raffredda l'amicizia. C'è differenza tra guadagnarsi le cose dagli adulti, per un lavoretto, e spremere un compagno che ha meno di te."}
+        ]}}
+     ]},
+   { nome:"Mercoledì — la merenda",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'Accorgersi degli altri',
+        righe:[
+         {k:'Chi ha sempre tutto',v:'a volte non vede chi non ha'},
+         {k:'Accorgersi',v:'è il primo passo'},
+         {k:'Un piccolo gesto',v:'può cambiare la giornata a qualcuno'}
+        ],nota:"La generosità comincia dall'accorgersi: notare il compagno che non ha la merenda, quello che resta in disparte, quello che «sta bene» ma non è vero. I bambini che imparano a vedere gli altri, e non solo se stessi, diventano grandi capaci di prendersi cura del mondo. È una cosa che si insegna con l'esempio, un gesto alla volta."},
+      {col:'fam',tipo:'narr',testo:"Non serve essere ricchi per essere generosi: i Ricci non lo sono. Serve avere occhi per gli altri e un cuore che, quando vede un bisogno, ha voglia di fare qualcosa. Anche solo dividere una merenda."},
+
+      {col:'rag',tipo:'illust',svg:'aula'},
+      {col:'rag',tipo:'narr',tag:'Davide, all\'intervallo',testo:"All'intervallo, Davide nota che Matteo Bianchi, ancora lui, non tira fuori niente da mangiare. Fa finta di non aver fame, ma Davide ha visto che guarda le merende degli altri. Davide ha il suo panino e una mela."},
+      {col:'rag',tipo:'narr',testo:"Potrebbe fare finta di niente, come fanno quasi tutti. Oppure fare una cosa piccola piccola che, per Matteo, sarebbe grande."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d4b2_merenda',
+        intro:"Nessuno si è accorto di Matteo, tranne Davide. È un momento minuscolo, di quelli che passano in un attimo. Ma dentro c'è una scelta vera.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Dividere la merenda, senza far pesare.",eff:{cura:6,legami:5,coraggio_civile:3},conseguenza:"Davide si avvicina come se fosse la cosa più normale del mondo: «Ne vuoi metà? Io non finisco mai tutto». Lo dice in modo da non farlo sentire un caso pietoso, solo un amico con cui si divide. Matteo accetta sollevato. Davide ha imparato che il modo in cui doni conta quanto il dono: la gentilezza vera non fa mai sentire l'altro in imbarazzo."},
+         {label:"Offrirgli la mela, tenendo il panino.",eff:{cura:4,legami:3},conseguenza:"Davide gli passa la mela: «Tieni, a me ne hanno messe due». Una piccola bugia gentile per non farlo sentire in debito. Matteo la prende grato. Non risolve la fame di tutti i giorni, ma per oggi un compagno ha mangiato e si è sentito visto. I piccoli gesti contano più di quanto sembri."},
+         {label:"Fare finta di niente.",eff:{cura:-2,legami:-1},conseguenza:"Davide mangia il suo panino guardando altrove, come fanno tutti. In fondo non è compito suo. Ma quella sera, pensandoci, sente che poteva fare una cosa piccola e bella, e non l'ha fatta. Accorgersi di un bisogno e voltarsi dall'altra parte lascia sempre un piccolo peso."},
+         {label:"Dirlo alla maestra ad alta voce.",eff:{cura:1,relazioni:-2},conseguenza:"Davide annuncia forte: «Maestra, Matteo non ha la merenda!». Vuole aiutare, ma fa arrossire Matteo davanti a tutti. L'intenzione era buona, il modo no: la gentilezza vera si fa in punta di piedi, non mette in piazza il bisogno di un amico. Aiutare senza umiliare è un'arte che si impara."}
+        ]}}
+     ]},
+   { nome:"Venerdì — la ricchezza vera",
+     beats:[
+      {col:'fam',tipo:'box',titolo:'La ricchezza che si moltiplica',
+        righe:[
+         {k:'I soldi',v:'spesi, finiscono'},
+         {k:'La generosità',v:'donata, torna'},
+         {k:'Una famiglia unita',v:'è la ricchezza più grande'}
+        ],nota:"Alla fine di tutto, la lezione più importante non è sui soldi: è che esistono ricchezze che non si comprano e non si contano. Un amico, una famiglia che si vuole bene, la gioia di aver aiutato qualcuno. I Ricci, di euro, ne hanno pochi. Ma di questa ricchezza qui ne hanno tanta. E nessuno gliela può togliere."},
+      {col:'fam',tipo:'narr',testo:"Davide è il più piccolo di casa, e in questi mesi ha imparato le cose dei grandi: il valore delle cose, il guadagnarsele, il dividerle. Ma la più importante l'ha sempre saputa, da quando è nato in questa famiglia: che insieme si sta bene anche con poco."},
+
+      {col:'rag',tipo:'illust',svg:'cucinaSera'},
+      {col:'rag',tipo:'narr',tag:'Davide, venerdì sera',testo:"Matteo Bianchi ha chiesto a Davide se sabato può andare a giocare da lui. Davide è felice: è nato un amico vero, da quelle figurine divise. La mamma, sentendo, propone: «Invitalo a merenda qui, da noi»."},
+      {col:'rag',tipo:'narr',testo:"Davide sa che a casa non c'è tanto, che la merenda sarà pane e marmellata, niente di speciale. Per un attimo si vergogna un pochino. Poi pensa a tutto quello che ha imparato."},
+      {col:'rag',tipo:'bivio',bivio:{
+        id:'d4b3_ricchezza',
+        intro:"È l'ultima scelta dell'anno per Davide. Non su soldi o figurine, ma su cosa ha capito di valere davvero, lui e la sua famiglia.",
+        domanda:"Tu cosa gli consigli?",
+        opzioni:[
+         {label:"Invitarlo, fiero della sua casa.",eff:{cura:5,legami:6,coraggio_civile:4,autonomia:3},conseguenza:"Davide invita Matteo senza vergogna. Pane, marmellata, e un pomeriggio a ridere e giocare. Matteo, a casa sua, dice che è stata la merenda più bella del mese. Davide capisce la cosa più grande di tutte: che la sua famiglia, povera di soldi, è ricchissima di quello che conta. E che non c'è niente di cui vergognarsi, in una casa dove ci si vuole bene."},
+         {label:"Invitarlo, ma chiedere alla mamma qualcosa in più.",eff:{cura:3,legami:4,fiducia_madre:2},conseguenza:"Davide chiede a mamma se può comprare due biscotti speciali per l'amico. Roberta sorride e trova il modo. Davide vuole fare bella figura, ed è tenero. Ma la verità che scoprirà è che a Matteo non importava dei biscotti: gli importava di essere stato invitato. Le persone si ricordano dell'accoglienza, non del menù."},
+         {label:"Andare lui da Matteo, per non mostrare casa sua.",eff:{legami:1,autonomia:-2,coraggio_civile:-2},conseguenza:"Davide preferisce andare lui da Matteo, per non far vedere che a casa sua c'è poco. È comprensibile, ma è anche un piccolo nascondersi. La sua casa, con tutto il suo poco, è piena di una cosa che conta più dei soldi — e prima Davide lo capirà, più sarà libero dalla vergogna che non merita."},
+         {label:"Lasciar perdere l'amicizia, troppo complicata.",eff:{legami:-4,relazioni:-2},conseguenza:"Davide, per non gestire l'imbarazzo, comincia a evitare Matteo. Così perde, per un po' di vergogna, l'amico più vero che si era fatto. È il finale più triste: rinunciare a una ricchezza vera — un'amicizia — per paura di mostrare una povertà che non è una colpa."}
+        ]}}
+     ]}
+  ],
+  fine:{
+   titolo:"La ricchezza dei Ricci",
+   corpo:"Davide è il più piccolo, ma in questa stagione ha imparato le cose più grandi: il valore degli oggetti, la fierezza di guadagnarseli, e la gioia — più grande di tutte — di condividere. Ha scoperto che la sua famiglia, povera di euro, è ricca di quello che davvero non si compra.",
+   cliff:"Sullo scaffale di Davide ci sono il barattolo «FUTURO», l'album di figurine guadagnato, e adesso anche un disegno nuovo: la sua famiglia, tutti e sei, che si tengono per mano davanti a una casa piccola. Sotto, a pennarello, ha scritto: «I più ricchi». Non sa di economia, Davide. Ma ha capito tutto."
+  }
+ }
+ }}},
 
  /* ════════════════ MANCINI & DE LUCA — Bianca, tra due case ════════════════ */
  mancinideluca:{ 1:{ bianca:{ 1:{
